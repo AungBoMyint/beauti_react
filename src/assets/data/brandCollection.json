@@ -1,0 +1,191 @@
+{
+    "meta":{
+       "format":"JSON",
+       "version":"1.1.0",
+       "projectId":"beauti-74413",
+       "resourcePath":[
+          "brandCollection"
+       ],
+       "recursive":false,
+       "creationTime":1735200460,
+       "app":"firefoo"
+    },
+    "data":{
+       "0a755160-03c7-11ee-af74-9d8b05525aa6":{
+          "dateTime":"2023-06-06T00:03:10.390595",
+          "id":"0a755160-03c7-11ee-af74-9d8b05525aa6",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2F099885f0-03c7-11ee-9dd5-eddf36c829fb?alt=media&token=3aa102e7-f0fa-402e-8a35-0c8914691a25",
+          "name":"SKIN&LAB",
+          "__collections__":{
+             
+          }
+       },
+       "18e322e0-b78b-11ee-a6dc-fd42710bb9d2":{
+          "dateTime":"2024-01-20T18:27:34.094939",
+          "id":"18e322e0-b78b-11ee-a6dc-fd42710bb9d2",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2F168312d0-b78b-11ee-9173-67865bc0829a?alt=media&token=bcd66966-214b-45e1-a6ad-716395870c91",
+          "name":"ABIB",
+          "__collections__":{
+             
+          }
+       },
+       "35c61280-7696-11ef-9329-b7b37e3c772f":{
+          "dateTime":"2024-09-19T21:18:19.112551",
+          "id":"35c61280-7696-11ef-9329-b7b37e3c772f",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2F32edc530-7696-11ef-ac41-a9f7ff8107ca?alt=media&token=5247aa62-953c-4be9-990f-ff32455b732c",
+          "name":"ROMAND",
+          "__collections__":{
+             
+          }
+       },
+       "5a4c1f00-bac0-11ef-9af5-6946826463eb":{
+          "dateTime":"2024-12-15T15:11:18.320330",
+          "id":"5a4c1f00-bac0-11ef-9af5-6946826463eb",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2F591f85e0-bac0-11ef-8180-ad17472ab8a4?alt=media&token=edd023a4-371c-444c-a159-1332de974a2e",
+          "name":"Delux Beauti",
+          "__collections__":{
+             
+          }
+       },
+       "71553460-b3fa-11ef-8623-0dad82988678":{
+          "dateTime":"2024-12-07T00:19:29.638592",
+          "id":"71553460-b3fa-11ef-8623-0dad82988678",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2F7036cc10-b3fa-11ef-850a-8367e9c5ee94?alt=media&token=d846f0b2-bd0d-4dd8-a66f-e7864c442d09",
+          "name":"SKINEFITS",
+          "__collections__":{
+             
+          }
+       },
+       "85541740-03c7-11ee-b829-cd8915743295":{
+          "dateTime":"2023-06-06T00:06:36.533008",
+          "id":"85541740-03c7-11ee-b829-cd8915743295",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2F84977e00-03c7-11ee-a74d-f3a6d3e420f3?alt=media&token=747fa9a8-a20c-4ada-b657-503e017ab200",
+          "name":"KAINE",
+          "__collections__":{
+             
+          }
+       },
+       "93c94dd0-03c8-11ee-afba-754263b4ec5e":{
+          "dateTime":"2023-06-06T00:14:10.285272",
+          "id":"93c94dd0-03c8-11ee-afba-754263b4ec5e",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2F92e9ea50-03c8-11ee-a80b-2fa8e9affafb?alt=media&token=1a95ec8a-1581-4b4b-a615-9f14b8ab5873",
+          "name":"HARUHARU WONDER ",
+          "__collections__":{
+             
+          }
+       },
+       "a1d81110-ee8f-11ee-87ad-cda9533fdae0":{
+          "dateTime":"2024-03-30T18:48:35.809255",
+          "id":"a1d81110-ee8f-11ee-87ad-cda9533fdae0",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2F9d5a2a10-ee8f-11ee-ba1b-c30fdc624cbd?alt=media&token=0f2d1644-b0b5-4d03-8f5a-13b674db58bb",
+          "name":"LilyByRed ",
+          "__collections__":{
+             
+          }
+       },
+       "a57f7400-03c8-11ee-a353-d35f5ba2caf7":{
+          "dateTime":"2023-06-06T00:14:40.000872",
+          "id":"a57f7400-03c8-11ee-a353-d35f5ba2caf7",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2Fa4f27640-03c8-11ee-a192-bd5dc7a187f6?alt=media&token=07d3a3ea-edb9-4b65-9f9f-949e49a51553",
+          "name":"GOOD MOLECULES",
+          "__collections__":{
+             
+          }
+       },
+       "bcabeaf0-03c8-11ee-87ea-a5bd57586a0d":{
+          "dateTime":"2023-06-06T00:15:18.879259",
+          "id":"bcabeaf0-03c8-11ee-87ea-a5bd57586a0d",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2Fbc01a130-03c8-11ee-954b-c14e24f08d6b?alt=media&token=9272d974-cc08-406f-ac63-b7e4eeb93176",
+          "name":"COSRX",
+          "__collections__":{
+             
+          }
+       },
+       "c193dcf0-b1fd-11ef-8710-09510a2794ec":{
+          "dateTime":"2024-12-04T11:38:10.431461",
+          "id":"c193dcf0-b1fd-11ef-8710-09510a2794ec",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2Fc04bcc90-b1fd-11ef-86fe-99e3d570c919?alt=media&token=86798893-0056-4a0d-9c54-82b983807631",
+          "name":"IUNIK",
+          "__collections__":{
+             
+          }
+       },
+       "c5063200-7591-11ef-8fb6-d95700cceb6b":{
+          "dateTime":"2024-09-18T14:14:00.800136",
+          "id":"c5063200-7591-11ef-8fb6-d95700cceb6b",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2Fb8a47cb0-7591-11ef-93bf-e5a97a05214c?alt=media&token=c5055370-c5d5-4fdd-b44d-d64b541c87f1",
+          "name":"SOME BY MI",
+          "__collections__":{
+             
+          }
+       },
+       "c6f72e40-03c6-11ee-b04e-8b7358fac4ec":{
+          "dateTime":"2023-06-06T00:01:17.156977",
+          "id":"c6f72e40-03c6-11ee-b04e-8b7358fac4ec",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2Fc665eac0-03c6-11ee-ab21-615d7e2e8032?alt=media&token=ba2ca118-4bf6-4ca9-91f5-c16a47e67e4e",
+          "name":"THE POTIONS",
+          "__collections__":{
+             
+          }
+       },
+       "c7dfcb00-74e5-11ef-b3d3-8b5cf7826f7a":{
+          "dateTime":"2024-09-17T17:42:52.144951",
+          "id":"c7dfcb00-74e5-11ef-b3d3-8b5cf7826f7a",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2Fc5764510-74e5-11ef-b88f-d31169651340?alt=media&token=ba798505-eb7a-4abb-a7d7-7dc8e38bae1b",
+          "name":"I’M FROM",
+          "__collections__":{
+             
+          }
+       },
+       "c9474350-03c7-11ee-8ce9-ad0d9c088720":{
+          "dateTime":"2023-06-06T00:08:30.533576",
+          "id":"c9474350-03c7-11ee-8ce9-ad0d9c088720",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2Fc8846880-03c7-11ee-bbdb-cf23e15bab1c?alt=media&token=2bb4dfb5-749f-4cb4-94ae-61daf18ede55",
+          "name":"ISNTREE",
+          "__collections__":{
+             
+          }
+       },
+       "df4f2ce0-03c6-11ee-8427-3f8ad503fc17":{
+          "dateTime":"2023-06-06T00:01:57.998990",
+          "id":"df4f2ce0-03c6-11ee-8427-3f8ad503fc17",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2Fde994a60-03c6-11ee-98c6-939e29371506?alt=media&token=d0a64a5c-fdf9-4259-884b-8aa6d2fdfb6e",
+          "name":"SKIN1004",
+          "__collections__":{
+             
+          }
+       },
+       "eceaafd0-03c8-11ee-9fd9-f9a52cdf0fe7":{
+          "dateTime":"2023-06-06T00:16:39.821743",
+          "id":"eceaafd0-03c8-11ee-9fd9-f9a52cdf0fe7",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2Fec3fa2c0-03c8-11ee-bc35-8b02cac626d2?alt=media&token=2fcaba57-bdb3-4506-8be6-9c9cbc01386f",
+          "name":"BEAUTY OF JOSEON",
+          "__collections__":{
+             
+          }
+       },
+       "f20eeda0-d208-11ee-aeec-b353d4373998":{
+          "dateTime":"2024-02-23T11:33:55.770721",
+          "id":"f20eeda0-d208-11ee-aeec-b353d4373998",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2Ff00e62b0-d208-11ee-b9be-3d0c8a94970b?alt=media&token=d40ea848-09bc-447c-9849-d445820b1f52",
+          "name":"MIXSOON ",
+          "__collections__":{
+             
+          }
+       },
+       "f5304d30-03c8-11ee-9548-cd4d6069fb31":{
+          "dateTime":"2023-06-06T00:16:53.699348",
+          "id":"f5304d30-03c8-11ee-9548-cd4d6069fb31",
+          "image":"https://firebasestorage.googleapis.com/v0/b/beauti-74413.appspot.com/o/brands%2Ff49545b0-03c8-11ee-9f7d-cdc3423c839b?alt=media&token=ff9f9161-a2ab-4d81-8ab7-6feda9f579f7",
+          "name":"AXIS-Y",
+          "__collections__":{
+             
+          }
+       },
+       "f5304d30-03c8-11ee-9548-cd4d6069fb31\" (st":{
+          "__collections__":{
+             
+          }
+       }
+    }
+ }

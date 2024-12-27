@@ -10,6 +10,7 @@ import Account from "./pages/Account";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Search from "./pages/Search";
 
 const router = createBrowserRouter([
   {
@@ -35,5 +36,6 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: "/search", element: <Search /> },
 ]);
 export default router;

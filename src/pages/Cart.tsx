@@ -70,12 +70,12 @@ const Cart = () => {
         padding={4}
         marginBottom={{ sm: "63px", lg: "0px" }}
         width={"96%"}
-        position={{ sm: "fixed", lg: "sticky" }}
+        position={{ base: "fixed", lg: "sticky" }}
         bottom={0}
         left={0}
         right={0}
         marginX={"auto"}
-        bgColor={"white"}
+        bgColor={{ base: "white", _dark: "gray.900" }}
         shadow={"2xl"}
       >
         <Input

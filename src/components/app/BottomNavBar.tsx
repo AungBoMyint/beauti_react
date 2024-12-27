@@ -26,7 +26,7 @@ const BottomNavBar = (props?: Props) => {
       boxShadow="0 -2px 4px rgba(0, 0, 0, 0.1)"
       rounded={"xl"}
       shadowColor={"gray"}
-      bg={"gray.50"}
+      bg={{ base: "gray.50", _dark: "gray.900" }}
       paddingY={2}
       bottom={0}
       zIndex={2000}

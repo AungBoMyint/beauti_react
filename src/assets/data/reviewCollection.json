@@ -1,0 +1,821 @@
+{
+    "meta":{
+       "format":"JSON",
+       "version":"1.1.0",
+       "projectId":"beauti-74413",
+       "resourcePath":[
+          "reviewCollection"
+       ],
+       "recursive":false,
+       "creationTime":1735200574,
+       "app":"firefoo"
+    },
+    "data":{
+       "0009a610-482b-11ee-9f2d-2b57a2eacf1d":{
+          "dateTime":"2023-09-01T00:50:01.649239",
+          "id":"0009a610-482b-11ee-9f2d-2b57a2eacf1d",
+          "productId":"703f4fa0-36b2-11ee-a510-c78112cb9092",
+          "rating":5,
+          "reviewMessage":"nice eye cream \n",
+          "user":{
+             "emailAddress":"kaungsettwin1862@gmail.com",
+             "id":"R6W1KIXcunWFcY8epsVo1E3MYmj2",
+             "image":"https://lh3.googleusercontent.com/a-/AFdZucr-ynByBb4WuC4C3FZdcSTwFFGokyNFMs0MeeOI2Q=s96-c",
+             "points":1230,
+             "status":1,
+             "userName":"Kaung Sett Win"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "0466dda0-6904-11ee-9daa-e5f403921c59":{
+          "dateTime":"2023-10-12T20:04:06.970825",
+          "id":"0466dda0-6904-11ee-9daa-e5f403921c59",
+          "productId":"449d5e90-68fe-11ee-a922-4f1ae93500bd",
+          "rating":5,
+          "reviewMessage":"အရမ်းကြိုက်တယ်",
+          "user":{
+             "emailAddress":"zarnikyawfat@gmail.com",
+             "id":"DjVs0GKJAQO58EJZwEo6TxCtGps1",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocK7HZ59xONMPlW4FpPZA0HTPU5hhFQFWEEbEchX6v25=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"ZarNiKyaw Fat"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "0d3c3070-e16c-11ee-9324-450d4560512b":{
+          "approved":true,
+          "dateTime":"2024-03-14T01:31:08.983834",
+          "id":"0d3c3070-e16c-11ee-9324-450d4560512b",
+          "productId":"3cb13dc0-94ee-11ee-b9ec-fb85ed416cd3",
+          "rating":5,
+          "reviewMessage":"fair price and good quality. Can do best for its function. ",
+          "user":{
+             "emailAddress":"mmtastethebeauty@gmail.com",
+             "id":"yuQw9TjHqZhNFHceEBH0Q0KHmM13",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocIIc1gpoU2mtEs1OpnYRkBBI4opB2SyrJQ4_O9Z5xw6=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Taste The Beauty Mm"
+          },
+          "verifiedPurchase":true,
+          "__collections__":{
+             
+          }
+       },
+       "1d208440-6904-11ee-8fc7-63b1b14534f2":{
+          "dateTime":"2023-10-12T21:34:48.452543",
+          "id":"1d208440-6904-11ee-8fc7-63b1b14534f2",
+          "productId":"449d5e90-68fe-11ee-a922-4f1ae93500bd",
+          "rating":5,
+          "reviewMessage":"BOJ ကို အ​ကြိုက်ဆုံးပဲရှင့်",
+          "user":{
+             "emailAddress":"thinthinmyat200705@gmail.com",
+             "id":"83o4IqEOy0eEc484y7Wf6YR3kTF2",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocL3WfeYQiBELR3jZ36YmEWvg9Ws61tBXwnLoBHe_jAz=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Thin Thin Myat"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "1e3fcf30-41ad-11ee-b892-1d09a7f43ac4":{
+          "dateTime":"2023-08-23T18:33:48.771405",
+          "id":"1e3fcf30-41ad-11ee-b892-1d09a7f43ac4",
+          "productId":"c6778ff0-3869-11ee-8e39-1f66c5035648",
+          "rating":5,
+          "reviewMessage":"good ",
+          "user":{
+             "emailAddress":"winmgthan83@gmail.com",
+             "id":"6LirUd9VMGPztmCXN4NrnLWd56r1",
+             "image":"https://lh3.googleusercontent.com/a/AItbvmnbNBWb9PLeN3JRFVmJuP0MbchnALeXFfZZ1LyC=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Win MgThan"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "20c54950-6904-11ee-a442-7d064ff34bc0":{
+          "dateTime":"2023-10-12T20:04:54.565879",
+          "id":"20c54950-6904-11ee-a442-7d064ff34bc0",
+          "productId":"449d5e90-68fe-11ee-a922-4f1ae93500bd",
+          "rating":5,
+          "reviewMessage":"best skincares\n",
+          "user":{
+             "emailAddress":"m22zv2b8s4@privaterelay.appleid.com",
+             "id":"omc9LhT7IDalNs4nIgqxMV4RzmO2",
+             "image":"",
+             "points":0,
+             "status":0,
+             "userName":""
+          },
+          "__collections__":{
+             
+          }
+       },
+       "28967a00-6904-11ee-bc3d-a50343edf627":{
+          "dateTime":"2023-10-12T20:05:07.680171",
+          "id":"28967a00-6904-11ee-bc3d-a50343edf627",
+          "productId":"449d5e90-68fe-11ee-a922-4f1ae93500bd",
+          "rating":5,
+          "reviewMessage":"good",
+          "user":{
+             "emailAddress":"darliaung1357@gmail.com",
+             "id":"kyelYUrBM0gnQI5hBxwROJULGq43",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocJf22XkNxHNVhht7PEWRNt0ZMi8Pd2w5R_ozSVDjh_X=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Darli Aung"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "33f78960-691e-11ee-a64b-895ec78e6832":{
+          "dateTime":"2023-10-12T23:11:33.686463",
+          "id":"33f78960-691e-11ee-a64b-895ec78e6832",
+          "productId":"449d5e90-68fe-11ee-a922-4f1ae93500bd",
+          "rating":5,
+          "reviewMessage":"good",
+          "user":{
+             "emailAddress":"darliaung1357@gmail.com",
+             "id":"kyelYUrBM0gnQI5hBxwROJULGq43",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocJf22XkNxHNVhht7PEWRNt0ZMi8Pd2w5R_ozSVDjh_X=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Darli Aung"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "36bd2e70-7d69-11ee-873c-59f52924ebc9":{
+          "dateTime":"2023-11-07T18:58:53.847678",
+          "id":"36bd2e70-7d69-11ee-873c-59f52924ebc9",
+          "productId":"c195e400-7d47-11ee-a744-77ec063c5213",
+          "rating":5,
+          "reviewMessage":"အမဲစက်တွေသက်သာသွားတယ် အရမ်းကောင်းပါတယိ💕",
+          "user":{
+             "emailAddress":"kaungmyatsan912@gmail.com",
+             "id":"XJhZ8sbk7qh0w6Hd1xxP0jBPsVt1",
+             "image":"",
+             "points":0,
+             "status":0,
+             "userName":""
+          },
+          "__collections__":{
+             
+          }
+       },
+       "401ab320-242b-11ef-8cb9-0d893de70f90":{
+          "approved":true,
+          "dateTime":"2024-06-07T00:06:04.946717",
+          "id":"401ab320-242b-11ef-8cb9-0d893de70f90",
+          "productId":"647577f0-d20a-11ee-bd94-bfd5cec6ba19",
+          "rating":5,
+          "reviewMessage":"လိမ်းတာ ၄ ရက်လောက်နဲ့ မျက်နှာလေး ကြည်ပီး glow လာတာ သဘောကျ ",
+          "user":{
+             "emailAddress":"+959764397743",
+             "id":"UtuSuseYWkV2KMJngL2s6IKxD7X2",
+             "image":"",
+             "points":0,
+             "status":0,
+             "userName":""
+          },
+          "verifiedPurchase":true,
+          "__collections__":{
+             
+          }
+       },
+       "4b8eed80-7d5e-11ee-94fb-2504b5d1ae03":{
+          "dateTime":"2023-11-07T17:40:44.312038",
+          "id":"4b8eed80-7d5e-11ee-94fb-2504b5d1ae03",
+          "productId":"c195e400-7d47-11ee-a744-77ec063c5213",
+          "rating":5,
+          "reviewMessage":"သုံးရတာအရမ်းကောင်းတယ် စွဲသုံးနေတာအတော်ကြာပြီ နောက်လဲသုံးနေအုံးမှာပါ🫶🏻",
+          "user":{
+             "emailAddress":"ttfkzm4jvn@privaterelay.appleid.com",
+             "id":"02ybCTzmmOMjZeU1Ap4na8glZ792",
+             "image":"",
+             "points":0,
+             "status":0,
+             "userName":""
+          },
+          "__collections__":{
+             
+          }
+       },
+       "4f720490-4349-11ee-a3ec-b15010084d91":{
+          "dateTime":"2023-08-25T19:44:23.961969",
+          "id":"4f720490-4349-11ee-a3ec-b15010084d91",
+          "productId":"c6778ff0-3869-11ee-8e39-1f66c5035648",
+          "rating":4,
+          "reviewMessage":"very good",
+          "user":{
+             "emailAddress":"truelife787799@gmail.com",
+             "id":"E3Wwfqaz7BdOEdRTLH9eVbFVaWy2",
+             "image":"https://lh3.googleusercontent.com/a/AAcHTtcnliLVuBD6DJi5mhAUIo2560HmQlxWn9hBqUGvUZQ=s96-c",
+             "points":200,
+             "status":1,
+             "userName":"true life"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "51a66560-3743-11ee-9823-2ddcf44706e9":{
+          "dateTime":"2023-08-10T12:31:16.726247",
+          "id":"51a66560-3743-11ee-9823-2ddcf44706e9",
+          "productId":"94e03650-36b0-11ee-8869-c7a6888b47b4",
+          "rating":5,
+          "reviewMessage":"best Niacinamide serum :)",
+          "user":{
+             "emailAddress":"winmgthan83@gmail.com",
+             "id":"6LirUd9VMGPztmCXN4NrnLWd56r1",
+             "image":"https://lh3.googleusercontent.com/a/AItbvmnbNBWb9PLeN3JRFVmJuP0MbchnALeXFfZZ1LyC=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Win MgThan"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "5501bf40-7d69-11ee-8510-776ebbeac862":{
+          "dateTime":"2023-11-07T18:59:44.628402",
+          "id":"5501bf40-7d69-11ee-8510-776ebbeac862",
+          "productId":"c195e400-7d47-11ee-a744-77ec063c5213",
+          "rating":5,
+          "reviewMessage":"သူငယ်ချင်းညွှန်းလို့ axis-y serumလေးသုံးနေတာပါ သုံးရအရမ်းအဆင်ပြေပါတယ်  dark spotလေးတွေလဲတဖြည်းဖြည်းသက်သာလာပါတယ် ဝက်ခြံလေးတွေလဲသက်သာလာပါတယ်",
+          "user":{
+             "emailAddress":"hmhmdev97@gmail.com",
+             "id":"DBaqsePfTabcDndISudFgzjbNUQ2",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocIyYlJEjn85MeyZcA8kYyNK6UnLwRzKOmOFIyb4LjgM=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"htet moe"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "57a34730-6907-11ee-aa1a-db2a83e488e2":{
+          "dateTime":"2023-10-12T20:27:55.107542",
+          "id":"57a34730-6907-11ee-aa1a-db2a83e488e2",
+          "productId":"449d5e90-68fe-11ee-a922-4f1ae93500bd",
+          "rating":5,
+          "reviewMessage":"Good",
+          "user":{
+             "emailAddress":"khinmyat445638315@gmail.com",
+             "id":"DuBprD45JmQNwFpmIYo5f89Gw2j1",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocJA83yvCP3z_o713w3H2iuDN8b-FhArj4YcxwzKoz6-=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Khin Myat Myat Thu"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "592b8840-7d68-11ee-9a48-1d05ff1be5f1":{
+          "dateTime":"2023-11-07T18:52:42.116595",
+          "id":"592b8840-7d68-11ee-9a48-1d05ff1be5f1",
+          "productId":"c195e400-7d47-11ee-a744-77ec063c5213",
+          "rating":5,
+          "reviewMessage":"ကြိုက်တယ်axis-yလေး😍",
+          "user":{
+             "emailAddress":"htarhtarwai123phyothettun@gmail.com",
+             "id":"QYQ8URYhxTguOgXfLWBbCQu7UMD2",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocK__jswnqNVH6bVRo3KDleMnokPFSHxwp4OITdSJAAzkU4=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Htar Htar Wai"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "5d9b9580-4331-11ee-87c7-a9cd9ef829f1":{
+          "dateTime":"2023-08-25T16:52:59.800529",
+          "id":"5d9b9580-4331-11ee-87c7-a9cd9ef829f1",
+          "productId":"c6778ff0-3869-11ee-8e39-1f66c5035648",
+          "rating":4,
+          "reviewMessage":"excellent product",
+          "user":{
+             "emailAddress":"truelife787799@gmail.com",
+             "id":"E3Wwfqaz7BdOEdRTLH9eVbFVaWy2",
+             "image":"https://lh3.googleusercontent.com/a/AAcHTtcnliLVuBD6DJi5mhAUIo2560HmQlxWn9hBqUGvUZQ=s96-c",
+             "points":200,
+             "status":1,
+             "userName":"true life"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "6eb27980-6904-11ee-94e4-6173a1eea73f":{
+          "dateTime":"2023-10-12T20:07:05.304406",
+          "id":"6eb27980-6904-11ee-94e4-6173a1eea73f",
+          "productId":"c6778ff0-3869-11ee-8e39-1f66c5035648",
+          "rating":5,
+          "reviewMessage":"Good product",
+          "user":{
+             "emailAddress":"moelay1993.hzm@gmail.com",
+             "id":"UH8qOplgBqMMR3L1wSsfIsNFyxV2",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocL7_cS4cm1PX6HEkk7jSOvkYoCW1ESrqz3TdxdcJ0nb=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Hlaing Zin Moe"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "7b14ac10-7de1-11ee-ae5e-cf2efaffe420":{
+          "dateTime":"2023-11-08T09:19:48.113193",
+          "id":"7b14ac10-7de1-11ee-ae5e-cf2efaffe420",
+          "productId":"d9f92660-bb2d-11ed-872b-f75718cd80c4",
+          "rating":5,
+          "reviewMessage":"very good ",
+          "user":{
+             "emailAddress":"kyikyikhaing234k3@gmail.com",
+             "id":"GLjCvyzjatZ4ESvFXkh5i9S9GXx1",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocIrg_Ey1yqhKbx5BUC13eWZUyXcJQhVhDuo-kgOoPi1SQ=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Kyi Kyi Khaing"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "804b0cb0-7d28-11ee-b970-b142ec63a470":{
+          "dateTime":"2023-11-07T11:15:39.963560",
+          "id":"804b0cb0-7d28-11ee-b970-b142ec63a470",
+          "productId":"449d5e90-68fe-11ee-a922-4f1ae93500bd",
+          "rating":1,
+          "reviewMessage":"အရမ်းကြာတာပဲ😖",
+          "user":{
+             "emailAddress":"ensdrafallet@gmail.com",
+             "id":"ceTSUZIcGrfBgy0duy2tjTBCqgm1",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocJz-Lq7ugGhyvWZN5Jd6V6hUZ-l5DCpwsq6kByqn3s=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Ensdra fallet"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "877d4c30-e16b-11ee-8989-a778ceb7660a":{
+          "approved":true,
+          "dateTime":"2024-03-14T01:27:24.595619",
+          "id":"877d4c30-e16b-11ee-8989-a778ceb7660a",
+          "productId":"647577f0-d20a-11ee-bd94-bfd5cec6ba19",
+          "rating":5,
+          "reviewMessage":"တဘူးမကုန်ခင်ပဲ ကြည်ပြီး glow လာတာ👍",
+          "user":{
+             "emailAddress":"+959764397743",
+             "id":"UtuSuseYWkV2KMJngL2s6IKxD7X2",
+             "image":"",
+             "points":0,
+             "status":0,
+             "userName":""
+          },
+          "verifiedPurchase":true,
+          "__collections__":{
+             
+          }
+       },
+       "8dbce750-4331-11ee-b52f-fd0b34e06e09":{
+          "dateTime":"2023-08-25T16:54:20.549833",
+          "id":"8dbce750-4331-11ee-b52f-fd0b34e06e09",
+          "productId":"c6778ff0-3869-11ee-8e39-1f66c5035648",
+          "rating":3,
+          "reviewMessage":"greate",
+          "user":{
+             "emailAddress":"truelife787799@gmail.com",
+             "id":"E3Wwfqaz7BdOEdRTLH9eVbFVaWy2",
+             "image":"https://lh3.googleusercontent.com/a/AAcHTtcnliLVuBD6DJi5mhAUIo2560HmQlxWn9hBqUGvUZQ=s96-c",
+             "points":200,
+             "status":1,
+             "userName":"true life"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "8f2d1ac0-7d69-11ee-846b-bb684f86c1d6":{
+          "dateTime":"2023-11-07T19:01:22.220196",
+          "id":"8f2d1ac0-7d69-11ee-846b-bb684f86c1d6",
+          "productId":"c195e400-7d47-11ee-a744-77ec063c5213",
+          "rating":5,
+          "reviewMessage":"best skin care for me😘😘😘😘",
+          "user":{
+             "emailAddress":"waihinn654@gmail.com",
+             "id":"NoVFd1mOtMgRTM4YLYbH8A8a70k2",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocL1tAQh0GSu64d2_ABtK75D1skLtcEaOcdZdbe3OdGZ=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Hinn Wai"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "8f89dfa0-6903-11ee-91df-1bdcab38a8f1":{
+          "dateTime":"2023-10-12T20:00:50.906971",
+          "id":"8f89dfa0-6903-11ee-91df-1bdcab38a8f1",
+          "productId":"449d5e90-68fe-11ee-a922-4f1ae93500bd",
+          "rating":5,
+          "reviewMessage":"favorite item",
+          "user":{
+             "emailAddress":"waihinn654@gmail.com",
+             "id":"NoVFd1mOtMgRTM4YLYbH8A8a70k2",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocL1tAQh0GSu64d2_ABtK75D1skLtcEaOcdZdbe3OdGZ=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Hinn Wai"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "968a6f50-6902-11ee-9156-3db058b4768e":{
+          "dateTime":"2023-10-12T19:53:53.157745",
+          "id":"968a6f50-6902-11ee-9156-3db058b4768e",
+          "productId":"1d25e020-347a-11ee-a850-7130432e25f5",
+          "rating":5,
+          "reviewMessage":"အရမ်းကောင်းတဲ့ Sunscreen လေး ဝက်ခြံသမားတွေအတွက် မရှိမဖြစ်ပဲ",
+          "user":{
+             "emailAddress":"thurein.002494kbz@gmail.com",
+             "id":"lxCwPElq8QhCE1eksQXBEhuEhaD2",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocKz8xXPgNV9NspQrzsipHbTkiCe15xTCaThI0h__gfX=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Thu Rein"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "9b15d8f0-6904-11ee-b850-afc616d3d292":{
+          "dateTime":"2023-10-12T20:08:19.775118",
+          "id":"9b15d8f0-6904-11ee-b850-afc616d3d292",
+          "productId":"1d25e020-347a-11ee-a850-7130432e25f5",
+          "rating":5,
+          "reviewMessage":"အဆီပြန်တဲ့သူတွေရွေးသင့်တဲ့ sunscreen လေးပါအရမ်းကောင်းပါတယ်",
+          "user":{
+             "emailAddress":"moelay1993.hzm@gmail.com",
+             "id":"UH8qOplgBqMMR3L1wSsfIsNFyxV2",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocL7_cS4cm1PX6HEkk7jSOvkYoCW1ESrqz3TdxdcJ0nb=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Hlaing Zin Moe"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "a2495b60-ee8d-11ee-9b67-d77c5b683f94":{
+          "dateTime":"2024-03-30T18:34:17.558192",
+          "id":"a2495b60-ee8d-11ee-9b67-d77c5b683f94",
+          "productId":"647577f0-d20a-11ee-bd94-bfd5cec6ba19",
+          "rating":5,
+          "reviewMessage":"essence ထဲမှာသုံးလို့အကောင်းဆုံးထဲပါတယ်",
+          "user":{
+             "emailAddress":"t7647ndxn6@privaterelay.appleid.com",
+             "id":"yZmCI5LWgENyEaMw7rjO0UArUOU2",
+             "image":"",
+             "points":950,
+             "status":0,
+             "userName":""
+          },
+          "__collections__":{
+             
+          }
+       },
+       "a3b54b50-624f-11ee-b338-e1c64e3a7f03":{
+          "dateTime":"2023-10-04T07:17:48.357279",
+          "id":"a3b54b50-624f-11ee-b338-e1c64e3a7f03",
+          "productId":"d73d0d80-ba86-11ed-87eb-253082fcbe12",
+          "rating":5,
+          "reviewMessage":"ဝယ်ယူရန်",
+          "user":{
+             "emailAddress":"khinezarthin21302@gmail.com",
+             "id":"C1l8GY9jbiTFqGF0HlpghN69bUl1",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocLMFDBx2JO2n6xl2OKOLh8u4QXyqILNZ_gf0wPSVPL2=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"khinezar thin"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "ac7485c0-6903-11ee-b4a1-75186c2aa5c6":{
+          "dateTime":"2023-10-12T20:01:39.420690",
+          "id":"ac7485c0-6903-11ee-b4a1-75186c2aa5c6",
+          "productId":"449d5e90-68fe-11ee-a922-4f1ae93500bd",
+          "rating":5,
+          "reviewMessage":"like",
+          "user":{
+             "emailAddress":"khineieiphyu123@gmail.com",
+             "id":"6Fb87HSOoAPDK7XHRU4jkneJoOy2",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocJrtTqm2SlRevQ1_ZNcdVfBnIUM5KUFmVTAYYny8yDKMA=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Khin Ei Ei Phyu"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "b60fc0a0-e16b-11ee-8f4a-53042b8612bd":{
+          "dateTime":"2024-03-14T01:28:42.730927",
+          "id":"b60fc0a0-e16b-11ee-8f4a-53042b8612bd",
+          "productId":"3cb13dc0-94ee-11ee-b9ec-fb85ed416cd3",
+          "rating":5,
+          "reviewMessage":"moisturizer ထဲမှာ စျေးတန်ပြီး အဆင်ပြေလို့သုံးနေတာ ၃ ဘူးရှိပြီ ",
+          "user":{
+             "emailAddress":"+959764397743",
+             "id":"UtuSuseYWkV2KMJngL2s6IKxD7X2",
+             "image":"",
+             "points":0,
+             "status":0,
+             "userName":""
+          },
+          "__collections__":{
+             
+          }
+       },
+       "bf07c160-ee8d-11ee-8350-d7910eb36f5d":{
+          "approved":true,
+          "dateTime":"2024-03-30T18:35:05.782637",
+          "id":"bf07c160-ee8d-11ee-8350-d7910eb36f5d",
+          "productId":"647577f0-d20a-11ee-bd94-bfd5cec6ba19",
+          "rating":4,
+          "reviewMessage":"a bit pricy, but effective\n",
+          "user":{
+             "emailAddress":"t7647ndxn6@privaterelay.appleid.com",
+             "id":"yZmCI5LWgENyEaMw7rjO0UArUOU2",
+             "image":"",
+             "points":950,
+             "status":0,
+             "userName":""
+          },
+          "verifiedPurchase":true,
+          "__collections__":{
+             
+          }
+       },
+       "c0a08df0-6903-11ee-a902-b7920a0a69b2":{
+          "dateTime":"2023-10-12T20:02:13.263429",
+          "id":"c0a08df0-6903-11ee-a902-b7920a0a69b2",
+          "productId":"c6778ff0-3869-11ee-8e39-1f66c5035648",
+          "rating":5,
+          "reviewMessage":"like",
+          "user":{
+             "emailAddress":"khineieiphyu123@gmail.com",
+             "id":"6Fb87HSOoAPDK7XHRU4jkneJoOy2",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocJrtTqm2SlRevQ1_ZNcdVfBnIUM5KUFmVTAYYny8yDKMA=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Khin Ei Ei Phyu"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "c614cdb0-3680-11ee-bf27-75c9f843a85a":{
+          "dateTime":"2023-08-09T13:18:40.204242",
+          "id":"c614cdb0-3680-11ee-bf27-75c9f843a85a",
+          "productId":"6924c950-3484-11ee-aca5-05944d7039c2",
+          "rating":2.5,
+          "reviewMessage":"Awesome!🩸🩸🩸",
+          "user":{
+             "emailAddress":"yds50100@gmail.com",
+             "id":"IhONGZ0A9lS8463A69IvuA9tpRr1",
+             "image":"https://lh3.googleusercontent.com/a/AAcHTtcs_IwRXwtMIcOUaotzl-iQP0ZpRuf3TLdpb_NpnJCh=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"yds"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "c7470a40-d3bf-11ee-aad1-45199fdc61f6":{
+          "dateTime":"2024-02-25T15:55:13.060542",
+          "id":"c7470a40-d3bf-11ee-aad1-45199fdc61f6",
+          "productId":"2eb51690-0418-11ee-b0e6-07fee6ac47ba",
+          "rating":5,
+          "reviewMessage":"One of the best Sunstick out there. With Semi matte finish and not oily at all. And easy to use for reapplication of your Sun protection.",
+          "user":{
+             "emailAddress":"djwp54qh2s@privaterelay.appleid.com",
+             "id":"df9tXzFcFmdv4SeisraMSnsfKZD2",
+             "image":"",
+             "points":0,
+             "status":0,
+             "userName":""
+          },
+          "__collections__":{
+             
+          }
+       },
+       "cf297180-7d66-11ee-8c58-957ccea77822":{
+          "dateTime":"2023-11-07T18:41:41.080679",
+          "id":"cf297180-7d66-11ee-8c58-957ccea77822",
+          "productId":"c195e400-7d47-11ee-a744-77ec063c5213",
+          "rating":5,
+          "reviewMessage":"အဲ့mini\u200cေလးကတပတ်အတွင်းသိသာပါတယ်",
+          "user":{
+             "emailAddress":"yadanarhhw@gmail.com",
+             "id":"tLgzXVcZoMNY1wjhJFTPKxybuA72",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocJuPG5onYPzPhzYazcP-FiL9XeQydEEwQ2Mj2UlAP4WAg=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Yadanar Hnin Htet Wai"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "ddefb7b0-6902-11ee-bd48-232687f6fa0f":{
+          "dateTime":"2023-10-12T19:55:52.939427",
+          "id":"ddefb7b0-6902-11ee-bd48-232687f6fa0f",
+          "productId":"ce9134f0-35f0-11ee-8c49-8d0ce167b667",
+          "rating":5,
+          "reviewMessage":"အရမ်းကြိုက်တဲ့ Essence လေး၊ အရမ်းလည်းကောင်း။\nစျေးအရမ်းတက်သွားလို့သာမသုံးနိုင်တော့တာ😞",
+          "user":{
+             "emailAddress":"thurein.002494kbz@gmail.com",
+             "id":"lxCwPElq8QhCE1eksQXBEhuEhaD2",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocKz8xXPgNV9NspQrzsipHbTkiCe15xTCaThI0h__gfX=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Thu Rein"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "e205f960-482b-11ee-a711-2f3ff0275b1e":{
+          "approved":true,
+          "dateTime":"2023-09-01T00:56:20.790755",
+          "id":"e205f960-482b-11ee-a711-2f3ff0275b1e",
+          "productId":"703f4fa0-36b2-11ee-a510-c78112cb9092",
+          "rating":5,
+          "reviewMessage":"perfect eye product \n",
+          "user":{
+             "emailAddress":"ffrsry6ddg@privaterelay.appleid.com",
+             "id":"xgyIBEK6XoRybP5qH0SPeaiKlUt1",
+             "image":"",
+             "points":80,
+             "status":0,
+             "userName":""
+          },
+          "verifiedPurchase":true,
+          "__collections__":{
+             
+          }
+       },
+       "e9294ac0-4331-11ee-b886-718ad3fab03e":{
+          "dateTime":"2023-08-25T16:56:53.932418",
+          "id":"e9294ac0-4331-11ee-b886-718ad3fab03e",
+          "productId":"c6778ff0-3869-11ee-8e39-1f66c5035648",
+          "rating":2,
+          "reviewMessage":"good product",
+          "user":{
+             "emailAddress":"truelife787799@gmail.com",
+             "id":"E3Wwfqaz7BdOEdRTLH9eVbFVaWy2",
+             "image":"https://lh3.googleusercontent.com/a/AAcHTtcnliLVuBD6DJi5mhAUIo2560HmQlxWn9hBqUGvUZQ=s96-c",
+             "points":200,
+             "status":1,
+             "userName":"true life"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "eea3cfd0-6905-11ee-be80-ff8e076d2513":{
+          "dateTime":"2023-10-12T20:17:49.453990",
+          "id":"eea3cfd0-6905-11ee-be80-ff8e076d2513",
+          "productId":"449d5e90-68fe-11ee-a922-4f1ae93500bd",
+          "rating":5,
+          "reviewMessage":"Skin 1004 sunscreen လေးလည်းတကယ်မိုက်ပါတယ်အသားရောင်နဲ့တထပ်တည်းစိမ့်ဝင်တာ",
+          "user":{
+             "emailAddress":"moelay1993.hzm@gmail.com",
+             "id":"UH8qOplgBqMMR3L1wSsfIsNFyxV2",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocL7_cS4cm1PX6HEkk7jSOvkYoCW1ESrqz3TdxdcJ0nb=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Hlaing Zin Moe"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "effe7100-2f7a-11ef-b83f-7df09b743f5f":{
+          "approved":true,
+          "dateTime":"2024-06-21T09:34:13.072825",
+          "id":"effe7100-2f7a-11ef-b83f-7df09b743f5f",
+          "productId":"647577f0-d20a-11ee-bd94-bfd5cec6ba19",
+          "rating":5,
+          "reviewMessage":"ရမ်းကောင်းပါတယ်ရှင်",
+          "user":{
+             "emailAddress":"+959261014969",
+             "id":"NLIbpxVYJxfUM3gEzAL3l13tG9q1",
+             "image":"",
+             "points":0,
+             "status":0,
+             "userName":""
+          },
+          "verifiedPurchase":true,
+          "__collections__":{
+             
+          }
+       },
+       "f038ed70-6802-11ee-8c4f-630564c1bf89":{
+          "dateTime":"2023-10-11T13:23:52.455094",
+          "id":"f038ed70-6802-11ee-8c4f-630564c1bf89",
+          "productId":"62afd2a0-ba85-11ed-91b7-216445664d0a",
+          "rating":2,
+          "reviewMessage":"❤️❤️❤️❤️",
+          "user":{
+             "emailAddress":"sithu041900@gmail.com",
+             "id":"gPkemzkyqbarZGX0PXWTeCqGMKb2",
+             "image":"https://lh3.googleusercontent.com/a/AAcHTtfqmUZGzZmWxiHpzQwAA1f3oq9zEf2z75EEs383Byhd=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"si thu"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "f24d6910-7d4c-11ee-9aad-e163ab500894":{
+          "dateTime":"2023-11-07T15:36:33.121113",
+          "id":"f24d6910-7d4c-11ee-9aad-e163ab500894",
+          "productId":"c195e400-7d47-11ee-a744-77ec063c5213",
+          "rating":3,
+          "reviewMessage":"အရမ်းကြိုက်သော scream careလေးပါ",
+          "user":{
+             "emailAddress":"datthako2016@gmail.com",
+             "id":"jJVovxlVCTceHYtw0XXrvCp9Wo13",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocJl23jX3ma337-LWjlJpPzi-zbuVL0OiOY8MrKelanv=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Phyo Kyaw"
+          },
+          "__collections__":{
+             
+          }
+       },
+       "f5566640-76f5-11ef-8d73-0b082b89af59":{
+          "approved":true,
+          "dateTime":"2024-09-20T09:13:42.693",
+          "id":"f5566640-76f5-11ef-8d73-0b082b89af59",
+          "productId":"1a8b5700-5670-11ef-b183-274e260ff378",
+          "rating":1.5,
+          "reviewMessage":"တစ်ခါပဲသုံးကြည့်တာနဲ့ အရမ်းသိသိသာသာပြောင်းလဲသွား...",
+          "user":{
+             "emailAddress":"testuser@gmail.com",
+             "id":"AzVieIXgu8bElHC3hO6CrnBrrbl1",
+             "image":"",
+             "points":0,
+             "status":1,
+             "userName":""
+          },
+          "verifiedPurchase":true,
+          "__collections__":{
+             
+          }
+       },
+       "f751df00-7d69-11ee-a88f-377209161654":{
+          "dateTime":"2023-11-07T19:04:16.944223",
+          "id":"f751df00-7d69-11ee-a88f-377209161654",
+          "productId":"c195e400-7d47-11ee-a744-77ec063c5213",
+          "rating":5,
+          "reviewMessage":"good product  လေးပါ ခင်ဗျ\n",
+          "user":{
+             "emailAddress":"phyowaiaung241292@gmail.com",
+             "id":"IQo4ZfAjPJg3pXUBCzkkslnApVz1",
+             "image":"https://lh3.googleusercontent.com/a/ACg8ocJ2EPpMAJemuF4qCHEND234uihE06WN18t_KBHu86GfVACE=s96-c",
+             "points":0,
+             "status":0,
+             "userName":"Modo ZuShi"
+          },
+          "__collections__":{
+             
+          }
+       }
+    }
+ }

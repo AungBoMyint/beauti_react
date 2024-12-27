@@ -5,13 +5,13 @@ import TopNavBar from "./components/app/TopNavBar";
 
 function App() {
   return (
-    <>
+    <Box bg={{_dark:'black',base:'#fffbfe'}}>
       <TopNavBar />
-      <Box marginBottom={20} marginTop={16} paddingX={2}>
+      <Box paddingBottom={'100px'} paddingTop={'80px'} paddingX={2}>
         <Outlet />
       </Box>
       <BottomNavBar />
-    </>
+    </Box>
   );
 }
 
