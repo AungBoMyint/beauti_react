@@ -5,8 +5,9 @@ import ScrollX from "../ScrollX";
 import categories from "../../../assets/data/categories.json";
 import Category from "@/entity/Category";
 import useCategories from "@/hooks/useCategories";
+import { Link } from "react-router-dom";
+import { categoryDetailsItemPath } from "@/utils/constant";
 
-const MotionFlex = motion(Flex);
 const Categories = () => {
   const divRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
@@ -20,18 +21,19 @@ const Categories = () => {
   return (
     <ScrollX>
       {finalCategories?.map((category) => (
-        <Button
-          key={category.id}
-          bg={{base:'white',_dark:'gray.900'}}
-          shadow={"sm"}
-          rounded={"lg"}
-          paddingX={2}
-          size={"sm"}
-          fontSize={"sm"}
-          fontWeight={"medium"}
-        >
-          {category.name}
-        </Button>
+        <Link key={category.id} to={categoryDetailsItemPath + category.name}>
+          <Button
+            bg={{ base: "white", _dark: "gray.900" }}
+            shadow={"sm"}
+            rounded={"lg"}
+            paddingX={2}
+            size={"sm"}
+            fontSize={"sm"}
+            fontWeight={"medium"}
+          >
+            {category.name}
+          </Button>
+        </Link>
       ))}
     </ScrollX>
   );

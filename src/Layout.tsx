@@ -7,7 +7,7 @@ function App() {
   return (
     <Box bg={{_dark:'black',base:'#fffbfe'}}>
       <TopNavBar />
-      <Box paddingBottom={'100px'} paddingTop={'80px'} paddingX={2}>
+      <Box paddingBottom={'100px'} paddingTop={'80px'} paddingX={4}>
         <Outlet />
       </Box>
       <BottomNavBar />

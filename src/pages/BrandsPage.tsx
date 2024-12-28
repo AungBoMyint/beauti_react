@@ -1,12 +1,11 @@
-import useCategories from "@/hooks/useCategories";
-import { categoryDetailsItemPath } from "@/utils/constant";
-import { Box, Card, Grid, Text, Image } from "@chakra-ui/react";
-
+import useBrand from "@/hooks/useBrand";
+import { brandDetailsItemPath } from "@/utils/constant";
+import { Card, Grid, Text, Image } from "@chakra-ui/react";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Shop = () => {
-  const { data, isLoading, error } = useCategories();
+const BrandsPage = () => {
+  const { data, isLoading, error } = useBrand();
   if (isLoading) return <div>loading....</div>;
   return (
     <Grid
@@ -20,23 +19,32 @@ const Shop = () => {
     >
       {data?.map((item) => {
         return (
-          <Link key={item.id} to={categoryDetailsItemPath + item.name}>
+          <Link
+            to={brandDetailsItemPath + item.name}
+            key={`${item.id}-${item.name}`}
+          >
             <Card.Root
+              key={`${item.id}-${item.name}`}
               overflow="hidden"
               size={"lg"}
               variant={"elevated"}
               rounded={"lg"}
               paddingBottom={4}
               paddingTop={2}
-              height={100}
+              minHeight={120}
             >
-              <Text textAlign={"center"} fontSize={"lg"} fontWeight={"bold"}>
+              <Text
+                textAlign={"center"}
+                fontSize={"lg"}
+                fontWeight={"bold"}
+                marginBottom={4}
+              >
                 {item.name}
               </Text>
               <Image
                 className="pointer-events-none h-18 w-20 absolute right-0 bottom-0"
                 src={item.image}
-                alt={`${item.name.toLowerCase()}'s image`}
+                alt={`${item.name?.toLowerCase()}'s image`}
               />
             </Card.Root>
           </Link>
@@ -46,4 +54,4 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default BrandsPage;

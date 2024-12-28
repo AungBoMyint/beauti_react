@@ -11,6 +11,17 @@ import ProtectedRoute from "./pages/ProtectedRoute";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Search from "./pages/Search";
+import BrandsPage from "./pages/BrandsPage";
+import {
+  brandDetailsItemPath,
+  categoryDetailsItemPath,
+  itemDetailPath,
+  statusDetailsItemPath,
+} from "./utils/constant";
+import BrandDetailItems from "./pages/BrandDetailItems";
+import StatusDetailItems from "./pages/StatusDetailItems";
+import CategoryDetailItems from "./pages/CategoryDetailItems";
+import ItemDetail from "./pages/ItemDetail";
 
 const router = createBrowserRouter([
   {
@@ -20,11 +31,20 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "/shop", element: <Shop /> },
+      { path: "/brands", element: <BrandsPage /> },
       { path: "/offers", element: <Offers /> },
       { path: "/cart", element: <Cart /> },
       { path: "/favourite", element: <Favourite /> },
+      { path: `${brandDetailsItemPath}:slug`, element: <BrandDetailItems /> },
+      { path: `${statusDetailsItemPath}:slug`, element: <StatusDetailItems /> },
+      {
+        path: `${categoryDetailsItemPath}:slug`,
+        element: <CategoryDetailItems />,
+      },
+
       { path: "/login", element: <Login /> },
       { path: "/signup", element: <SignUp /> },
+
       {
         element: <ProtectedRoute />,
         children: [
@@ -37,5 +57,6 @@ const router = createBrowserRouter([
     ],
   },
   { path: "/search", element: <Search /> },
+  { path: `${itemDetailPath}:id`, element: <ItemDetail /> },
 ]);
 export default router;

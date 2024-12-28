@@ -1,13 +1,12 @@
 import { Icon } from "@chakra-ui/react";
-import React from "react";
-import { FaFacebookMessenger } from "react-icons/fa";
+import { BsMessenger } from "react-icons/bs";
 
 const Messenger = () => {
-  return (
+  return <BsMessenger />; /* (
     <Icon size={"lg"} color={{ base: "#1E88E5", _dark: "white" }}>
-      <FaFacebookMessenger />
+      <BsMessenger />
     </Icon>
-  );
+  ); */
 };
 
 export default Messenger;

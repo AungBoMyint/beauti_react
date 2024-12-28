@@ -1,13 +1,14 @@
+import ItemCard from "@/components/app/ItemCard";
 import Messenger from "@/components/app/Messenger";
 import { ColorModeButton } from "@/components/ui/color-mode";
 import { InputGroup } from "@/components/ui/input-group";
-import { Box, Card, Flex, Input, Image, Text, Grid } from "@chakra-ui/react";
-import { FaFacebookMessenger } from "react-icons/fa";
+import { useSearchItems } from "@/hooks/useItem";
+import { Box, Flex, Input, Grid } from "@chakra-ui/react";
+import { useState } from "react";
 
 const Search = () => {
-  const searchResults: number[] = [
-    1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16,
-  ];
+  const [searchValue, setSearchValue] = useState<string | undefined>();
+  const { data, isLoading } = useSearchItems(searchValue);
   return (
     <>
       <Flex
@@ -27,12 +28,19 @@ const Search = () => {
             variant="flushed"
             border={"black"}
             autoFocus={true}
+            onChange={(event) => {
+              setSearchValue(event.target.value);
+            }}
           />
         </InputGroup>
         <Messenger />
         <ColorModeButton />
       </Flex>
-      {searchResults.length < 1 ? (
+      {isLoading ? (
+        <div className="flex items-center justify-center h-full w-full">
+          loading.....
+        </div>
+      ) : (data ?? []).length < 1 ? (
         <div className="flex items-center justify-center h-dvh w-full ">
           လိုချင်တဲ့ Product အမည်ကို ရှာဖွေနိုင်ပါသည်
         </div>
@@ -47,28 +55,8 @@ const Search = () => {
             gapX={4}
             gapY={2}
           >
-            {searchResults.map((item) => {
-              return (
-                <Card.Root
-                  key={item}
-                  overflow="hidden"
-                  size={"lg"}
-                  variant={"elevated"}
-                  rounded={"xl"}
-                >
-                  <Image
-                    className="pointer-events-none h-full"
-                    src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                    alt="Green double couch with wooden legs"
-                  />
-                  <Card.Body paddingX={2} paddingY={2}>
-                    <Card.Title padding={0} margin={0}>
-                      Living room Sofa
-                    </Card.Title>
-                    <Text>73500 Kyats</Text>
-                  </Card.Body>
-                </Card.Root>
-              );
+            {data?.map((item) => {
+              return <ItemCard key={item.id} item={item} />;
             })}
           </Grid>
         </Box>

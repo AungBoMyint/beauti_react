@@ -21,6 +21,7 @@ const ScrollX = ({ children }: Props) => {
         dragConstraints={{ right: 0, left: -width }}
         gap={4}
         marginY={2}
+        alignItems={'center'}
       >
         {children}
       </MotionFlex>
