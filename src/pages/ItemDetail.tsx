@@ -6,6 +6,9 @@ import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import "./ItemDetail.css";
 import SiteAccordion from "@/components/app/SiteAccordion";
+import { Rating } from "@/components/ui/rating";
+import ItemDetailRating from "@/components/app/ItemDetailRating";
+import ItemDetailReview from "@/components/app/ItemDetailReview";
 const ItemDetail = () => {
   const { id } = useParams();
   const { data, isLoading, error } = useFilterIdItem(id ?? "");
@@ -19,33 +22,41 @@ const ItemDetail = () => {
   console.log(images);
   return (
     <Flex
-      gap={2}
-      padding={2}
+      gap={4}
+      padding={{ base: 4, md: 6 }}
       direction={"column"}
       justifyContent={"center"}
       alignItems={"center"}
     >
-      <Text fontSize={"sm"} fontWeight={"bold"}>
-        {data.brandName}
-      </Text>
-      <Text fontSize={"lg"} fontWeight={"bold"}>
-        {data.name}
-      </Text>
-
-      <ImageGallery
-        showFullscreenButton={false}
-        showThumbnails={true}
-        showNav={false}
-        showPlayButton={false}
-        autoPlay={true}
-        items={images ?? []}
-      />
-      <Text fontSize={"lg"} fontWeight={"medium"}>
-        {data.discountPrice && data.discountPrice > 0
-          ? data.discountPrice
-          : data.price}{" "}
-        Ks
-      </Text>
+      <Flex
+        direction={{ base: "column", md: "row" }}
+        alignItems={"start"}
+        spaceX={4}
+        spaceY={4}
+      >
+        <ImageGallery
+          showFullscreenButton={false}
+          showThumbnails={true}
+          showNav={false}
+          showPlayButton={false}
+          autoPlay={true}
+          items={images ?? []}
+        />
+        <Flex width={"full"} direction={"column"} alignItems={"center"}>
+          <Text fontSize={"sm"} fontWeight={"bold"}>
+            {data.brandName}
+          </Text>
+          <Text fontSize={"lg"} fontWeight={"bold"}>
+            {data.name}
+          </Text>
+          <Text fontSize={"lg"} fontWeight={"medium"}>
+            {data.discountPrice && data.discountPrice > 0
+              ? data.discountPrice
+              : data.price}{" "}
+            Ks
+          </Text>
+        </Flex>
+      </Flex>
       <SiteAccordion
         items={[
           {
@@ -65,6 +76,8 @@ const ItemDetail = () => {
           },
         ]}
       />
+      <ItemDetailRating productId={data.id} />
+      <ItemDetailReview productId={data.id} />
     </Flex>
   );
 };

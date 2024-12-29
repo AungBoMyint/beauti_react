@@ -30,7 +30,7 @@ export const useFilterStatusItem = (status: string) =>
   });
 export const useFilterCategoryItem = (category: string) =>
   apiClient.get({
-    key: ["items", status],
+    key: ["items", category],
     fn: async () =>
       new Promise((resolve) => {
         setTimeout(() => {
