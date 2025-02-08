@@ -6,12 +6,12 @@ import {
   SelectRoot,
   SelectTrigger,
 } from "@/components/ui/select";
-import { useTownship } from "@/hooks/useTownship";
+import { useDivisions } from "@/hooks/useDivision";
 import { Text } from "@chakra-ui/react";
 import useCart from "@/hooks/useCart";
 
 export const SelectAddress = () => {
-  const { data, isLoading } = useTownship();
+  const { data, isLoading } = useDivisions();
   const address = useCart((state) => state.address);
   const setAddress = useCart((state) => state.setAddress);
 

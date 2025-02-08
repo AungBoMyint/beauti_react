@@ -23,26 +23,28 @@ import BrandDetailItems from "./pages/BrandDetailItems";
 import StatusDetailItems from "./pages/StatusDetailItems";
 import CategoryDetailItems from "./pages/CategoryDetailItems";
 import ItemDetail from "./pages/ItemDetail";
-import UploadItem from "./pages/item/UploadItem";
+import UploadItem from "./pages/admin/UploadItem";
 import AdminProtectedRoute from "./pages/AdminProtectedRoute";
-import ManageItem from "./pages/item/ManageItem";
-import ManageAdvertisement from "./pages/item/ManageAdvertisement";
-import UploadAdvertisement from "./pages/item/UploadAdvertisement";
-import ManageAdvertisementTwo from "./pages/item/ManagementAdvertisementTwo";
-import UploadAdvertisementTwo from "./pages/item/UploadAdvertisementTwo";
-import ManagementCategory from "./pages/item/ManagementCategory";
-import UploadCategory from "./pages/item/UploadCategory";
-import ManageBrand from "./pages/item/ManageBrand";
-import UploadBrand from "./pages/item/UploadBrand";
-import ManageStatus from "./pages/item/ManageStatus";
-import UploadStatus from "./pages/item/UploadStatus";
-import ManageTag from "./pages/item/ManageTag";
-import UploadTag from "./pages/item/UploadTag";
-import ManagePromotion from "./pages/item/ManagePromotion";
-import UploadPromotion from "./pages/item/UploadPromotion";
-import ManageReviews from "./pages/item/ManageReviews";
-import ManageCoupons from "./pages/item/ManageCoupon";
-import UploadCoupon from "./pages/item/UploadCoupon";
+import ManageItem from "./pages/admin/ManageItem";
+import ManageAdvertisement from "./pages/admin/ManageAdvertisement";
+import UploadAdvertisement from "./pages/admin/UploadAdvertisement";
+import ManageAdvertisementTwo from "./pages/admin/ManagementAdvertisementTwo";
+import UploadAdvertisementTwo from "./pages/admin/UploadAdvertisementTwo";
+import ManagementCategory from "./pages/admin/ManagementCategory";
+import UploadCategory from "./pages/admin/UploadCategory";
+import ManageBrand from "./pages/admin/ManageBrand";
+import UploadBrand from "./pages/admin/UploadBrand";
+import ManageStatus from "./pages/admin/ManageStatus";
+import UploadStatus from "./pages/admin/UploadStatus";
+import ManageTag from "./pages/admin/ManageTag";
+import UploadTag from "./pages/admin/UploadTag";
+import ManagePromotion from "./pages/admin/ManagePromotion";
+import UploadPromotion from "./pages/admin/UploadPromotion";
+import ManageReviews from "./pages/admin/ManageReviews";
+import ManageCoupons from "./pages/admin/ManageCoupon";
+import UploadCoupon from "./pages/admin/UploadCoupon";
+import ManageAddress from "./pages/admin/ManageAddress";
+import StockManagement from "./pages/admin/StockManagement";
 
 const router = createBrowserRouter([
   {
@@ -157,6 +159,14 @@ const router = createBrowserRouter([
       {
         path: "/upload-coupon",
         element: <UploadCoupon />,
+      },
+      {
+        path: "/manage-address",
+        element: <ManageAddress />,
+      },
+      {
+        path: "/view-stock",
+        element: <StockManagement />,
       },
     ],
   },

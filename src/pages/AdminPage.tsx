@@ -82,10 +82,13 @@ const AdminPage = () => {
       >
         <RiCoupon2Fill size={22} />
       </ActionFlex>
-      <ActionFlex label="Manage Divisions">
+      <ActionFlex
+        label="Manage Divisions"
+        onClick={() => navigate("/manage-address")}
+      >
         <FaCity size={22} />
       </ActionFlex>
-      <ActionFlex label="Stock Management">
+      <ActionFlex label="Stock View" onClick={() => navigate("/view-stock")}>
         <AiOutlineStock size={22} />
       </ActionFlex>
       <ActionFlex label="My Orders">
