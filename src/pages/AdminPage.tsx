@@ -76,7 +76,10 @@ const AdminPage = () => {
       >
         <MdReviews size={22} />
       </ActionFlex>
-      <ActionFlex label="Manage One-time Use Coupons">
+      <ActionFlex
+        label="Manage One-time Use Coupons"
+        onClick={() => navigate("/manage-coupons")}
+      >
         <RiCoupon2Fill size={22} />
       </ActionFlex>
       <ActionFlex label="Manage Divisions">

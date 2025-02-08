@@ -41,6 +41,8 @@ import UploadTag from "./pages/item/UploadTag";
 import ManagePromotion from "./pages/item/ManagePromotion";
 import UploadPromotion from "./pages/item/UploadPromotion";
 import ManageReviews from "./pages/item/ManageReviews";
+import ManageCoupons from "./pages/item/ManageCoupon";
+import UploadCoupon from "./pages/item/UploadCoupon";
 
 const router = createBrowserRouter([
   {
@@ -147,6 +149,14 @@ const router = createBrowserRouter([
       {
         path: "/manage-review",
         element: <ManageReviews />,
+      },
+      {
+        path: "/manage-coupons",
+        element: <ManageCoupons />,
+      },
+      {
+        path: "/upload-coupon",
+        element: <UploadCoupon />,
       },
     ],
   },
