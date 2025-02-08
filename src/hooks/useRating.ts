@@ -2,16 +2,22 @@ import ApiClient from "@/utils/ApiClient";
 import Review from "@/entity/Review";
 import reviewCollection from "../assets/data/reviewCollection.json";
 import OverAllRating from "@/entity/OverAllRating";
+import { reviewHistories } from "./useReview";
 
 const apiClient = new ApiClient<OverAllRating>("/ratings/:id");
-
 const useRating = (productId: string) =>
   apiClient.get({
     key: ["ratings", productId],
     fn: async () =>
       new Promise((resolve) => {
         setTimeout(() => {
-          const response = Object.values(reviewCollection.data) as Review[];
+          const responseOne = Object.values(reviewCollection.data) as Review[];
+          var response: Review[] = [];
+          if (reviewHistories.length < 1) {
+            response = responseOne;
+          } else {
+            response = reviewHistories;
+          }
           const reviews = response.filter(
             (review) => review.productId === productId
           );
@@ -27,7 +33,7 @@ const useRating = (productId: string) =>
           var totalRating = 0;
           var totalRatingCount = 0;
           for (var review of reviews) {
-            totalRating += 1;
+            totalRating += review.rating;
             totalRatingCount += 1;
             overallRating.ratingCount += 1;
             const ratingValue = review.rating;

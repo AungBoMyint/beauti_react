@@ -4,15 +4,16 @@ import ScrollX from "../ScrollX";
 import { useFilterStatusItem } from "@/hooks/useItem";
 import ItemCard from "../ItemCard";
 import { statusDetailsItemPath } from "@/utils/constant";
+import StatusLoading from "../StatusLoading";
 
 interface Props {
   status: string;
 }
 const StatusOne = ({ status }: Props) => {
   const { data: items, isLoading, error } = useFilterStatusItem(status);
-  if (isLoading) return <div>loading.....</div>;
+  if (isLoading) return <StatusLoading />;
   return (
-    <Box>
+    <Box mb={2}>
       <ViewAllLabel
         label={status}
         action="Show More"

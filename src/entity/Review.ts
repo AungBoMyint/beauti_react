@@ -7,5 +7,7 @@ interface Review {
   rating: number;
   reviewMessage: string;
   user: AppUser;
+  approved: boolean;
+  verifiedPurchase: boolean;
 }
 export default Review;

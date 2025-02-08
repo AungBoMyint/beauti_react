@@ -1,25 +1,28 @@
 import { useFilterIdItem } from "@/hooks/useItem";
-import { Flex, Text, Image, Box } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import ImageGallery from "react-image-gallery";
 // import stylesheet if you're not already using CSS @import
 import "react-image-gallery/styles/css/image-gallery.css";
 import "./ItemDetail.css";
 import SiteAccordion from "@/components/app/SiteAccordion";
-import { Rating } from "@/components/ui/rating";
 import ItemDetailRating from "@/components/app/ItemDetailRating";
 import ItemDetailReview from "@/components/app/ItemDetailReview";
+import ItemDetailLoading from "@/components/app/ItemDetailLoading";
+import ItemDetailPrice from "@/components/app/ItemDetailPrice";
+import ItemDetailAvailableOptionsAndAddToCart from "./ItemDetailAvailableOptionsAndAddToCart";
+import ScheduleSaleCountDown from "@/components/app/item/ScheduleSaleCountDown";
 const ItemDetail = () => {
   const { id } = useParams();
   const { data, isLoading, error } = useFilterIdItem(id ?? "");
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading) return <ItemDetailLoading />;
   if (!data) return <div>404 Not Found</div>;
   const pictures = [data.photo1 ?? "", data.photo2 ?? "", data.photo3 ?? ""];
   const images = pictures?.map((image) => ({
     original: image,
     thumbnail: image,
   }));
-  console.log(images);
+
   return (
     <Flex
       gap={4}
@@ -30,7 +33,7 @@ const ItemDetail = () => {
     >
       <Flex
         direction={{ base: "column", md: "row" }}
-        alignItems={"start"}
+        alignItems={"center"}
         spaceX={4}
         spaceY={4}
       >
@@ -39,24 +42,27 @@ const ItemDetail = () => {
           showThumbnails={true}
           showNav={false}
           showPlayButton={false}
-          autoPlay={true}
+          autoPlay={false}
           items={images ?? []}
         />
-        <Flex width={"full"} direction={"column"} alignItems={"center"}>
+        <Flex width={"full"} direction={"column"} alignItems={"start"}>
           <Text fontSize={"sm"} fontWeight={"bold"}>
             {data.brandName}
           </Text>
           <Text fontSize={"lg"} fontWeight={"bold"}>
             {data.name}
           </Text>
-          <Text fontSize={"lg"} fontWeight={"medium"}>
-            {data.discountPrice && data.discountPrice > 0
-              ? data.discountPrice
-              : data.price}{" "}
-            Ks
-          </Text>
+          <ItemDetailPrice item={data} />
+          <ItemDetailAvailableOptionsAndAddToCart item={data} />
         </Flex>
       </Flex>
+      <ScheduleSaleCountDown
+        scheduleSale={{
+          endTime: "2025-01-10T00:00:00.000",
+          price: 50540,
+          title: "Iunik Sales ",
+        }}
+      />
       <SiteAccordion
         items={[
           {

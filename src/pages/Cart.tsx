@@ -1,9 +1,19 @@
-import { Box, Card, Text, Image, Flex, Input, Button } from "@chakra-ui/react";
+import { PromotionInput } from "@/components/app/cart/PromotionInput";
+import {
+  SelectAddress,
+  SelectedAddressFee,
+} from "@/components/app/cart/SelectAddress";
+import IncreaseDecreaseButtons from "@/components/app/item/IncreaseDecreaseButtons";
+import ItemDetailPrice from "@/components/app/ItemDetailPrice";
+import useCart from "@/hooks/useCart";
+import { Box, Card, Image, Flex, Button, Badge } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
-import { CiCircleMinus } from "react-icons/ci";
-import { CiCirclePlus } from "react-icons/ci";
 
 const Cart = () => {
+  const promotionValue = useCart((state) => state.promotionValue);
+  const cartItems = useCart((state) => state.cartItems);
+  const grandTotal = useCart((state) => state.grandTotal);
+  const subTotal = useCart((state) => state.subTotal);
   const bottomActionRef = useRef<HTMLDivElement>();
   const [bottomActionHeight, setBottomActionHeight] = useState(0);
   useEffect(() => {
@@ -14,10 +24,10 @@ const Cart = () => {
   return (
     <Box position={"relative"} lg={{ display: "flex", gap: 4 }}>
       <Box spaceY={2} paddingBottom={bottomActionHeight}>
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((item) => {
+        {cartItems?.map((item) => {
           return (
             <Card.Root
-              key={item}
+              key={item.id}
               overflow="hidden"
               size={"lg"}
               variant={"elevated"}
@@ -27,38 +37,27 @@ const Cart = () => {
               <Flex>
                 <Image
                   className="pointer-events-none h-full w-[30%] self-center"
-                  src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                  alt="Green double couch with wooden legs"
+                  src={item.image}
+                  alt={item.itemName}
                 />
-                <Card.Body padding={2}>
+                <Card.Body padding={2} spaceY={1}>
                   <Card.Title
                     padding={0}
                     margin={0}
                     fontSize={"lg"}
                     fontWeight={"medium"}
                   >
-                    Living room Sofa bold a;s slkdf a;lsdfl
+                    {item.itemName}
                   </Card.Title>
-                  <Text
-                    textStyle="sm"
-                    fontWeight="medium"
-                    letterSpacing="tight"
-                  >
-                    50ml
-                  </Text>
-                  <Text
-                    textStyle="sm"
-                    fontWeight="medium"
-                    letterSpacing="tight"
-                  >
-                    $450
-                  </Text>
+                  <Badge variant={"solid"} width={"fit"}>
+                    {item.size}
+                  </Badge>
+
+                  <Box textStyle="sm" fontWeight="medium" letterSpacing="tight">
+                    <ItemDetailPrice item={item} />
+                  </Box>
                 </Card.Body>
-                <Flex alignItems={"center"} gap={4}>
-                  <CiCircleMinus size={22} />
-                  <Text>1</Text>
-                  <CiCirclePlus size={22} />
-                </Flex>
+                <IncreaseDecreaseButtons item={item} />
               </Flex>
             </Card.Root>
           );
@@ -78,34 +77,45 @@ const Cart = () => {
         bgColor={{ base: "white", _dark: "gray.900" }}
         shadow={"2xl"}
       >
-        <Input
-          placeholder="Enter your email"
-          border={"solid"}
-          paddingLeft={2}
-        />
+        <PromotionInput />
         <table className="w-full border-separate border-spacing-y-4">
           <tbody>
             <tr>
               <td className="text-left px-2">ကုန်ပစည်းကျသင့်ငွေ</td>
-              <td className="text-right px-2">2000Ks</td>
+              <td className="text-right px-2">{subTotal}Ks</td>
             </tr>
+            {promotionValue && (
+              <tr>
+                <td className="text-left px-2">ပရိုမိုးရှင်း လျော့ငွေ</td>
+                <td className="text-right px-2">
+                  {promotionValue.promotionValue}
+                </td>
+              </tr>
+            )}
             <tr>
-              <td className="text-left px-2">မြို့နယ်</td>
-              <td className="text-right px-2">2000Ks</td>
+              <td className="text-left px-2">
+                <SelectAddress />
+              </td>
+              <td className="text-right px-2">
+                <SelectedAddressFee />
+              </td>
             </tr>
             <tr className=" text-white">
               <td className="text-left p-2 bg-black rounded-tl-lg rounded-bl-lg">
                 စုစုပေါင်းကျသင့်ငွေ =
               </td>
               <td className="text-right p-2 bg-black rounded-tr-lg rounded-br-lg">
-                2000Ks
+                {grandTotal}Ks
               </td>
             </tr>
           </tbody>
         </table>
         <Button
           variant={"solid"}
-          backgroundColor={"black"}
+          backgroundColor={{
+            base: "black",
+            _dark: "gray.800",
+          }}
           width={"full"}
           color={"white"}
           rounded={"lg"}

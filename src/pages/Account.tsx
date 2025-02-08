@@ -4,7 +4,7 @@ import AdminPage from "./AdminPage";
 import UserPage from "./UserPage";
 
 const Account = () => {
-  const isAdmin = false;
+  const isAdmin = true;
   return (
     <Box spaceY={4}>
       <Card.Root

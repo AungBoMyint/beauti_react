@@ -9,6 +9,21 @@ interface FilterItemProps {
 }
 const apiClient = new ApiClient<Item[]>("/items");
 
+export const useItems = () =>
+  apiClient.get({
+    key: ["items"],
+    fn: async () =>
+      new Promise((resolve) => {
+        setTimeout(() => {
+          const response = Object.values(items.data) as Item[];
+          response.sort(
+            (a, b) =>
+              new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()
+          );
+          resolve(response.reverse());
+        }, 500);
+      }),
+  });
 export const useFilterStatusItem = (status: string) =>
   apiClient.get({
     key: ["items", status],

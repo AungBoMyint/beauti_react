@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Stack, Text } from "@chakra-ui/react";
+import { Box, Flex, HStack, Text } from "@chakra-ui/react";
 import { Rating } from "../ui/rating";
 import useRating from "@/hooks/useRating";
 import { ProgressBar, ProgressLabel, ProgressRoot } from "../ui/progress";
@@ -17,12 +17,16 @@ const ItemDetailRating = ({ productId }: Props) => {
       //justifyContent={"center"}
     >
       <Flex alignItems={"start"} justifyContent={"start"} gap={8}>
-        <Flex direction={"column"} alignItems={{base:'center',md:'start'}} minW={150}>
+        <Flex
+          direction={"column"}
+          alignItems={{ base: "center", md: "start" }}
+          minW={150}
+        >
           <Text fontWeight={"bold"} fontSize={"md"}>
             Overall Rating
           </Text>
           <Text fontSize={"xl"} textAlign={"center"} fontWeight={"bold"}>
-            {data?.rating}
+            {data?.rating.toFixed(1)}
           </Text>
         </Flex>
         <Box>
@@ -38,7 +42,7 @@ const ItemDetailRating = ({ productId }: Props) => {
       <Flex
         width={"full"}
         alignItems={"center"}
-        justifyContent={{ base: "center",md:'start' }}
+        justifyContent={{ base: "center", md: "start" }}
         marginTop={4}
       >
         <Flex direction={"column"} gap="2" width={300}>

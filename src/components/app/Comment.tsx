@@ -16,7 +16,8 @@ const Comment = ({ review }: Props) => {
             name={review.user.emailAddress}
           />
           <Text fontWeight="semibold" textStyle="sm">
-            {review.user.userName || review.user.emailAddress?.slice(5, 9)}
+            {review.user.userName ||
+              `user${review.user.emailAddress?.slice(5, 9)}`}
           </Text>
         </HStack>
         <Card.Description paddingLeft={14}>

@@ -1,4 +1,4 @@
-import { Button, Flex } from "@chakra-ui/react";
+import { Button, Flex, Skeleton } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import ScrollX from "../ScrollX";
@@ -16,7 +16,26 @@ const Categories = () => {
     if (divRef.current)
       setWidth(divRef.current.scrollWidth - divRef.current.offsetWidth);
   }, []);
-  if (isLoading) return <div>loading.....</div>;
+  if (isLoading)
+    return (
+      <ScrollX>
+        {[1, 2, 3, 4, 5, 6].map((item) => (
+          <Skeleton key={item}>
+            <Button
+              bg={{ base: "white", _dark: "gray.900" }}
+              shadow={"sm"}
+              rounded={"lg"}
+              paddingX={2}
+              size={"sm"}
+              fontSize={"sm"}
+              fontWeight={"medium"}
+            >
+              Buttons
+            </Button>
+          </Skeleton>
+        ))}
+      </ScrollX>
+    );
   if (error) return <div>error.... {error.message}</div>;
   return (
     <ScrollX>

@@ -1,10 +1,19 @@
 import axios from "axios";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { MutationFunction, useMutation, useQuery } from "@tanstack/react-query";
 
 interface GetProps<T> {
   fn: () => Promise<T>;
   key: string[];
   initialData?: () => T;
+}
+interface PostProps<T> {
+  fn: (variables: T) => Promise<T>;
+  key: string[];
+  onSuccess: (
+    data: T,
+    variables: T,
+    context: unknown
+  ) => Promise<unknown> | unknown;
 }
 const axiosInstance = axios.create({
   baseURL: "https:google.com",
@@ -20,6 +29,13 @@ class ApiClient<T> {
       queryKey: key,
       queryFn: fn,
       initialData: initialData,
+    });
+  }
+  post({ fn, key, onSuccess }: PostProps<T>) {
+    return useMutation<T, Error, T>({
+      mutationKey: key,
+      mutationFn: fn,
+      onSuccess: onSuccess,
     });
   }
 }

@@ -20,7 +20,7 @@ const ScrollX = ({ children }: Props) => {
         drag="x"
         dragConstraints={{ right: 0, left: -width }}
         gap={4}
-        marginY={2}
+        marginY={0}
         alignItems={'center'}
       >
         {children}

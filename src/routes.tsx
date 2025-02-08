@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Search from "./pages/Search";
 import BrandsPage from "./pages/BrandsPage";
+
 import {
   brandDetailsItemPath,
   categoryDetailsItemPath,
@@ -22,6 +23,24 @@ import BrandDetailItems from "./pages/BrandDetailItems";
 import StatusDetailItems from "./pages/StatusDetailItems";
 import CategoryDetailItems from "./pages/CategoryDetailItems";
 import ItemDetail from "./pages/ItemDetail";
+import UploadItem from "./pages/item/UploadItem";
+import AdminProtectedRoute from "./pages/AdminProtectedRoute";
+import ManageItem from "./pages/item/ManageItem";
+import ManageAdvertisement from "./pages/item/ManageAdvertisement";
+import UploadAdvertisement from "./pages/item/UploadAdvertisement";
+import ManageAdvertisementTwo from "./pages/item/ManagementAdvertisementTwo";
+import UploadAdvertisementTwo from "./pages/item/UploadAdvertisementTwo";
+import ManagementCategory from "./pages/item/ManagementCategory";
+import UploadCategory from "./pages/item/UploadCategory";
+import ManageBrand from "./pages/item/ManageBrand";
+import UploadBrand from "./pages/item/UploadBrand";
+import ManageStatus from "./pages/item/ManageStatus";
+import UploadStatus from "./pages/item/UploadStatus";
+import ManageTag from "./pages/item/ManageTag";
+import UploadTag from "./pages/item/UploadTag";
+import ManagePromotion from "./pages/item/ManagePromotion";
+import UploadPromotion from "./pages/item/UploadPromotion";
+import ManageReviews from "./pages/item/ManageReviews";
 
 const router = createBrowserRouter([
   {
@@ -58,5 +77,78 @@ const router = createBrowserRouter([
   },
   { path: "/search", element: <Search /> },
   { path: `${itemDetailPath}:id`, element: <ItemDetail /> },
+  {
+    element: <AdminProtectedRoute />,
+    children: [
+      {
+        path: "/upload-item",
+        element: <UploadItem />,
+      },
+      {
+        path: "/manage-item",
+        element: <ManageItem />,
+      },
+      {
+        path: "/manage-advertisement-one",
+        element: <ManageAdvertisement />,
+      },
+      {
+        path: "/upload-advertisement-one",
+        element: <UploadAdvertisement />,
+      },
+      {
+        path: "/manage-advertisement-two",
+        element: <ManageAdvertisementTwo />,
+      },
+      {
+        path: "/upload-advertisement-two",
+        element: <UploadAdvertisementTwo />,
+      },
+      {
+        path: "/manage-category",
+        element: <ManagementCategory />,
+      },
+      {
+        path: "/upload-category",
+        element: <UploadCategory />,
+      },
+      {
+        path: "/manage-brand",
+        element: <ManageBrand />,
+      },
+      {
+        path: "/upload-brand",
+        element: <UploadBrand />,
+      },
+      {
+        path: "/manage-status",
+        element: <ManageStatus />,
+      },
+      {
+        path: "/upload-status",
+        element: <UploadStatus />,
+      },
+      {
+        path: "/manage-tag",
+        element: <ManageTag />,
+      },
+      {
+        path: "/upload-tag",
+        element: <UploadTag />,
+      },
+      {
+        path: "/manage-promotion",
+        element: <ManagePromotion />,
+      },
+      {
+        path: "/upload-promotion",
+        element: <UploadPromotion />,
+      },
+      {
+        path: "/manage-review",
+        element: <ManageReviews />,
+      },
+    ],
+  },
 ]);
 export default router;

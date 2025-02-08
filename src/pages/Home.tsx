@@ -7,10 +7,10 @@ import StatusList from "./StatusList";
 
 const Home = () => {
   return (
-    <Flex gap={4} direction={"column"} overflow={"hidden"}>
-      <Categories></Categories>
+    <Flex gap={0} direction={"column"} overflow={"hidden"}>
+      <Categories key={"categories"}></Categories>
       <SiteCarousel key={"first"} query={useAdvertisementOne()} />
-      <Brands />
+      <Brands key={"brands"} />
       <StatusList />
       {/*  <StatusOne key={"first-status"} />
       <SiteCarousel key={"second"} query={useAdvertisementTwo()} />

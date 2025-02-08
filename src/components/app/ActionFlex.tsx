@@ -4,8 +4,9 @@ import { ReactNode } from "react";
 interface Props {
   label: string;
   children: ReactNode;
+  onClick?: React.MouseEventHandler<HTMLDivElement> | undefined;
 }
-const ActionFlex = ({ label, children }: Props) => {
+const ActionFlex = ({ label, children, onClick }: Props) => {
   return (
     <Card.Root
       cursor={"pointer"}
@@ -13,6 +14,7 @@ const ActionFlex = ({ label, children }: Props) => {
       size={"lg"}
       variant={"elevated"}
       rounded={"lg"}
+      onClick={onClick}
     >
       <Flex
         alignItems={"center"}

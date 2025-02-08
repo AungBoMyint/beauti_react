@@ -1,13 +1,28 @@
 import useCategories from "@/hooks/useCategories";
-import { categoryDetailsItemPath } from "@/utils/constant";
-import { Box, Card, Grid, Text, Image } from "@chakra-ui/react";
+import { categoryDetailsItemPath, mockItems } from "@/utils/constant";
+import { Box, Card, Grid, Text, Image, Skeleton } from "@chakra-ui/react";
 
 import React from "react";
 import { Link } from "react-router-dom";
 
 const Shop = () => {
   const { data, isLoading, error } = useCategories();
-  if (isLoading) return <div>loading....</div>;
+  if (isLoading)
+    return (
+      <Grid
+        templateColumns={{
+          sm: "repeat(2, 1fr)",
+          md: "repeat(4, 1fr)",
+          lg: "repeat(5, 1fr)",
+        }}
+        gapX={4}
+        gapY={2}
+      >
+        {mockItems?.map((item) => {
+          return <Skeleton key={item} height={100}></Skeleton>;
+        })}
+      </Grid>
+    );
   return (
     <Grid
       templateColumns={{

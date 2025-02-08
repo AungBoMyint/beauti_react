@@ -16,41 +16,64 @@ import { RiFileHistoryFill } from "react-icons/ri";
 import { MdPrivacyTip } from "react-icons/md";
 import { SiGnuprivacyguard } from "react-icons/si";
 import { RiErrorWarningFill } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
 
 const AdminPage = () => {
+  const navigate = useNavigate();
   return (
     <Box spaceY={3}>
       <Text paddingBottom={1} fontWeight={"bold"} fontSize={20}>
         Admin Feature
       </Text>
-      <ActionFlex label="Update Item">
+      <ActionFlex label="Upload Item" onClick={() => navigate("/upload-item")}>
         <FaCloudUploadAlt size={22} />
       </ActionFlex>
-      <ActionFlex label="Manage Item">
+      <ActionFlex label="Manage Item" onClick={() => navigate("/manage-item")}>
         <MdEditDocument size={22} />
       </ActionFlex>
-      <ActionFlex label="Manage Advertisement">
+      <ActionFlex
+        label="Manage Advertisement"
+        onClick={() => navigate("/manage-advertisement-one")}
+      >
         <MdViewCarousel size={22} />
       </ActionFlex>
-      <ActionFlex label="Manage Advertisement2">
+      <ActionFlex
+        label="Manage Advertisement2"
+        onClick={() => navigate("/manage-advertisement-two")}
+      >
         <MdViewCarousel size={22} />
       </ActionFlex>
-      <ActionFlex label="Manage Categories">
+      <ActionFlex
+        label="Manage Categories"
+        onClick={() => navigate("/manage-category")}
+      >
         <BiSolidCategory size={22} />
       </ActionFlex>
-      <ActionFlex label="Manage Brands">
+      <ActionFlex
+        label="Manage Brands"
+        onClick={() => navigate("/manage-brand")}
+      >
         <MdBrandingWatermark size={22} />
       </ActionFlex>
-      <ActionFlex label="Manage Status">
+      <ActionFlex
+        label="Manage Status"
+        onClick={() => navigate("/manage-status")}
+      >
         <GrStatusCriticalSmall size={22} />
       </ActionFlex>
-      <ActionFlex label="Manage Tags">
+      <ActionFlex label="Manage Tags" onClick={() => navigate("/manage-tag")}>
         <FaTag size={20} />
       </ActionFlex>
-      <ActionFlex label="Manage Promotions">
+      <ActionFlex
+        label="Manage Promotions"
+        onClick={() => navigate("/manage-promotion")}
+      >
         <RiDiscountPercentFill size={22} />
       </ActionFlex>
-      <ActionFlex label="Manage Reviews">
+      <ActionFlex
+        label="Manage Reviews"
+        onClick={() => navigate("/manage-review")}
+      >
         <MdReviews size={22} />
       </ActionFlex>
       <ActionFlex label="Manage One-time Use Coupons">
