@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { FixedSizeList as List } from "react-window";
 import { CSSProperties } from "react";
+import { Toaster } from "@/components/ui/toaster";
 
 interface RenderProps {
   index: number;

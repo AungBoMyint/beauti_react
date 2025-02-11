@@ -1,3 +1,4 @@
+import ScheduleSale from "@/entity/ScheduleSale";
 import { createListCollection } from "@chakra-ui/react/collection";
 
 interface Props<T extends Record<string, any>> {
@@ -45,4 +46,13 @@ export const orderStatusToColor = (status: number | null | undefined) => {
     default:
       return "#16C47F";
   }
+};
+
+export const isScheduleSale = (
+  scheduleSale: ScheduleSale | undefined | null
+) => {
+  if (!scheduleSale) {
+    return false;
+  }
+  return new Date(scheduleSale.endTime).getTime() > new Date().getTime();
 };

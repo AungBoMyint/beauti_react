@@ -1,6 +1,5 @@
-import { Flex, Icon, Text } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
-import { FaFacebookMessenger } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { ColorModeButton } from "../ui/color-mode";
 import Messenger from "./Messenger";
@@ -18,7 +17,7 @@ const TopNavBar = () => {
       top={0}
       zIndex={2000}
     >
-      <Text fontWeight={"bold"} fontSize={18}>
+      <Text onClick={() => navigate("/")} fontWeight={"bold"} fontSize={18}>
         DELUX BEAUTI
       </Text>
       <Flex gap={6} alignItems={"center"}>

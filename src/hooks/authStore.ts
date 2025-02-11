@@ -11,7 +11,7 @@ interface Props {
   setUser?: (user?: AppUser | undefined) => void;
 }
 const initialValue: Props = {
-  remainPoint: 350,
+  remainPoint: 0,
 };
 const authStore = create<Props>()(
   subscribeWithSelector((set, get) => ({

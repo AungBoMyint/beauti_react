@@ -10,12 +10,12 @@ import authStore from "./authStore";
 interface Props {
   cartItems: CartItem[];
   promotionValue: Promotion | undefined;
-  fullAddress?: string | undefined | null;
   address: Township;
   subTotal: number;
   grandTotal: number;
   needToBuyMore: boolean;
   pointError: boolean;
+  bankSlip?: File | undefined;
   setPointError: (value: boolean) => void;
   setAddress: (township: Township) => void;
   getCount: (productId: string) => number;
@@ -24,7 +24,8 @@ interface Props {
   removeItem: (item: CartItem | Item) => void;
   updateAllTotal: () => void;
   setPromotionValue: (value: Promotion | undefined) => void;
-  changeFullAddress: (value: string) => void;
+  setBankSlip: (value: File) => void;
+  resetState: () => void;
 }
 const initialValue = {
   cartItems: [],
@@ -38,12 +39,14 @@ const initialValue = {
 const useCart = create<Props>()(
   subscribeWithSelector((set, get) => ({
     ...initialValue,
-    changeFullAddress: (value: string) =>
+    resetState: () => set(() => ({ ...initialValue })),
+    setBankSlip: (value: File) =>
       set((state) =>
         produce(state, (draf) => {
-          draf.fullAddress = value;
+          draf.bankSlip = value;
         })
       ),
+
     setPointError: (value: boolean) =>
       set((state) =>
         produce(state, (draf) => {

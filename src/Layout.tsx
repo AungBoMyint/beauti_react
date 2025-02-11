@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <Toaster />
-      <Box bg={{ _dark: "black", base: "#fffbfe" }}>
+      <Box bg={{ _dark: "black", base: "gray.50" }}>
         <TopNavBar />
         <Box paddingBottom={"100px"} paddingTop={"80px"} paddingX={4}>
           <Outlet />

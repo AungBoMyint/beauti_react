@@ -67,7 +67,7 @@ const ItemCard = ({ item, width }: Props) => {
                 </>
               )}
             </Text>
-            {item.requirePoint ? (
+            {/*  {item.requirePoint ? (
               item.requirePoint > 0 && (
                 <Card.Footer paddingX={2} paddingBottom={2}>
                   <Button
@@ -86,7 +86,7 @@ const ItemCard = ({ item, width }: Props) => {
               )
             ) : (
               <></>
-            )}
+            )} */}
           </Flex>
         </Card.Body>
       </Card.Root>

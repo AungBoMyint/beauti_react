@@ -5,11 +5,14 @@ interface Props {
   item: Item | CartItem;
 }
 const ItemDetailPrice = ({ item }: Props) => {
+  const isScheduleSale = item?.scheduleSale
+    ? new Date(item?.scheduleSale.endTime).getTime() > new Date().getTime()
+    : false;
   return item.requirePoint && item.requirePoint > 0 ? (
     <Text fontSize={"lg"} fontWeight={"medium"}>
       {item.requirePoint} Points
     </Text>
-  ) : item.scheduleSale ? (
+  ) : isScheduleSale ? (
     <Box>
       <Text textDecoration={"line-through"}>{item.price} Ks</Text>
       <Flex alignItems={"center"} gap={2}>

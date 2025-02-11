@@ -18,7 +18,7 @@ export const PromotionInput = () => {
     <>
       <Input
         id="input"
-        placeholder="Add a promotion code"
+        placeholder="Apply a coupon"
         border={"solid"}
         paddingLeft={2}
         defaultValue={promotionValue?.code}

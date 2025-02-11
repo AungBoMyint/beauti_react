@@ -52,7 +52,7 @@ export const SelectAddress = () => {
       }}
     >
       <SelectTrigger>
-        <Text>{address?.name ? address.name : "မြို့နယ်"}</Text>
+        <Text>{address?.name ? address.name : "မြို့နယ်(optional)"}</Text>
       </SelectTrigger>
       <SelectContent>
         {categories.map((category) => (

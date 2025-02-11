@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const navigate = useNavigate();
   const promotionValue = useCart((state) => state.promotionValue);
-  const fullAddress = useCart((state) => state.fullAddress);
+  /* const fullAddress = useCart((state) => state.fullAddress); */
   const cartItems = useCart((state) => state.cartItems);
   const grandTotal = useCart((state) => state.grandTotal);
   const subTotal = useCart((state) => state.subTotal);
@@ -37,14 +37,13 @@ const Cart = () => {
       });
       return;
     }
-    console.log(fullAddress);
-    if (!fullAddress) {
+    /* if (!fullAddress) {
       toaster.create({
         title: `လိပ်စာအပြည့်အစုံထည့်ပါ`,
         type: "error",
       });
       return;
-    }
+    } */
     //Go To Checkout
     navigate("/checkout");
   };
@@ -94,7 +93,7 @@ const Cart = () => {
         ref={bottomActionRef}
         rounded={"lg"}
         padding={4}
-        marginBottom={{ sm: "63px", lg: "0px" }}
+        marginBottom={{ base: "63px", lg: "0px" }}
         width={"96%"}
         position={{ base: "fixed", lg: "sticky" }}
         bottom={0}
@@ -127,17 +126,17 @@ const Cart = () => {
                 <SelectedAddressFee />
               </td>
             </tr>
-            <tr>
+            {/* <tr>
               <td className="text-left px-2">လိပ်စာအပြည့်အစုံ</td>
               <td className="text-right px-2">
                 <FullAddressInput />
               </td>
-            </tr>
+            </tr> */}
             <tr className=" text-white">
-              <td className="text-left p-2 bg-black rounded-tl-lg rounded-bl-lg">
+              <td className="text-left p-2 bg-gray-700 rounded-tl-lg rounded-bl-lg">
                 စုစုပေါင်းကျသင့်ငွေ =
               </td>
-              <td className="text-right p-2 bg-black rounded-tr-lg rounded-br-lg">
+              <td className="text-right p-2 bg-gray-700 rounded-tr-lg rounded-br-lg">
                 {grandTotal}Ks
               </td>
             </tr>
@@ -154,7 +153,7 @@ const Cart = () => {
           rounded={"lg"}
           onClick={() => clickOrder()}
         >
-          Order တင်ရန် နှိပ်ပါ
+          Checkout
         </Button>
       </Box>
     </Box>
