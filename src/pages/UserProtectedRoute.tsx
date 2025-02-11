@@ -2,10 +2,9 @@ import authStore from "@/hooks/authStore";
 import { Text } from "@chakra-ui/react";
 import { Outlet } from "react-router-dom";
 
-const AdminProtectedRoute = () => {
+const UserProtectedRoute = () => {
   const user = authStore((state) => state.currentUser);
-  const isAdmin = user?.status ?? 0 > 0;
-  return isAdmin ? <Outlet /> : <Text>You are not allowed!</Text>;
+  return user ? <Outlet /> : <Text>You are not allowed!</Text>;
 };
 
-export default AdminProtectedRoute;
+export default UserProtectedRoute;

@@ -17,6 +17,9 @@ import { MdPrivacyTip } from "react-icons/md";
 import { SiGnuprivacyguard } from "react-icons/si";
 import { RiErrorWarningFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
+import { FaUserCog } from "react-icons/fa";
+import { IoIosNotifications } from "react-icons/io";
+import authStore from "@/hooks/authStore";
 
 const AdminPage = () => {
   const navigate = useNavigate();
@@ -25,6 +28,15 @@ const AdminPage = () => {
       <Text paddingBottom={1} fontWeight={"bold"} fontSize={20}>
         Admin Feature
       </Text>
+      <ActionFlex
+        label="Push Notifications"
+        onClick={() => navigate("/notifications")}
+      >
+        <IoIosNotifications size={22} />
+      </ActionFlex>
+      <ActionFlex label="Manage Users" onClick={() => navigate("/manage-user")}>
+        <FaUserCog size={22} />
+      </ActionFlex>
       <ActionFlex label="Upload Item" onClick={() => navigate("/upload-item")}>
         <FaCloudUploadAlt size={22} />
       </ActionFlex>
@@ -91,7 +103,7 @@ const AdminPage = () => {
       <ActionFlex label="Stock View" onClick={() => navigate("/view-stock")}>
         <AiOutlineStock size={22} />
       </ActionFlex>
-      <ActionFlex label="My Orders">
+      <ActionFlex label="My Orders" onClick={() => navigate("/view-orders")}>
         <Float top={6} right={6}>
           <Circle
             fontSize={"sm"}
@@ -104,16 +116,25 @@ const AdminPage = () => {
           </Circle>
         </Float>
       </ActionFlex>
-      <ActionFlex label="Order History">
+      <ActionFlex
+        label="Order History"
+        onClick={() => navigate("/order-history")}
+      >
         <RiFileHistoryFill size={22} />
       </ActionFlex>
-      <ActionFlex label="Return Policy">
+      <ActionFlex label="Return Policy" onClick={() => navigate("/policy")}>
         <MdPrivacyTip size={22} />
       </ActionFlex>
-      <ActionFlex label="Privacy and Policy">
+      <ActionFlex
+        label="Privacy and Policy"
+        onClick={() => navigate("/privacy-policy")}
+      >
         <SiGnuprivacyguard size={22} />
       </ActionFlex>
-      <ActionFlex label="Terms and Conditions">
+      <ActionFlex
+        label="Terms and Conditions"
+        onClick={() => navigate("/terms-conditions")}
+      >
         <RiErrorWarningFill size={22} />
       </ActionFlex>
       <Flex alignItems={"center"} gap={4}>
@@ -125,6 +146,11 @@ const AdminPage = () => {
           fontWeight={"bold"}
           color={"white"}
           flex={1}
+          onClick={() => {
+            localStorage.removeItem("user");
+            navigate("/login");
+            authStore.getState().setUser!();
+          }}
         >
           Log Out
         </Button>
@@ -136,6 +162,11 @@ const AdminPage = () => {
           fontWeight={"bold"}
           color={"white"}
           flex={1}
+          onClick={() => {
+            localStorage.removeItem("user");
+            navigate("/login");
+            authStore.getState().setUser!();
+          }}
         >
           Delete Account
         </Button>

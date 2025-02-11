@@ -2,9 +2,11 @@ import { Box, Card, Flex, Image, Text } from "@chakra-ui/react";
 import logo from "../assets/logo.png";
 import AdminPage from "./AdminPage";
 import UserPage from "./UserPage";
+import authStore from "@/hooks/authStore";
 
 const Account = () => {
-  const isAdmin = true;
+  const user = authStore((state) => state.currentUser);
+  const isAdmin = user?.status ?? 0 > 0;
   return (
     <Box spaceY={4}>
       <Card.Root

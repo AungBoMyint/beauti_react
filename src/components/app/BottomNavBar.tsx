@@ -61,13 +61,13 @@ const BottomNavBar = (props?: Props) => {
       >
         <FaCartPlus size={23} />
       </BottomNavItem>
-      <BottomNavItem
+      {/* <BottomNavItem
         label="Favourite"
         isSelected={pathname === "/favourite"}
         onChange={() => handleChange("/favourite")}
       >
         <FaHeart size={23} />
-      </BottomNavItem>
+      </BottomNavItem> */}
       <BottomNavItem
         label="Account"
         isSelected={pathname === "/account"}

@@ -1,0 +1,27 @@
+{
+    "meta":{
+       "format":"JSON",
+       "version":"1.1.0",
+       "projectId":"beauti-74413",
+       "resourcePath":[
+          "notificationCollection"
+       ],
+       "recursive":false,
+       "creationTime":1735200438,
+       "app":"firefoo"
+    },
+    "data":{
+       "3e404ce0-e5b7-11ec-a244-2d7bbea0eb31":{
+          "dateTime":"2024-12-04T20:29:01.691",
+          "id":"1",
+          "title":"Hello User 🔔!",
+          "body":"Thank you for using our site"
+       },
+       "c33bf2d0-babb-11ed-9647-33d82e43c02f":{
+          "dateTime":"2024-12-04T20:37:31.912",
+          "id":"2",
+          "title":"Checkout this new 🔔!",
+          "body":"Thank you for using our site"
+       }
+    }
+ }

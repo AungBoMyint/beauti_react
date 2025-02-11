@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { PasswordInput } from "@/components/ui/password-input";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
+import { useRegister } from "@/hooks/useAuth";
 
 interface FormValues {
   email: string;
@@ -12,13 +13,23 @@ interface FormValues {
 }
 
 const SignUp = () => {
+  const mutation = useRegister();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
 
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const onSubmit = handleSubmit((data) => {
+    mutation.mutate({
+      emailAddress: data.email,
+      id: "id1",
+      image: "",
+      points: 0,
+      status: 0,
+      userName: "",
+    });
+  });
 
   return (
     <form onSubmit={onSubmit}>
@@ -74,10 +85,12 @@ const SignUp = () => {
         </Field>
         <Button
           variant={"solid"}
-          bg={"black"}
+          bg={{ base: "black", _dark: "gray.800" }}
           color={"white"}
           width={"full"}
           type="submit"
+          disabled={mutation.isPending}
+          loading={mutation.isPending}
         >
           Register
         </Button>

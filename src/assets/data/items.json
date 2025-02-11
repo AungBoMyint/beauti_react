@@ -37,10 +37,16 @@
           "photo2":"https://beautyofjoseon.com/cdn/shop/files/GreenPlumToner_0002_LayerComp3.jpg?v=1686725050&width=3000",
           "photo3":"https://beautyofjoseon.com/cdn/shop/files/GreenPlumToner_0000_LayerComp1.jpg?v=1686725045&width=3000",
           "price":49500,
+          "scheduleSale":{
+            
+               "endTime": "2025-03-10T00:00:00.000",
+               "price": 40000,
+               "title": "Iunik Sales "
+             
+          },
           "remainQuantity":3,
           "requirePoint":0,
           "reviewCount":0,
-          "scheduleSale":null,
           "size":[
              {
                 "id":"e48c45b0-2727-11ee-a22d-87be0c022df5",
@@ -4515,7 +4521,7 @@
           "dateTime":"2024-12-07T00:22:03.219",
           "deliveryTime":"",
           "description":".",
-          "discountPrice":0,
+          "discountPrice":60000,
           "howToUse":".",
           "id":"ccdfa720-b3fa-11ef-8e0d-9f5c30913950",
           "ingredients":".",

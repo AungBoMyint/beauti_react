@@ -1,3 +1,5 @@
+import ScheduleSale from "./ScheduleSale";
+
 interface CartItem {
   color: string | null;
   image: string;
@@ -9,5 +11,6 @@ interface CartItem {
   remainQuantity: number;
   requirePoint: number;
   size: string;
+  scheduleSale: ScheduleSale | null | undefined;
 }
 export default CartItem;

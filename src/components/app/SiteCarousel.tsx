@@ -12,7 +12,7 @@ const SiteCarousel = ({ query }: Props) => {
   const { data, isLoading, error } = query;
   if (isLoading)
     return (
-      <Skeleton>
+      <Skeleton mt={2}>
         <ImageGallery
           showFullscreenButton={false}
           showThumbnails={false}

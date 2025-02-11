@@ -56,13 +56,9 @@ const ItemDetail = () => {
           <ItemDetailAvailableOptionsAndAddToCart item={data} />
         </Flex>
       </Flex>
-      <ScheduleSaleCountDown
-        scheduleSale={{
-          endTime: "2025-01-10T00:00:00.000",
-          price: 50540,
-          title: "Iunik Sales ",
-        }}
-      />
+      {data?.scheduleSale && (
+        <ScheduleSaleCountDown scheduleSale={data.scheduleSale!} />
+      )}
       <SiteAccordion
         items={[
           {

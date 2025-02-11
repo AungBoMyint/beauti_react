@@ -10,6 +10,7 @@ import authStore from "./authStore";
 interface Props {
   cartItems: CartItem[];
   promotionValue: Promotion | undefined;
+  fullAddress?: string | undefined | null;
   address: Township;
   subTotal: number;
   grandTotal: number;
@@ -23,12 +24,13 @@ interface Props {
   removeItem: (item: CartItem | Item) => void;
   updateAllTotal: () => void;
   setPromotionValue: (value: Promotion | undefined) => void;
+  changeFullAddress: (value: string) => void;
 }
 const initialValue = {
   cartItems: [],
   promotionValue: undefined,
   needToBuyMore: false,
-  address: {} as Township,
+  address: { fee: 0 } as Township,
   subTotal: 0,
   grandTotal: 0,
   pointError: false,
@@ -36,6 +38,12 @@ const initialValue = {
 const useCart = create<Props>()(
   subscribeWithSelector((set, get) => ({
     ...initialValue,
+    changeFullAddress: (value: string) =>
+      set((state) =>
+        produce(state, (draf) => {
+          draf.fullAddress = value;
+        })
+      ),
     setPointError: (value: boolean) =>
       set((state) =>
         produce(state, (draf) => {
@@ -68,10 +76,17 @@ const useCart = create<Props>()(
       set((state) =>
         produce(state, (draf) => {
           const total = draf.cartItems.reduce((pre, cur) => {
+            const isScheduleSale = cur.scheduleSale
+              ? new Date(cur.scheduleSale.endTime).getTime() >
+                new Date().getTime()
+              : false;
+            const scheduleSale = cur.scheduleSale?.price ?? 0;
             return (
               pre +
               (cur.requirePoint > 0
                 ? 0
+                : isScheduleSale
+                ? scheduleSale
                 : cur.discountPrice > 0
                 ? cur.discountPrice
                 : parseInt(`${cur.price}`)) *
@@ -131,6 +146,7 @@ const useCart = create<Props>()(
             const productItem = item as Item;
             //just add new
             draf.cartItems.push({
+              scheduleSale: productItem?.scheduleSale,
               image: productItem.photo1 ?? "",
               color: productItem.color,
               count: 1,

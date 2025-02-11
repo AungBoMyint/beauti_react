@@ -1,3 +1,4 @@
+import { FullAddressInput } from "@/components/app/cart/FullAddressInput";
 import { PromotionInput } from "@/components/app/cart/PromotionInput";
 import {
   SelectAddress,
@@ -8,9 +9,13 @@ import ItemDetailPrice from "@/components/app/ItemDetailPrice";
 import useCart from "@/hooks/useCart";
 import { Box, Card, Image, Flex, Button, Badge } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
+import { toaster } from "@/components/ui/toaster";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+  const navigate = useNavigate();
   const promotionValue = useCart((state) => state.promotionValue);
+  const fullAddress = useCart((state) => state.fullAddress);
   const cartItems = useCart((state) => state.cartItems);
   const grandTotal = useCart((state) => state.grandTotal);
   const subTotal = useCart((state) => state.subTotal);
@@ -21,6 +26,28 @@ const Cart = () => {
       setBottomActionHeight(bottomActionRef.current.offsetHeight + 100);
     }
   }, []);
+  const clickOrder = () => {
+    console.log("click order");
+    if (cartItems.length === 0) {
+      console.log("cart is empty");
+      //cart is empty
+      toaster.create({
+        title: `Your cart is empty!`,
+        type: "error",
+      });
+      return;
+    }
+    console.log(fullAddress);
+    if (!fullAddress) {
+      toaster.create({
+        title: `လိပ်စာအပြည့်အစုံထည့်ပါ`,
+        type: "error",
+      });
+      return;
+    }
+    //Go To Checkout
+    navigate("/checkout");
+  };
   return (
     <Box position={"relative"} lg={{ display: "flex", gap: 4 }}>
       <Box spaceY={2} paddingBottom={bottomActionHeight}>
@@ -100,6 +127,12 @@ const Cart = () => {
                 <SelectedAddressFee />
               </td>
             </tr>
+            <tr>
+              <td className="text-left px-2">လိပ်စာအပြည့်အစုံ</td>
+              <td className="text-right px-2">
+                <FullAddressInput />
+              </td>
+            </tr>
             <tr className=" text-white">
               <td className="text-left p-2 bg-black rounded-tl-lg rounded-bl-lg">
                 စုစုပေါင်းကျသင့်ငွေ =
@@ -119,6 +152,7 @@ const Cart = () => {
           width={"full"}
           color={"white"}
           rounded={"lg"}
+          onClick={() => clickOrder()}
         >
           Order တင်ရန် နှိပ်ပါ
         </Button>

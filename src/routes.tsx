@@ -45,6 +45,16 @@ import ManageCoupons from "./pages/admin/ManageCoupon";
 import UploadCoupon from "./pages/admin/UploadCoupon";
 import ManageAddress from "./pages/admin/ManageAddress";
 import StockManagement from "./pages/admin/StockManagement";
+import MyOrder from "./pages/admin/MyOrder";
+import ImageDetail from "./pages/admin/ImageDetail";
+import Policy from "./pages/Policy";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermCondition from "./pages/TermCondition";
+import OrderHistory from "./pages/OrderHistory";
+import UserProtectedRoute from "./pages/UserProtectedRoute";
+import ManageUser from "./pages/admin/ManageUser";
+import ManageNotification from "./pages/admin/ManageNotification";
+import CheckoutPage from "./pages/CheckoutPage";
 
 const router = createBrowserRouter([
   {
@@ -82,8 +92,25 @@ const router = createBrowserRouter([
   { path: "/search", element: <Search /> },
   { path: `${itemDetailPath}:id`, element: <ItemDetail /> },
   {
+    element: <UserProtectedRoute />,
+    children: [
+      {
+        path: "/order-history",
+        element: <OrderHistory />,
+      },
+      {
+        path: "/checkout",
+        element: <CheckoutPage />,
+      },
+    ],
+  },
+  {
     element: <AdminProtectedRoute />,
     children: [
+      {
+        path: "/manage-user",
+        element: <ManageUser />,
+      },
       {
         path: "/upload-item",
         element: <UploadItem />,
@@ -168,7 +195,36 @@ const router = createBrowserRouter([
         path: "/view-stock",
         element: <StockManagement />,
       },
+      {
+        path: "/view-orders",
+        element: <MyOrder />,
+      },
+      {
+        path: "/image-detail",
+        element: <ImageDetail />,
+      },
+      {
+        path: "/order-history",
+        element: <OrderHistory />,
+      },
+      {
+        path: "/notifications",
+        element: <ManageNotification />,
+      },
     ],
+  },
+
+  {
+    path: "/policy",
+    element: <Policy />,
+  },
+  {
+    path: "/privacy-policy",
+    element: <PrivacyPolicy />,
+  },
+  {
+    path: "/terms-conditions",
+    element: <TermCondition />,
   },
 ]);
 export default router;

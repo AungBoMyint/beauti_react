@@ -1,6 +1,6 @@
 import CartItem from "@/entity/Cartitem";
 import Item from "@/entity/Item";
-import { Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Text } from "@chakra-ui/react";
 interface Props {
   item: Item | CartItem;
 }
@@ -9,6 +9,25 @@ const ItemDetailPrice = ({ item }: Props) => {
     <Text fontSize={"lg"} fontWeight={"medium"}>
       {item.requirePoint} Points
     </Text>
+  ) : item.scheduleSale ? (
+    <Box>
+      <Text textDecoration={"line-through"}>{item.price} Ks</Text>
+      <Flex alignItems={"center"} gap={2}>
+        <Text fontWeight={"bold"} color={"red"}>
+          {item.scheduleSale?.price} Ks
+        </Text>
+        <Button
+          size={"sm"}
+          fontWeight={"bold"}
+          fontSize={12}
+          height={6}
+          bg={"red"}
+          color={"white"}
+        >
+          Sale
+        </Button>
+      </Flex>
+    </Box>
   ) : (
     <>
       {item.discountPrice && item.discountPrice > 0 ? (
