@@ -1,6 +1,16 @@
 import ApiClient from "@/utils/ApiClient";
-import items from "../assets/data/items.json";
 import Item from "@/entity/Item";
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
+import { db } from "@/firebaseConfig";
+import itemStore from "./itemsStore";
 
 interface FilterItemProps {
   categoryName: string;
@@ -9,80 +19,84 @@ interface FilterItemProps {
 }
 const apiClient = new ApiClient<Item[]>("/items");
 
+const getItems = async () => {
+  const storeItems = itemStore.getState().items;
+  if (storeItems.length > 0) {
+    return storeItems;
+  }
+  var collectionRef = collection(db, "items");
+  var q = query(collectionRef, orderBy("dateTime", "desc"));
+  var docSnap = await getDocs(q);
+  var items = docSnap.docs.map(
+    (doc) => ({ id: doc.id, ...doc.data() } as Item)
+  );
+  return items;
+};
 export const useItems = () =>
   apiClient.get({
     key: ["items"],
-    fn: async () =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          const response = Object.values(items.data) as Item[];
-          response.sort(
-            (a, b) =>
-              new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()
-          );
-          resolve(response.reverse());
-        }, 500);
-      }),
+    fn: async () => {
+      var collectionRef = collection(db, "items");
+      var q = query(collectionRef, orderBy("dateTime", "desc"));
+      var docSnap = await getDocs(q);
+      var items = docSnap.docs.map(
+        (doc) => ({ id: doc.id, ...doc.data() } as Item)
+      );
+      /* itemStore.getState().setItems(items); */
+      return items;
+    },
   });
+
 export const useFilterStatusItem = (status: string) =>
   apiClient.get({
     key: ["items", status],
-    fn: async () =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          const response = Object.values(items.data) as Item[];
-          response.sort(
-            (a, b) =>
-              new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()
-          );
-          //find items equal to status
-          const result = response.filter(
-            (item) => item.status?.trim() === status?.trim()
-          );
-          resolve(result.reverse());
-        }, 500);
-      }),
+    fn: async () => {
+      const response = await getItems();
+      response.sort(
+        (a, b) =>
+          new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()
+      );
+      //find items equal to status
+      const result = response.filter(
+        (item) => item.status?.trim() === status?.trim()
+      );
+      return result.reverse();
+    },
   });
 export const useFilterCategoryItem = (category: string) =>
   apiClient.get({
     key: ["items", category],
-    fn: async () =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          const response = Object.values(items.data) as Item[];
-          response.sort(
-            (a, b) =>
-              new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()
-          );
-          //find items equal to status
-          const result = response.filter(
-            (item) => item.category && item.category?.includes(category.trim())
-          );
-          resolve(result.reverse());
-        }, 500);
-      }),
+    fn: async () => {
+      const response = await getItems();
+      response.sort(
+        (a, b) =>
+          new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()
+      );
+      //find items equal to status
+      const result = response.filter(
+        (item) => item.category && item.category?.includes(category.trim())
+      );
+      return result.reverse();
+    },
   });
 export const useFilterBrandItem = (brandName: string) =>
   apiClient.get({
     key: ["items", brandName],
-    fn: async () =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          const response = Object.values(items.data) as Item[];
-          response.sort(
-            (a, b) =>
-              new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()
-          );
-          //find items equal to status
-          const result = response.filter(
-            (item) =>
-              item.brandName &&
-              item.brandName?.toLowerCase().trim() ===
-                brandName.toLowerCase().trim()
-          );
-          resolve(result.reverse());
-        }, 500);
-      }),
+    fn: async () => {
+      const response = await getItems();
+      response.sort(
+        (a, b) =>
+          new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime()
+      );
+      //find items equal to status
+      const result = response.filter(
+        (item) =>
+          item.brandName &&
+          item.brandName?.toLowerCase().trim() ===
+            brandName.toLowerCase().trim()
+      );
+      return result.reverse();
+    },
   });
 export const useFilterItem = ({
   categoryName,
@@ -126,31 +140,23 @@ export const useSearchItems = (value: string | undefined) =>
   apiClient.get({
     key: ["items", value ?? ""],
     fn: value
-      ? async () =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              const response = Object.values(items.data) as Item[];
-              const result = response.filter((item) =>
-                item.name?.includes(value)
-              );
+      ? async () => {
+          const response = await getItems();
+          const result = response.filter((item) => item.name?.includes(value));
 
-              resolve(result);
-            }, 500);
-          })
+          return result;
+        }
       : async () => [],
   });
 export const useFilterIdItem = (id: string) => {
   const newApiClient = new ApiClient<Item | undefined>(`/items/${id}`);
   return newApiClient.get({
     key: ["items", id],
-    fn: async () =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          const response = Object.values(items.data) as Item[];
-          const result = response.find((item) => item.id === id);
+    fn: async () => {
+      const response = await getItems();
+      const result = response.find((item) => item.id === id);
 
-          resolve(result);
-        }, 500);
-      }),
+      return result;
+    },
   });
 };

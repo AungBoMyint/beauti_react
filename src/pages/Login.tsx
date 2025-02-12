@@ -22,11 +22,12 @@ const Login = () => {
   const onSubmit = handleSubmit((data) => {
     mutation.mutate({
       emailAddress: data.email,
-      id: "id1",
+      id: "",
       image: "",
       points: 0,
       status: 0,
       userName: "",
+      password: data.password,
     });
   });
 

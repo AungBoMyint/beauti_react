@@ -1,4 +1,5 @@
 import AppUser from "@/entity/AppUser";
+import { initAuth } from "@/utils/util";
 import { current, produce } from "immer";
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
@@ -37,4 +38,5 @@ const authStore = create<Props>()(
       ),
   }))
 );
+
 export default authStore;

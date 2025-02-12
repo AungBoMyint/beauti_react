@@ -5,5 +5,6 @@ interface AppUser {
   points: number;
   status: number;
   userName: string;
+  password: string;
 }
 export default AppUser;

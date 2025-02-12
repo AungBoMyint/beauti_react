@@ -5,6 +5,7 @@ import { PasswordInput } from "@/components/ui/password-input";
 import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useRegister } from "@/hooks/useAuth";
+import { toaster } from "@/components/ui/toaster";
 
 interface FormValues {
   email: string;
@@ -21,13 +22,21 @@ const SignUp = () => {
   } = useForm<FormValues>();
 
   const onSubmit = handleSubmit((data) => {
+    if (data.password !== data.confirmPassword) {
+      toaster.create({
+        title: "Password not matched!",
+        type: "error",
+      });
+      return;
+    }
     mutation.mutate({
       emailAddress: data.email,
-      id: "id1",
+      id: "",
       image: "",
       points: 0,
       status: 0,
       userName: "",
+      password: data.password,
     });
   });
 

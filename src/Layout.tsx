@@ -3,18 +3,13 @@ import BottomNavBar from "./components/app/BottomNavBar";
 import { Box } from "@chakra-ui/react";
 import TopNavBar from "./components/app/TopNavBar";
 import { useEffect } from "react";
-import AppUser from "./entity/AppUser";
-import authStore from "./hooks/authStore";
 import { Toaster } from "@/components/ui/toaster";
+import utilMethod from "./utils/util";
 
 function App() {
   useEffect(() => {
     //we check login or not
-    const user: AppUser = JSON.parse(localStorage.getItem("user") || "{}");
-    if (user && user.emailAddress) {
-      //we set user
-      authStore.getState().setUser!(user);
-    }
+    utilMethod();
   }, []);
   return (
     <>

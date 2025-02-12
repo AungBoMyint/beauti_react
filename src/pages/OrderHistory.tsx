@@ -4,11 +4,11 @@ import { Box, Card, Flex, Text } from "@chakra-ui/react";
 import { format } from "date-fns/format";
 import React from "react";
 import OrderHistoryInformationDialog from "./OrderHistoryInformationDialog";
+import authStore from "@/hooks/authStore";
 
 const OrderHistory = () => {
-  const { isLoading, data } = usePurchaseHistory(
-    "AzVieIXgu8bElHC3hO6CrnBrrbl1"
-  );
+  const currentUser = authStore.getState().currentUser;
+  const { isLoading, data } = usePurchaseHistory(currentUser?.id ?? "");
   if (isLoading) {
     return <Text>Loading....</Text>;
   }

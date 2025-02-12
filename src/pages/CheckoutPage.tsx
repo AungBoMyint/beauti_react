@@ -19,6 +19,12 @@ import PurchaseItem from "@/entity/PurchaseItem";
 import { isScheduleSale } from "@/utils/fun";
 import { useForm } from "react-hook-form";
 import { Field } from "@/components/ui/field";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from "@/firebaseConfig";
+import { addPurchase } from "@/hooks/usePurchases";
+import itemsStore from "@/hooks/itemsStore";
+import { useUpdatePoint } from "@/hooks/useAuth";
+import { produce } from "immer";
 
 interface FormValues {
   name: string;
@@ -34,16 +40,53 @@ const CheckoutPage = () => {
   const { currentUser } = authStore.getState();
   const mutation = useMutation({
     mutationFn: async (value: Purchase) =>
-      new Promise((resolve) => {
+      new Promise((resolve, reject) => {
         //if bankSlip is not null, we upload to storage
         //and getback imagepath
         //then set image's url
         //then create doc
+        if (!bankSlip) {
+          //create doc
+          const purchase = value;
+          const purchases = itemsStore.getState().purchases;
+          addPurchase(purchase)
+            .then(() => {
+              useUpdatePoint(purchase.total);
+              itemsStore.getState().setPurchase([...purchases, purchase]);
+              resolve(1);
+            })
+            .catch((_) => {
+              reject("error");
+            });
+          return;
+        }
+        const storageRef = ref(storage, `bankSlip/${bankSlip?.name}`);
+        const uploadTask = uploadBytesResumable(storageRef, bankSlip);
+
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {},
+          (error) => {
+            console.error("Upload failed:", error);
+          },
+          async () => {
+            const url = await getDownloadURL(uploadTask.snapshot.ref);
+            const purchase = { ...value, bankSlipImage: url };
+            const purchases = itemsStore.getState().purchases;
+            addPurchase(purchase)
+              .then(() => {
+                useUpdatePoint(purchase.total);
+                itemsStore.getState().setPurchase([...purchases, purchase]);
+                resolve(1);
+              })
+              .catch((_) => {
+                reject("error");
+              });
+          }
+        );
+
         //else
         //create do
-        setTimeout(() => {
-          resolve(1);
-        }, 500);
       }),
     onSuccess: (result) => {
       toaster.create({
@@ -221,6 +264,8 @@ const CheckoutPage = () => {
           width={"full"}
           bg={{ base: "black", _dark: "gray.800" }}
           type="submit"
+          loading={mutation.isPending}
+          disabled={mutation.isPending}
         >
           Confirm
         </Button>

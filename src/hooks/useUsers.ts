@@ -1,19 +1,19 @@
-import Tag from "@/entity/Tag";
 import ApiClient from "@/utils/ApiClient";
-import userCollection from "../assets/data/adminUserCollection.json";
 import AppUser from "@/entity/AppUser";
+import { collection, getDocs, query } from "firebase/firestore";
+import { db } from "@/firebaseConfig";
 
 const apiClient = new ApiClient<AppUser[]>("/users");
 const useUsers = () =>
   apiClient.get({
     key: ["users"],
-    fn: async () =>
-      new Promise((resolve) => {
-        setTimeout(() => {
-          const response = Object.values(userCollection.data);
-
-          resolve(response.reverse());
-        }, 500);
-      }),
+    fn: async () => {
+      var collectionRef = collection(db, "adminUserCollection");
+      var q = query(collectionRef);
+      var docSnap = await getDocs(q);
+      return docSnap.docs.map(
+        (doc) => ({ id: doc.id, ...doc.data() } as AppUser)
+      );
+    },
   });
 export default useUsers;

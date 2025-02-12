@@ -1,9 +1,11 @@
+import AppUser from "@/entity/AppUser";
 import authStore from "@/hooks/authStore";
-import React from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 const ProtectedRoute = () => {
-  const user = authStore((state) => state.currentUser);
+  const localUser: AppUser = JSON.parse(localStorage.getItem("user") || "{}");
+  const remoteUser = authStore((state) => state.currentUser);
+  const user = remoteUser ?? localUser;
   const location = useLocation();
   return user ? (
     <Outlet />

@@ -8,6 +8,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { ProgressCircleRing, ProgressCircleRoot } from "../ui/progress-circle";
+import { v4 } from "uuid";
+import authStore from "@/hooks/authStore";
 
 interface Props {
   productId: string;
@@ -45,21 +47,17 @@ const ItemDetailReview = ({ productId }: Props) => {
   });
 
   const onSubmit = handleSubmit((data) => {
+    const currentUser = authStore.getState().currentUser;
+    if (!currentUser) return;
     const review = {
       dateTime: new Date().toISOString(),
-      id: `testid:${Math.random()}`,
+      id: `test:${v4()}`,
       productId: productId,
       rating: data.rating,
       reviewMessage: data.comment,
-      user: {
-        emailAddress: "test@GrMail.com",
-        id: "test ID",
-        image:
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
-        points: 0,
-        status: 0,
-        userName: "Test User",
-      },
+      user: currentUser,
+      approved: false,
+      verifiedPurchase: false,
     };
     addReview(review);
   });

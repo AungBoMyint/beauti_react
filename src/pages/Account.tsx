@@ -23,7 +23,11 @@ const Account = () => {
               alignItems={"center"}
               width={"full"}
             >
-              <Image src={logo} width={100} height={100} />
+              <Image
+                src={(user?.image?.length ?? 0) > 0 ? user?.image : logo}
+                width={100}
+                height={100}
+              />
             </Flex>
           </Card.Title>
           <Text
@@ -33,7 +37,7 @@ const Account = () => {
             letterSpacing="tight"
             paddingTop={1}
           >
-            testfromdeveloper@gmail.com
+            {user?.emailAddress}
           </Text>
           <Text
             textAlign={"center"}
@@ -41,7 +45,7 @@ const Account = () => {
             fontWeight="bold"
             letterSpacing="tight"
           >
-            Your points: 0
+            Your points: {user?.points}
           </Text>
         </Card.Body>
       </Card.Root>

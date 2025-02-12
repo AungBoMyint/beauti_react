@@ -1,4 +1,5 @@
 import ScheduleSale from "@/entity/ScheduleSale";
+import { isScheduleSale } from "@/utils/fun";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import Countdown from "react-countdown";
 
@@ -15,6 +16,7 @@ interface Props {
   scheduleSale: ScheduleSale;
 }
 const ScheduleSaleCountDown = ({ scheduleSale }: Props) => {
+  const show = isScheduleSale(scheduleSale);
   const renderer = ({
     days,
     hours,
@@ -81,23 +83,25 @@ const ScheduleSaleCountDown = ({ scheduleSale }: Props) => {
     }
   };
   return (
-    <Box
-      spaceY={2}
-      textAlign={"center"}
-      shadow={"xl"}
-      paddingX={4}
-      paddingY={2}
-      rounded={"lg"}
-      bg={{
-        base: "gray.200",
-        _dark: "gray.900",
-      }}
-    >
-      <Text fontWeight={"medium"} fontSize={"md"}>
-        {scheduleSale.title}
-      </Text>
-      <Countdown renderer={renderer} date={new Date(scheduleSale.endTime)} />
-    </Box>
+    show && (
+      <Box
+        spaceY={2}
+        textAlign={"center"}
+        shadow={"xl"}
+        paddingX={4}
+        paddingY={2}
+        rounded={"lg"}
+        bg={{
+          base: "gray.200",
+          _dark: "gray.900",
+        }}
+      >
+        <Text fontWeight={"medium"} fontSize={"md"}>
+          {scheduleSale.title}
+        </Text>
+        <Countdown renderer={renderer} date={new Date(scheduleSale.endTime)} />
+      </Box>
+    )
   );
 };
 
