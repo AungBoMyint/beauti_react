@@ -6,6 +6,7 @@ import { produce } from "immer";
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import authStore from "./authStore";
+import Size from "@/entity/Size";
 
 interface Props {
   cartItems: CartItem[];
@@ -20,7 +21,7 @@ interface Props {
   setAddress: (township: Township) => void;
   getCount: (productId: string) => number;
   isAdded: (productId: string) => boolean;
-  addItem: (item: CartItem | Item, size?: string | null) => void;
+  addItem: (item: CartItem | Item, size?: Size | null) => void;
   removeItem: (item: CartItem | Item) => void;
   updateAllTotal: () => void;
   setPromotionValue: (value: Promotion | undefined) => void;
@@ -127,7 +128,7 @@ const useCart = create<Props>()(
           }
         })
       ),
-    addItem: (item: CartItem | Item, size?: string | null) => {
+    addItem: (item: CartItem | Item, size?: Size | null) => {
       set((state) =>
         produce(state, (draf) => {
           const index = draf.cartItems.findIndex((i) => i.id === item.id);
@@ -156,10 +157,10 @@ const useCart = create<Props>()(
               discountPrice: productItem.discountPrice ?? 0,
               id: productItem.id,
               itemName: productItem.name,
-              price: productItem.price,
+              price: size?.size ? size.price : productItem.price,
               remainQuantity: productItem.remainQuantity,
               requirePoint: productItem.requirePoint ?? 0,
-              size: size ?? "",
+              size: size?.size ?? "",
             });
           }
         })

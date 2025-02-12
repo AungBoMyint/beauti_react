@@ -1,10 +1,65 @@
 import Coupon from "@/entity/Coupon";
 import ApiClient from "@/utils/ApiClient";
-import couponCollection from "../assets/data/coupons.json";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "@/firebaseConfig";
+import { useMutation } from "@tanstack/react-query";
+import { toaster } from "@/components/ui/toaster";
 
 const apiClient = new ApiClient<Coupon[]>("/coupons");
+export const useDeleteCoupon = (success: () => void) => {
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const docRef = doc(db, "coupons", id);
+      return await deleteDoc(docRef);
+    },
+    onSuccess: () => {
+      success();
+    },
+    onError: (error) => {
+      toaster.create({
+        title: `Error: ${error.message}`,
+        type: "error",
+      });
+    },
+  });
+};
+export const useCreateCoupon = (success: () => void) => {
+  return useMutation({
+    mutationFn: async (coupon: Coupon) => {
+      const docRef = doc(db, "coupons", coupon.id);
+      return await setDoc(docRef, coupon);
+    },
+    onSuccess: () => {
+      success();
+    },
+    onError: (error) => {
+      toaster.create({
+        title: `Error: ${error.message}`,
+        type: "error",
+      });
+    },
+  });
+};
+export const useUpdateCoupon = (success: () => void) => {
+  return useMutation({
+    mutationFn: async (coupon: Coupon) => {
+      const docRef = doc(db, "coupons", coupon.id);
+      return await updateDoc(docRef, { ...coupon });
+    },
+    onSuccess: () => {
+      success();
+    },
+  });
+};
 export const useCoupons = () =>
   apiClient.get({
     key: ["coupons"],

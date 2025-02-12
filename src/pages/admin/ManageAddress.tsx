@@ -1,7 +1,11 @@
 import { Box, Card, Flex, Text, Button, Input } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDivisions } from "@/hooks/useDivision";
+import {
+  useCreateDivision,
+  useDeleteDivision,
+  useDivisions,
+} from "@/hooks/useDivision";
 import Division from "@/entity/Division";
 import { InputGroup } from "@/components/ui/input-group";
 import { useForm } from "react-hook-form";
@@ -9,6 +13,9 @@ import { Field } from "@/components/ui/field";
 import AppDialog from "@/components/app/AppDialog";
 import AddTownship from "./AddTownship";
 import { DialogActionTrigger, DialogFooter } from "@/components/ui/dialog";
+import { toaster } from "@/components/ui/toaster";
+import { useQueryClient } from "@tanstack/react-query";
+import { v4 } from "uuid";
 
 interface FormValues {
   name: string;
@@ -18,10 +25,22 @@ const ManageAddress = () => {
   const navigate = useNavigate();
   const { isLoading, data, isError } = useDivisions();
   const [items, setItems] = useState<Division[]>([]);
-
-  const handleDelete = (id: string) => {
-    setItems((pre) => pre.filter((i) => i.id !== id));
+  const queryClient = useQueryClient();
+  const onCreateSuccess = () => {
+    toaster.create({
+      title: `Division is created`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["divisions"] });
   };
+  const onDeleteSuccess = () => {
+    toaster.create({
+      title: `Division is deleted`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["divisions"] });
+  };
+  const deleteMutation = useDeleteDivision(onDeleteSuccess);
   const {
     register,
     handleSubmit,
@@ -29,10 +48,15 @@ const ManageAddress = () => {
   } = useForm<FormValues>({
     defaultValues: {},
   });
-
+  const createMutation = useCreateDivision(onCreateSuccess);
   const onSubmit = handleSubmit((data) => {
     if (isValid) {
-      console.log(data);
+      createMutation.mutate({
+        ...data,
+        id: v4(),
+        dateTime: new Date().toISOString(),
+        townships: [],
+      });
     } else {
       console.log(`🔥🔥🔥Not Valid`);
     }
@@ -95,6 +119,8 @@ const ManageAddress = () => {
                 fontSize={12}
                 variant={"solid"}
                 type="submit"
+                loading={createMutation.isPending}
+                disabled={createMutation.isPending}
               >
                 Add
               </Button>
@@ -158,7 +184,7 @@ const ManageAddress = () => {
                         size={"sm"}
                         fontSize={12}
                         variant={"solid"}
-                        onClick={() => handleDelete(item.id)}
+                        onClick={() => deleteMutation.mutate(item.id)}
                       >
                         Delete
                       </Button>

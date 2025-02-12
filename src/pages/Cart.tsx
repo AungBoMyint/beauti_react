@@ -75,9 +75,11 @@ const Cart = () => {
                   >
                     {item.itemName}
                   </Card.Title>
-                  <Badge variant={"solid"} width={"fit"}>
-                    {item.size}
-                  </Badge>
+                  {item?.size && (
+                    <Badge variant={"solid"} width={"fit"}>
+                      {item.size}
+                    </Badge>
+                  )}
 
                   <Box textStyle="sm" fontWeight="medium" letterSpacing="tight">
                     <ItemDetailPrice item={item} />

@@ -13,7 +13,9 @@ import {
   Type as ListType,
 } from "react-swipeable-list";
 import Tag from "@/entity/Tag";
-import useTags from "@/hooks/useTags";
+import useTags, { useDeleteTag } from "@/hooks/useTags";
+import { useQueryClient } from "@tanstack/react-query";
+import { toaster } from "@/components/ui/toaster";
 
 const ManageTag = () => {
   const navigate = useNavigate();
@@ -24,9 +26,15 @@ const ManageTag = () => {
       setItems(data);
     }
   }, [data]);
-  const handleDelete = (id: string) => {
-    setItems((pre) => pre.filter((i) => i.id !== id));
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    toaster.create({
+      title: `Tag is deleted`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["tags"] });
   };
+  const mutation = useDeleteTag(onSuccess);
   return isLoading ? (
     <Text>Loading...</Text>
   ) : (
@@ -101,7 +109,7 @@ const ManageTag = () => {
                       bg={"red.600"}
                       my={2}
                       cursor={"pointer"}
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() => mutation.mutate(item.id)}
                     >
                       <MdDeleteOutline color="white" size={30} />
                     </Box>

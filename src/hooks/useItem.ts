@@ -2,6 +2,7 @@ import ApiClient from "@/utils/ApiClient";
 import Item from "@/entity/Item";
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -21,6 +22,17 @@ interface FilterItemProps {
   oldItems: Item[];
 }
 const apiClient = new ApiClient<Item[]>("/items");
+export const useDeleteItem = (success: () => void) => {
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const docRef = doc(db, "items", id);
+      return await deleteDoc(docRef);
+    },
+    onSuccess: () => {
+      success();
+    },
+  });
+};
 export const useCreateItem = (success: () => void) => {
   return useMutation({
     mutationFn: async (product: Item) => {

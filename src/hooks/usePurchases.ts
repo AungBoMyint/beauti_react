@@ -4,15 +4,64 @@ import purchaseCollection from "../assets/data/purchases.json";
 import itemsStore from "./itemsStore";
 import {
   collection,
+  deleteDoc,
   doc,
   getDocs,
   orderBy,
   query,
   setDoc,
+  updateDoc,
 } from "firebase/firestore";
 import { db } from "@/firebaseConfig";
+import { useMutation } from "@tanstack/react-query";
+import { toaster } from "@/components/ui/toaster";
 
 const apiClient = new ApiClient<Purchase[]>("/purchases");
+export const useDeletePurchase = (success: () => void) => {
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const docRef = doc(db, "purchases", id);
+      return await deleteDoc(docRef);
+    },
+    onSuccess: () => {
+      success();
+    },
+    onError: (error) => {
+      toaster.create({
+        title: `Error: ${error.message}`,
+        type: "error",
+      });
+    },
+  });
+};
+export const useCreatePurchase = (success: () => void) => {
+  return useMutation({
+    mutationFn: async (pro: Purchase) => {
+      const docRef = doc(db, "purchases", pro.id);
+      return await setDoc(docRef, pro);
+    },
+    onSuccess: () => {
+      success();
+    },
+    onError: (error) => {
+      toaster.create({
+        title: `Error: ${error.message}`,
+        type: "error",
+      });
+    },
+  });
+};
+export const useUpdatePurchase = (success: () => void) => {
+  return useMutation({
+    mutationFn: async (pro: Purchase) => {
+      const docRef = doc(db, "purchases", pro.id);
+      return await updateDoc(docRef, { ...pro });
+    },
+    onSuccess: () => {
+      success();
+    },
+  });
+};
 const getPurchases = async () => {
   const purchases = itemsStore.getState().purchases;
   if (purchases.length > 0) {

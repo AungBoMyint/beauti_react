@@ -1,9 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
+import { toaster } from "@/components/ui/toaster";
+import { useCreateStatus, useUpdateStatus } from "@/hooks/useStatus";
 import { Box, Flex, Input, Text } from "@chakra-ui/react";
+import { useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
+import { v4 } from "uuid";
 
 interface FormValues {
   dateTime: string;
@@ -21,10 +25,28 @@ const UploadStatus = () => {
   } = useForm<FormValues>({
     defaultValues: status ?? {},
   });
-
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    toaster.create({
+      title: `Status is ${status ? "updated" : "created"}`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["status"] });
+  };
+  const mutation = status
+    ? useUpdateStatus(onSuccess)
+    : useCreateStatus(onSuccess);
   const onSubmit = handleSubmit((data) => {
     if (isValid) {
-      console.log(data);
+      mutation.mutate(
+        status
+          ? data
+          : {
+              ...data,
+              id: v4(),
+              dateTime: new Date().toISOString(),
+            }
+      );
     } else {
       console.log(`🔥🔥🔥Not Valid`);
     }

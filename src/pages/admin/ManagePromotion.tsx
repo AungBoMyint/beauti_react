@@ -12,21 +12,24 @@ import {
   TrailingActions,
   Type as ListType,
 } from "react-swipeable-list";
-import { usePromotion } from "@/hooks/usePromotion";
+import { useDeletePromotion, usePromotion } from "@/hooks/usePromotion";
 import Promotion from "@/entity/Promotion";
+import { useQueryClient } from "@tanstack/react-query";
+import { toaster } from "@/components/ui/toaster";
 
 const ManagePromotion = () => {
   const navigate = useNavigate();
   const { isLoading, data, isError } = usePromotion();
-  const [items, setItems] = useState<Promotion[]>([]);
-  useEffect(() => {
-    if (data) {
-      setItems(data);
-    }
-  }, [data]);
-  const handleDelete = (id: string) => {
-    setItems((pre) => pre.filter((i) => i.id !== id));
+
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    toaster.create({
+      title: `Promotion is deleted`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["promotions"] });
   };
+  const mutation = useDeletePromotion(onSuccess);
   return isLoading ? (
     <Text>Loading...</Text>
   ) : (
@@ -101,7 +104,7 @@ const ManagePromotion = () => {
                       bg={"red.600"}
                       my={2}
                       cursor={"pointer"}
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() => mutation.mutate(item.id)}
                     >
                       <MdDeleteOutline color="white" size={30} />
                     </Box>

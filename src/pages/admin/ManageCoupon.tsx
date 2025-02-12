@@ -12,8 +12,10 @@ import {
   TrailingActions,
   Type as ListType,
 } from "react-swipeable-list";
-import { useCoupons } from "@/hooks/useCoupon";
+import { useCoupons, useDeleteCoupon } from "@/hooks/useCoupon";
 import Coupon from "@/entity/Coupon";
+import { useQueryClient } from "@tanstack/react-query";
+import { toaster } from "@/components/ui/toaster";
 
 const ManageCoupons = () => {
   const navigate = useNavigate();
@@ -24,9 +26,16 @@ const ManageCoupons = () => {
       setItems(data);
     }
   }, [data]);
-  const handleDelete = (id: string) => {
-    setItems((pre) => pre.filter((i) => i.id !== id));
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    toaster.create({
+      title: `Coupon is deleted`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["coupons"] });
   };
+  const mutation = useDeleteCoupon(onSuccess);
+
   return isLoading ? (
     <Text>Loading...</Text>
   ) : (
@@ -101,7 +110,7 @@ const ManageCoupons = () => {
                       bg={"red.600"}
                       my={2}
                       cursor={"pointer"}
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() => mutation.mutate(item.id)}
                     >
                       <MdDeleteOutline color="white" size={30} />
                     </Box>

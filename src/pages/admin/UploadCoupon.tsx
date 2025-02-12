@@ -19,6 +19,10 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import "./item.css";
+import { useQueryClient } from "@tanstack/react-query";
+import { toaster } from "@/components/ui/toaster";
+import { useCreateCoupon, useUpdateCoupon } from "@/hooks/useCoupon";
+import { v4 } from "uuid";
 
 interface FormValues {
   brands: string[];
@@ -33,7 +37,6 @@ interface FormValues {
 const UploadCoupon = () => {
   const location = useLocation();
   const coupon = location.state?.coupon;
-  console.log(coupon);
   const { data: brands, isLoading: loadingBrands } = useBrand();
   const { data: categories, isLoading: loadingCategories } = useCategories();
   const [brandCollection, setBrandCollection] = useState<
@@ -50,10 +53,28 @@ const UploadCoupon = () => {
   } = useForm<FormValues>({
     defaultValues: coupon ?? {},
   });
-
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    toaster.create({
+      title: `Coupon is ${coupon ? "updated" : "created"}`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["coupons"] });
+  };
+  const mutation = coupon
+    ? useUpdateCoupon(onSuccess)
+    : useCreateCoupon(onSuccess);
   const onSubmit = handleSubmit((data) => {
     if (isValid) {
-      console.log(data);
+      mutation.mutate(
+        coupon
+          ? data
+          : {
+              ...data,
+              id: v4(),
+              dateTime: new Date().toISOString(),
+            }
+      );
     } else {
       console.log(`🔥🔥🔥Not Valid`);
     }
@@ -104,6 +125,8 @@ const UploadCoupon = () => {
           fontSize={"sm"}
           bg={{ base: "black", _dark: "black" }}
           color={"white"}
+          loading={mutation.isPending}
+          disabled={mutation.isPending}
         >
           Save
         </Button>

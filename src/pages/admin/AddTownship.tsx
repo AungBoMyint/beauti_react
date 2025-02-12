@@ -1,8 +1,11 @@
 import AppDialog from "@/components/app/AppDialog";
 import { DialogActionTrigger, DialogFooter } from "@/components/ui/dialog";
 import { Field } from "@/components/ui/field";
+import { toaster } from "@/components/ui/toaster";
 import Division from "@/entity/Division";
+import { useUpdateDivision } from "@/hooks/useDivision";
 import { Button, Flex, Input } from "@chakra-ui/react";
+import { useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
 interface Props {
@@ -20,10 +23,21 @@ const AddTownship = ({ item }: Props) => {
   } = useForm<FormValues>({
     defaultValues: {},
   });
-
+  const queryClient = useQueryClient();
+  const onCreateSuccess = () => {
+    toaster.create({
+      title: `Township is added`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["divisions"] });
+  };
+  const mutation = useUpdateDivision(onCreateSuccess);
   const onSubmit = handleSubmit((data) => {
     if (isValid) {
-      console.log(data);
+      mutation.mutate({
+        ...item,
+        townships: [...item.townships, data],
+      });
     } else {
       console.log(`🔥🔥🔥Not Valid`);
     }
@@ -83,7 +97,14 @@ const AddTownship = ({ item }: Props) => {
             <DialogActionTrigger asChild>
               <Button variant="outline">Cancel</Button>
             </DialogActionTrigger>
-            <Button px={2} bg={"black"} color={"white"} type="submit">
+            <Button
+              loading={mutation.isPending}
+              disabled={mutation.isPending}
+              px={2}
+              bg={"black"}
+              color={"white"}
+              type="submit"
+            >
               Save
             </Button>
           </DialogFooter>

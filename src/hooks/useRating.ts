@@ -1,7 +1,6 @@
 import ApiClient from "@/utils/ApiClient";
-import Review from "@/entity/Review";
 import OverAllRating from "@/entity/OverAllRating";
-import { getReviews, reviewHistories } from "./useReview";
+import { getReviews } from "./useReview";
 
 const apiClient = new ApiClient<OverAllRating>("/ratings/:id");
 const useRating = (productId: string) =>
@@ -9,13 +8,13 @@ const useRating = (productId: string) =>
     key: ["ratings", productId],
     fn: async () => {
       const responseOne = await getReviews();
-      var response: Review[] = [];
+      /* var response: Review[] = [];
       if (reviewHistories.length < 1) {
         response = responseOne;
       } else {
         response = reviewHistories;
-      }
-      const reviews = response.filter(
+      } */
+      const reviews = responseOne.filter(
         (review) => review.productId === productId
       );
       var overallRating: OverAllRating = {

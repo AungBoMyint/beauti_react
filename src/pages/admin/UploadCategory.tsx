@@ -1,9 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
+import { toaster } from "@/components/ui/toaster";
+import { useCreateCategory, useUpdateCategory } from "@/hooks/useCategories";
 import { Box, Flex, Input, Text } from "@chakra-ui/react";
+import { useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
+import { v4 } from "uuid";
 
 interface FormValues {
   dateTime: string;
@@ -23,10 +27,28 @@ const UploadCategory = () => {
   } = useForm<FormValues>({
     defaultValues: category ?? {},
   });
-
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    toaster.create({
+      title: `Category is ${category ? "updated" : "created"}`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["categories"] });
+  };
+  const mutation = category
+    ? useUpdateCategory(onSuccess)
+    : useCreateCategory(onSuccess);
   const onSubmit = handleSubmit((data) => {
     if (isValid) {
-      console.log(data);
+      mutation.mutate(
+        category
+          ? data
+          : {
+              ...data,
+              id: v4(),
+              dateTime: new Date().toISOString(),
+            }
+      );
     } else {
       console.log(`🔥🔥🔥Not Valid`);
     }
@@ -56,6 +78,8 @@ const UploadCategory = () => {
           fontSize={"sm"}
           bg={{ base: "black", _dark: "black" }}
           color={"white"}
+          loading={mutation.isPending}
+          disabled={mutation.isPending}
         >
           Save
         </Button>

@@ -16,8 +16,10 @@ import {
 } from "react-swipeable-list";
 import useCategories from "@/hooks/useCategories";
 import Category from "@/entity/Category";
-import useBrand from "@/hooks/useBrand";
+import useBrand, { useDeleteBrand } from "@/hooks/useBrand";
 import Brand from "@/entity/Brand";
+import { useQueryClient } from "@tanstack/react-query";
+import { toaster } from "@/components/ui/toaster";
 
 const ManageBrand = () => {
   const navigate = useNavigate();
@@ -28,9 +30,15 @@ const ManageBrand = () => {
       setItems(data);
     }
   }, [data]);
-  const handleDelete = (id: string) => {
-    setItems((pre) => pre.filter((i) => i.id !== id));
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    toaster.create({
+      title: `Brand is deleted`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["brands"] });
   };
+  const mutation = useDeleteBrand(onSuccess);
   return isLoading ? (
     <Text>Loading...</Text>
   ) : (
@@ -108,7 +116,7 @@ const ManageBrand = () => {
                       bg={"red.600"}
                       my={2}
                       cursor={"pointer"}
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() => mutation.mutate(item.id)}
                     >
                       <MdDeleteOutline color="white" size={30} />
                       <Text fontWeight={"bold"} color={"white"} fontSize={"xs"}>

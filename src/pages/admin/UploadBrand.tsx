@@ -1,9 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
+import { toaster } from "@/components/ui/toaster";
+import { useCreateBrand, useUpdateBrand } from "@/hooks/useBrand";
 import { Box, Flex, Input, Text } from "@chakra-ui/react";
+import { useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
+import { v4 } from "uuid";
 
 interface FormValues {
   dateTime: string;
@@ -23,10 +27,28 @@ const UploadBrand = () => {
   } = useForm<FormValues>({
     defaultValues: brand ?? {},
   });
-
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    toaster.create({
+      title: `Brand is ${brand ? "updated" : "created"}`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["brands"] });
+  };
+  const mutation = brand
+    ? useUpdateBrand(onSuccess)
+    : useCreateBrand(onSuccess);
   const onSubmit = handleSubmit((data) => {
     if (isValid) {
-      console.log(data);
+      mutation.mutate(
+        brand
+          ? data
+          : {
+              ...data,
+              id: v4(),
+              dateTime: new Date().toISOString(),
+            }
+      );
     } else {
       console.log(`🔥🔥🔥Not Valid`);
     }

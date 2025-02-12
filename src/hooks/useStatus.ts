@@ -1,10 +1,66 @@
 import ApiClient from "@/utils/ApiClient";
 import statusCollection from "../assets/data/statusCollection.json";
 import Status from "@/entity/Status";
-import { collection, getDocs, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "@/firebaseConfig";
+import { useMutation } from "@tanstack/react-query";
+import { toaster } from "@/components/ui/toaster";
 
 const apiClient = new ApiClient<Status[]>("/status");
+export const useDeleteStatus = (success: () => void) => {
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const docRef = doc(db, "statusCollection", id);
+      return await deleteDoc(docRef);
+    },
+    onSuccess: () => {
+      success();
+    },
+    onError: (error) => {
+      toaster.create({
+        title: `Error: ${error.message}`,
+        type: "error",
+      });
+    },
+  });
+};
+export const useCreateStatus = (success: () => void) => {
+  return useMutation({
+    mutationFn: async (pro: Status) => {
+      const docRef = doc(db, "statusCollection", pro.id);
+      return await setDoc(docRef, pro);
+    },
+    onSuccess: () => {
+      success();
+    },
+    onError: (error) => {
+      toaster.create({
+        title: `Error: ${error.message}`,
+        type: "error",
+      });
+    },
+  });
+};
+export const useUpdateStatus = (success: () => void) => {
+  return useMutation({
+    mutationFn: async (pro: Status) => {
+      const docRef = doc(db, "statusCollection", pro.id);
+      return await updateDoc(docRef, { ...pro });
+    },
+    onSuccess: () => {
+      success();
+    },
+  });
+};
 const useStatus = () =>
   apiClient.get({
     key: ["status"],

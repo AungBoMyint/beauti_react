@@ -1,4 +1,4 @@
-import { useItems } from "@/hooks/useItem";
+import { useDeleteItem, useItems } from "@/hooks/useItem";
 import { MdDeleteOutline } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 
@@ -19,6 +19,8 @@ import { useEffect, useMemo, useState } from "react";
 import Item from "@/entity/Item";
 import debounce from "lodash.debounce";
 import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
+import { toaster } from "@/components/ui/toaster";
 
 const ManageItem = () => {
   const { isLoading, data, isError } = useItems();
@@ -28,9 +30,15 @@ const ManageItem = () => {
   useEffect(() => {
     if (data) setItems(data);
   }, [data]);
-  const handleDelete = (id: string) => {
-    setItems((pre) => pre.filter((i) => i.id !== id));
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    toaster.create({
+      title: `Product is deleted!`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["items"] });
   };
+  const handleDelete = useDeleteItem(onSuccess);
   const handleSearch = /* useMemo(
     () =>
        */ debounce((event: React.ChangeEvent<HTMLInputElement>) => {
@@ -122,7 +130,7 @@ const ManageItem = () => {
                       bg={"red.600"}
                       my={2}
                       cursor={"pointer"}
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() => handleDelete.mutate(item.id)}
                     >
                       <MdDeleteOutline color="white" size={30} />
                       <Text fontWeight={"bold"} color={"white"} fontSize={"xs"}>

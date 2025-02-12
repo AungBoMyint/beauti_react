@@ -15,7 +15,7 @@ import useTags from "@/hooks/useTags";
 import { Box, Flex, Input, Text, Textarea } from "@chakra-ui/react";
 import React, { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4, v4 } from "uuid";
 import debounce from "lodash.debounce";
 import { string } from "zod";
 import ScheduleSaleInput from "@/components/app/ScheduleSaleInput";
@@ -99,7 +99,15 @@ const UploadItem = () => {
 
   const onSubmit = handleSubmit((data) => {
     if (isValid) {
-      mutation.mutate(data);
+      mutation.mutate(
+        product
+          ? data
+          : {
+              ...data,
+              id: v4(),
+              dateTime: new Date().toISOString(),
+            }
+      );
     } else {
       console.log(`🔥🔥🔥Not Valid`);
     }

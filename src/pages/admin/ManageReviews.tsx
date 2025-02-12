@@ -11,17 +11,36 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { IoMdAdd } from "react-icons/io";
 import Promotion from "@/entity/Promotion";
-import { useReviews } from "@/hooks/useReview";
+import {
+  useApproveReview,
+  useReviews,
+  useVerifyReview,
+} from "@/hooks/useReview";
+import { toaster } from "@/components/ui/toaster";
+import { useQueryClient } from "@tanstack/react-query";
 
 const ManageReviews = () => {
-  const navigate = useNavigate();
-  const { isLoading, data, isError } = useReviews();
-  const [items, setItems] = useState<Promotion[]>([]);
-
-  const handleDelete = (id: string) => {
-    setItems((pre) => pre.filter((i) => i.id !== id));
+  const { isLoading, data, isError, error } = useReviews();
+  const queryClient = useQueryClient();
+  const onApproveSuccess = () => {
+    toaster.create({
+      title: "Review is approved!",
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["reviews"] });
   };
-  return isLoading ? (
+  const onVerifySuccess = () => {
+    toaster.create({
+      title: "Review is verified!",
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["reviews"] });
+  };
+  const handleApprove = useApproveReview(onApproveSuccess);
+  const handleVerify = useVerifyReview(onVerifySuccess);
+  return isError ? (
+    <Text>{error.message}</Text>
+  ) : isLoading ? (
     <Text>Loading...</Text>
   ) : (
     <Box>
@@ -72,6 +91,7 @@ const ManageReviews = () => {
                         size={"sm"}
                         fontSize={12}
                         variant={"solid"}
+                        onClick={() => handleApprove.mutate(item.id)}
                       >
                         {item.approved ? "Approved" : "Approve"}
                       </Button>
@@ -82,6 +102,7 @@ const ManageReviews = () => {
                         size={"sm"}
                         fontSize={12}
                         variant={"solid"}
+                        onClick={() => handleVerify.mutate(item.id)}
                       >
                         {item.verifiedPurchase ? "Verified" : "Verify"}
                       </Button>

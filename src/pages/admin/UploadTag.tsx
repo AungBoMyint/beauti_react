@@ -1,8 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
+import { toaster } from "@/components/ui/toaster";
+import { useCreateTag, useUpdateTag } from "@/hooks/useTags";
 import { Box, Flex, Input, Text } from "@chakra-ui/react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
+import { v4 } from "uuid";
 
 interface FormValues {
   id: string;
@@ -19,10 +23,22 @@ const UploadTag = () => {
   } = useForm<FormValues>({
     defaultValues: tag ?? {},
   });
-
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    toaster.create({
+      title: `Tag is ${tag ? "updated" : "created"}`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["tags"] });
+  };
+  const mutation = tag ? useUpdateTag(onSuccess) : useCreateTag(onSuccess);
   const onSubmit = handleSubmit((data) => {
     if (isValid) {
-      console.log(data);
+      mutation.mutate(
+        tag
+          ? { ...data, dateTime: new Date().toISOString() }
+          : { ...data, id: v4(), dateTime: new Date().toISOString() }
+      );
     } else {
       console.log(`🔥🔥🔥Not Valid`);
     }

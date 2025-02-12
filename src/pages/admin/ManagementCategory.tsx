@@ -14,8 +14,10 @@ import {
   TrailingActions,
   Type as ListType,
 } from "react-swipeable-list";
-import useCategories from "@/hooks/useCategories";
+import useCategories, { useDeleteCategory } from "@/hooks/useCategories";
 import Category from "@/entity/Category";
+import { useQueryClient } from "@tanstack/react-query";
+import { toaster } from "@/components/ui/toaster";
 
 const ManagementCategory = () => {
   const navigate = useNavigate();
@@ -26,9 +28,15 @@ const ManagementCategory = () => {
       setItems(data);
     }
   }, [data]);
-  const handleDelete = (id: string) => {
-    setItems((pre) => pre.filter((i) => i.id !== id));
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    toaster.create({
+      title: `Category is deleted`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["categories"] });
   };
+  const mutation = useDeleteCategory(onSuccess);
   return isLoading ? (
     <Text>Loading...</Text>
   ) : (
@@ -106,7 +114,7 @@ const ManagementCategory = () => {
                       bg={"red.600"}
                       my={2}
                       cursor={"pointer"}
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() => mutation.mutate(item.id)}
                     >
                       <MdDeleteOutline color="white" size={30} />
                       <Text fontWeight={"bold"} color={"white"} fontSize={"xs"}>

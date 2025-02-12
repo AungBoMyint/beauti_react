@@ -60,7 +60,7 @@ const ItemDetailAvailableOptionsAndAddToCart = ({ item }: Props) => {
           paddingY={0}
           size={"sm"}
           disabled={alreadyAdded}
-          onClick={() => addItem(item, selectedSize?.size)}
+          onClick={() => addItem(item, selectedSize)}
         >
           {alreadyAdded ? "Added" : "Add To Cart"}
         </Button>

@@ -14,7 +14,11 @@ import {
   TrailingActions,
   Type as ListType,
 } from "react-swipeable-list";
-import useAdvertisementTwo from "@/hooks/useAdvertisementTwo";
+import useAdvertisementTwo, {
+  useDeleteAdvertisementTwo,
+} from "@/hooks/useAdvertisementTwo";
+import { useQueryClient } from "@tanstack/react-query";
+import { toaster } from "@/components/ui/toaster";
 
 const ManageAdvertisementTwo = () => {
   const navigate = useNavigate();
@@ -25,9 +29,15 @@ const ManageAdvertisementTwo = () => {
       setItems(data);
     }
   }, [data]);
-  const handleDelete = (id: string) => {
-    setItems((pre) => pre.filter((i) => i.id !== id));
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    toaster.create({
+      title: `Advertisement is deleted`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["advertisement2"] });
   };
+  const mutation = useDeleteAdvertisementTwo(onSuccess);
   return isLoading ? (
     <Text>Loading...</Text>
   ) : (
@@ -105,7 +115,7 @@ const ManageAdvertisementTwo = () => {
                       bg={"red.600"}
                       my={2}
                       cursor={"pointer"}
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() => mutation.mutate(item.id)}
                     >
                       <MdDeleteOutline color="white" size={30} />
                       <Text fontWeight={"bold"} color={"white"} fontSize={"xs"}>

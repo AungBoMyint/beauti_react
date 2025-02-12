@@ -17,8 +17,10 @@ import {
 import useCategories from "@/hooks/useCategories";
 import Category from "@/entity/Category";
 import useBrand from "@/hooks/useBrand";
-import useStatus from "@/hooks/useStatus";
+import useStatus, { useDeleteStatus } from "@/hooks/useStatus";
 import Status from "@/entity/Status";
+import { useQueryClient } from "@tanstack/react-query";
+import { toaster } from "@/components/ui/toaster";
 
 const ManageStatus = () => {
   const navigate = useNavigate();
@@ -29,9 +31,15 @@ const ManageStatus = () => {
       setItems(data);
     }
   }, [data]);
-  const handleDelete = (id: string) => {
-    setItems((pre) => pre.filter((i) => i.id !== id));
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    toaster.create({
+      title: `Status is deleted`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["status"] });
   };
+  const mutation = useDeleteStatus(onSuccess);
   return isLoading ? (
     <Text>Loading...</Text>
   ) : (
@@ -106,7 +114,7 @@ const ManageStatus = () => {
                       bg={"red.600"}
                       my={2}
                       cursor={"pointer"}
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() => mutation.mutate(item.id)}
                     >
                       <MdDeleteOutline color="white" size={30} />
                     </Box>
