@@ -1,6 +1,6 @@
 import ApiClient from "@/utils/ApiClient";
 import AppUser from "@/entity/AppUser";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import authStore from "./authStore";
 import { useNavigate } from "react-router-dom";
 import {
@@ -11,10 +11,20 @@ import { auth, db } from "@/firebaseConfig";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
 
 const apiClient = new ApiClient<AppUser>("/user");
+
+export const useCurrentUser = (id: string) => {
+  return useQuery({
+    queryKey: ["current-user"],
+    queryFn: async () => {
+      var docRef = doc(db, "adminUserCollection", id);
+      return await getDoc(docRef);
+    },
+  });
+};
 export const useUpdatePoint = async (grandTotal: number) => {
   const currentUser = authStore.getState().currentUser;
   const remainPoint = authStore.getState().remainPoint;
-  const finalPoint = remainPoint + grandTotal * 0.01;
+  const finalPoint = remainPoint + grandTotal * 0.001;
   var docRef = doc(db, "adminUserCollection", currentUser?.id ?? "");
   await updateDoc(docRef, {
     points: finalPoint,

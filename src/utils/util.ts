@@ -3,7 +3,12 @@ import authStore from "@/hooks/authStore";
 import itemsStore from "@/hooks/itemsStore";
 
 export const initAuth = () => {
-  const user: AppUser = JSON.parse(localStorage.getItem("user") || "{}");
+  var user: AppUser | undefined = JSON.parse(
+    localStorage.getItem("user") || "{}"
+  );
+  if (!user?.emailAddress) {
+    user = undefined;
+  }
   const currentUser = authStore.getState().currentUser;
   if (user && user.emailAddress && !currentUser) {
     //we set user
@@ -12,7 +17,12 @@ export const initAuth = () => {
 };
 const utilMethod = () => {
   //for auth
-  const user: AppUser = JSON.parse(localStorage.getItem("user") || "{}");
+  var user: AppUser | undefined = JSON.parse(
+    localStorage.getItem("user") || "{}"
+  );
+  if (!user?.emailAddress) {
+    user = undefined;
+  }
   const currentUser = authStore.getState().currentUser;
   if (user && user.emailAddress && !currentUser) {
     //we set user

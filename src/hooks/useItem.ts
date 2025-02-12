@@ -7,10 +7,13 @@ import {
   getDocs,
   orderBy,
   query,
+  setDoc,
+  updateDoc,
   where,
 } from "firebase/firestore";
 import { db } from "@/firebaseConfig";
 import itemStore from "./itemsStore";
+import { useMutation } from "@tanstack/react-query";
 
 interface FilterItemProps {
   categoryName: string;
@@ -18,7 +21,28 @@ interface FilterItemProps {
   oldItems: Item[];
 }
 const apiClient = new ApiClient<Item[]>("/items");
-
+export const useCreateItem = (success: () => void) => {
+  return useMutation({
+    mutationFn: async (product: Item) => {
+      const docRef = doc(db, "items", product.id);
+      return await setDoc(docRef, product);
+    },
+    onSuccess: () => {
+      success();
+    },
+  });
+};
+export const useUpdateItem = (success: () => void) => {
+  return useMutation({
+    mutationFn: async (product: Item) => {
+      const docRef = doc(db, "items", product.id);
+      return await updateDoc(docRef, { ...product });
+    },
+    onSuccess: () => {
+      success();
+    },
+  });
+};
 const getItems = async () => {
   const storeItems = itemStore.getState().items;
   if (storeItems.length > 0) {

@@ -1,7 +1,10 @@
 import AppDialog from "@/components/app/AppDialog";
 import { Field } from "@/components/ui/field";
+import { toaster } from "@/components/ui/toaster";
 import AppUser from "@/entity/AppUser";
+import { managePoint } from "@/hooks/useUsers";
 import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ReactNode } from "react";
 import { useForm } from "react-hook-form";
 import { RiEditBoxLine } from "react-icons/ri";
@@ -14,6 +17,7 @@ interface FormValues {
   points: number;
 }
 const ManagePoint = ({ user, trigger }: Props) => {
+  const queryClient = useQueryClient();
   const {
     register,
     handleSubmit,
@@ -23,12 +27,26 @@ const ManagePoint = ({ user, trigger }: Props) => {
       points: user.points ?? 0,
     },
   });
+  const mutation = useMutation({
+    mutationFn: async (point: number) => await managePoint(point, user),
+    onSuccess: (_) => {
+      toaster.create({
+        title: "Point updated!",
+        type: "success",
+      });
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+    onError: (error) => {
+      toaster.create({
+        title: `Point update failed: ${error.message}`,
+        type: "error",
+      });
+    },
+  });
 
   const onSubmit = handleSubmit((data) => {
     if (isValid) {
-      console.log(data);
-    } else {
-      console.log(`🔥🔥🔥Not Valid`);
+      mutation.mutate(data.points);
     }
   });
   return (
@@ -79,6 +97,8 @@ const ManagePoint = ({ user, trigger }: Props) => {
             px={2}
             mt={2}
             type="submit"
+            loading={mutation.isPending}
+            disabled={mutation.isPending}
           >
             Save
           </Button>

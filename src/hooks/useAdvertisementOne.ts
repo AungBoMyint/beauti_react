@@ -1,10 +1,66 @@
 import ApiClient from "@/utils/ApiClient";
 import advertisementCollection from "../assets/data/advertisementCollection.json";
 import Advertisement from "@/entity/Advertisement";
-import { collection, doc, getDocs, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "@/firebaseConfig";
+import { useMutation } from "@tanstack/react-query";
+import { toaster } from "@/components/ui/toaster";
 
 const apiClient = new ApiClient<Advertisement[]>("/advertisement1");
+export const useDeleteAdvertisementOne = (success: () => void) => {
+  return useMutation({
+    mutationFn: async (id: string) => {
+      const docRef = doc(db, "advertisementCollection", id);
+      return await deleteDoc(docRef);
+    },
+    onSuccess: () => {
+      success();
+    },
+    onError: (error) => {
+      toaster.create({
+        title: `Error: ${error.message}`,
+        type: "error",
+      });
+    },
+  });
+};
+export const useCreateAdvertisementOne = (success: () => void) => {
+  return useMutation({
+    mutationFn: async (adv: Advertisement) => {
+      const docRef = doc(db, "advertisementCollection", adv.id);
+      return await setDoc(docRef, adv);
+    },
+    onSuccess: () => {
+      success();
+    },
+    onError: (error) => {
+      toaster.create({
+        title: `Error: ${error.message}`,
+        type: "error",
+      });
+    },
+  });
+};
+export const useUpdateAdvertisementOne = (success: () => void) => {
+  return useMutation({
+    mutationFn: async (adv: Advertisement) => {
+      const docRef = doc(db, "advertisementCollection", adv.id);
+      return await updateDoc(docRef, { ...adv });
+    },
+    onSuccess: () => {
+      success();
+    },
+  });
+};
 const useAdvertisementOne = () => {
   return apiClient.get({
     key: ["advertisement1"],

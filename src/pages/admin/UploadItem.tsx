@@ -21,6 +21,9 @@ import { string } from "zod";
 import ScheduleSaleInput from "@/components/app/ScheduleSaleInput";
 import { useLocation, useParams } from "react-router-dom";
 import Item from "@/entity/Item";
+import { useCreateItem, useUpdateItem } from "@/hooks/useItem";
+import { useQueryClient } from "@tanstack/react-query";
+import { toaster } from "@/components/ui/toaster";
 
 interface FormValues {
   advertisementID: string;
@@ -72,6 +75,17 @@ const UploadItem = () => {
   const categories = useCategories();
   const statuses = useStatus();
   const tags = useTags();
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    toaster.create({
+      title: `Product is ${product ? "updated" : "created"}!`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["items"] });
+  };
+  const mutation = product
+    ? useUpdateItem(onSuccess)
+    : useCreateItem(onSuccess);
 
   const {
     register,
@@ -85,8 +99,7 @@ const UploadItem = () => {
 
   const onSubmit = handleSubmit((data) => {
     if (isValid) {
-      console.log(data);
-      console.log(JSON.stringify(sizes));
+      mutation.mutate(data);
     } else {
       console.log(`🔥🔥🔥Not Valid`);
     }
@@ -120,6 +133,19 @@ const UploadItem = () => {
         setValue("category", result);
         return result;
       }
+    });
+  };
+  const handleSetStatus = (value: string) => {
+    setStatus((pre) => {
+      setValue("status", value);
+      return value;
+    });
+  };
+  const handleSetBrand = (value: Brand) => {
+    setBrand((pre) => {
+      setValue("brandID", value.id);
+      setValue("brandName", value.name);
+      return value;
     });
   };
   const handleSetTag = (value: string) =>
@@ -185,6 +211,8 @@ const UploadItem = () => {
           fontSize={"sm"}
           bg={{ base: "black", _dark: "black" }}
           color={"white"}
+          loading={mutation.isPending}
+          disabled={mutation.isPending}
         >
           Save
         </Button>
@@ -239,9 +267,7 @@ const UploadItem = () => {
                 }}
                 variant={"solid"}
                 key={`${item.id}`}
-                onClick={() => {
-                  setStatus(item.name);
-                }}
+                onClick={() => handleSetStatus(item.name)}
               >
                 {item?.name}
               </Button>
@@ -297,7 +323,7 @@ const UploadItem = () => {
                 }}
                 variant={"solid"}
                 key={`${item.id}`}
-                onClick={() => setBrand(item)}
+                onClick={() => handleSetBrand(item)}
               >
                 {item?.name}
               </Button>

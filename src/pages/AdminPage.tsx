@@ -28,12 +28,12 @@ const AdminPage = () => {
       <Text paddingBottom={1} fontWeight={"bold"} fontSize={20}>
         Admin Feature
       </Text>
-      <ActionFlex
+      {/* <ActionFlex
         label="Push Notifications"
         onClick={() => navigate("/notifications")}
       >
         <IoIosNotifications size={22} />
-      </ActionFlex>
+      </ActionFlex> */}
       <ActionFlex label="Manage Users" onClick={() => navigate("/manage-user")}>
         <FaUserCog size={22} />
       </ActionFlex>

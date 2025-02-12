@@ -1,13 +1,23 @@
 import AppUser from "@/entity/AppUser";
 import authStore from "@/hooks/authStore";
+import { useCurrentUser } from "@/hooks/useAuth";
+import { Text } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 const ProtectedRoute = () => {
-  const localUser: AppUser = JSON.parse(localStorage.getItem("user") || "{}");
-  const remoteUser = authStore((state) => state.currentUser);
-  const user = remoteUser ?? localUser;
+  var localUser: AppUser | undefined = JSON.parse(
+    localStorage.getItem("user") || "{}"
+  );
+  const { isLoading, data } = useCurrentUser(localUser?.id ?? "");
   const location = useLocation();
-  return user ? (
+  useEffect(() => {
+    authStore.getState().setUser!(data?.data() as AppUser);
+  }, [data?.exists()]);
+  if (isLoading) {
+    return <Text>Loading....</Text>;
+  }
+  return data?.exists() ? (
     <Outlet />
   ) : (
     <Navigate to={"/login"} state={{ from: location }} />

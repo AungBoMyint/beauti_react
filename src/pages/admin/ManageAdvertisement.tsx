@@ -1,5 +1,7 @@
 import Advertisement from "@/entity/Advertisement";
-import useAdvertisementOne from "@/hooks/useAdvertisementOne";
+import useAdvertisementOne, {
+  useDeleteAdvertisementOne,
+} from "@/hooks/useAdvertisementOne";
 import { Box, Card, Flex, Text, Image, IconButton } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
@@ -14,6 +16,8 @@ import {
   TrailingActions,
   Type as ListType,
 } from "react-swipeable-list";
+import { useQueryClient } from "@tanstack/react-query";
+import { toaster } from "@/components/ui/toaster";
 
 const ManageAdvertisement = () => {
   const navigate = useNavigate();
@@ -24,9 +28,15 @@ const ManageAdvertisement = () => {
       setItems(data);
     }
   }, [data]);
-  const handleDelete = (id: string) => {
-    setItems((pre) => pre.filter((i) => i.id !== id));
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    toaster.create({
+      title: `Advertisement is deleted`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["advertisement1"] });
   };
+  const mutation = useDeleteAdvertisementOne(onSuccess);
   return isLoading ? (
     <Text>Loading...</Text>
   ) : (
@@ -104,7 +114,7 @@ const ManageAdvertisement = () => {
                       bg={"red.600"}
                       my={2}
                       cursor={"pointer"}
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() => mutation.mutate(item.id)}
                     >
                       <MdDeleteOutline color="white" size={30} />
                       <Text fontWeight={"bold"} color={"white"} fontSize={"xs"}>

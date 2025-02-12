@@ -1,9 +1,16 @@
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
+import { toaster } from "@/components/ui/toaster";
+import {
+  useCreateAdvertisementOne,
+  useUpdateAdvertisementOne,
+} from "@/hooks/useAdvertisementOne";
 import { Box, Flex, Input, Text } from "@chakra-ui/react";
+import { useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
+import { v4 } from "uuid";
 
 interface FormValues {
   dateTime: string;
@@ -22,10 +29,24 @@ const UploadAdvertisement = () => {
   } = useForm<FormValues>({
     defaultValues: advertisement ?? {},
   });
-
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    toaster.create({
+      title: `Advertisement is ${advertisement ? "updated" : "created"}`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["advertisement1"] });
+  };
+  const mutation = advertisement
+    ? useUpdateAdvertisementOne(onSuccess)
+    : useCreateAdvertisementOne(onSuccess);
   const onSubmit = handleSubmit((data) => {
     if (isValid) {
-      console.log(data);
+      mutation.mutate(
+        advertisement
+          ? data
+          : { ...data, id: v4(), dateTime: new Date().toISOString() }
+      );
     } else {
       console.log(`🔥🔥🔥Not Valid`);
     }
@@ -55,6 +76,8 @@ const UploadAdvertisement = () => {
           fontSize={"sm"}
           bg={{ base: "black", _dark: "black" }}
           color={"white"}
+          loading={mutation.isPending}
+          disabled={mutation.isPending}
         >
           Save
         </Button>

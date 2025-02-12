@@ -1,9 +1,16 @@
 import ApiClient from "@/utils/ApiClient";
 import AppUser from "@/entity/AppUser";
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, doc, getDocs, query, updateDoc } from "firebase/firestore";
 import { db } from "@/firebaseConfig";
 
 const apiClient = new ApiClient<AppUser[]>("/users");
+export const managePoint = async (point: number, targetUser: AppUser) => {
+  var docRef = doc(db, "adminUserCollection", targetUser?.id ?? "");
+  return await updateDoc(docRef, {
+    points: point,
+  });
+  //invalidate
+};
 const useUsers = () =>
   apiClient.get({
     key: ["users"],
