@@ -7,14 +7,17 @@ import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import authStore from "./authStore";
 import Size from "@/entity/Size";
+import Coupon from "@/entity/Coupon";
 
 interface Props {
   cartItems: CartItem[];
-  promotionValue: Promotion | undefined;
+  //promotionValue: Promotion | undefined;
+  oneTimeUsedCoupon: Coupon | undefined;
   address: Township;
   subTotal: number;
   grandTotal: number;
   needToBuyMore: boolean;
+  alreadyUsedCoupon: boolean;
   pointError: boolean;
   bankSlip?: File | undefined;
   setPointError: (value: boolean) => void;
@@ -24,14 +27,17 @@ interface Props {
   addItem: (item: CartItem | Item, size?: Size | null) => void;
   removeItem: (item: CartItem | Item) => void;
   updateAllTotal: () => void;
-  setPromotionValue: (value: Promotion | undefined) => void;
+  //setPromotionValue: (value: Promotion | undefined) => void;
   setBankSlip: (value: File) => void;
   resetState: () => void;
+  setOneTimeUsedCoupon: (value: Coupon | undefined) => void;
 }
 const initialValue = {
   cartItems: [],
-  promotionValue: undefined,
+  //promotionValue: undefined,
+  oneTimeUsedCoupon: undefined,
   needToBuyMore: false,
+  alreadyUsedCoupon: false,
   address: { fee: 0 } as Township,
   subTotal: 0,
   grandTotal: 0,
@@ -40,6 +46,12 @@ const initialValue = {
 const useCart = create<Props>()(
   subscribeWithSelector((set, get) => ({
     ...initialValue,
+    setOneTimeUsedCoupon: (value: Coupon | undefined) =>
+      set((state) =>
+        produce(state, (draf) => {
+          draf.oneTimeUsedCoupon = value;
+        })
+      ),
     resetState: () => set(() => ({ ...initialValue })),
     setBankSlip: (value: File) =>
       set((state) =>
@@ -60,12 +72,12 @@ const useCart = create<Props>()(
           draf.address = township;
         })
       ),
-    setPromotionValue: (value: Promotion | undefined) =>
+    /* setPromotionValue: (value: Promotion | undefined) =>
       set((state) =>
         produce(state, (draf) => {
           draf.promotionValue = value;
         })
-      ),
+      ), */
     getCount: (productId: string) => {
       var cartItems = get().cartItems;
       var item = cartItems.find((i) => i.id === productId);
@@ -79,6 +91,8 @@ const useCart = create<Props>()(
     updateAllTotal: () =>
       set((state) =>
         produce(state, (draf) => {
+          const currentUser = authStore.getState().currentUser;
+          const currentUserId = currentUser?.id ?? "";
           const total = draf.cartItems.reduce((pre, cur) => {
             const isScheduleSale = cur.scheduleSale
               ? new Date(cur.scheduleSale.endTime).getTime() >
@@ -97,16 +111,23 @@ const useCart = create<Props>()(
                 cur.count
             );
           }, 0);
+          draf.alreadyUsedCoupon = false;
+          draf.needToBuyMore = false;
           draf.subTotal = total;
           //we calculate promotion if have
           draf.needToBuyMore = false;
           draf.grandTotal = total + draf.address.fee;
-          if (draf.promotionValue) {
-            if (total > draf.promotionValue.restrictValue) {
+          if (draf.oneTimeUsedCoupon) {
+            if (draf.oneTimeUsedCoupon.users?.includes(currentUserId)) {
+              //already used
+              draf.alreadyUsedCoupon = true;
+              return;
+            }
+            if (total > draf.oneTimeUsedCoupon.restrictValue) {
               //we can apply discount
-              if (draf.promotionValue.promotionValue.includes("%")) {
+              if (draf.oneTimeUsedCoupon.promotionValue.includes("%")) {
                 //discount with percentage
-                const promo = draf.promotionValue.promotionValue.replace(
+                const promo = draf.oneTimeUsedCoupon.promotionValue.replace(
                   "%",
                   ""
                 );
@@ -114,7 +135,7 @@ const useCart = create<Props>()(
                 draf.grandTotal = total - value + draf.address.fee;
               } else {
                 //discount with number
-                const promo = draf.promotionValue.promotionValue.replace(
+                const promo = draf.oneTimeUsedCoupon.promotionValue.replace(
                   "Ks",
                   ""
                 );
@@ -197,13 +218,13 @@ const useCart = create<Props>()(
 useCart.subscribe(
   (state) => ({
     cartItems: state.cartItems,
-    promotionValue: state.promotionValue,
+    oneTimeUsedCoupon: state.oneTimeUsedCoupon,
     address: state.address,
   }),
   (cState, pState) => {
     if (
       cState.cartItems !== pState.cartItems ||
-      cState.promotionValue !== pState.promotionValue ||
+      cState.oneTimeUsedCoupon !== pState.oneTimeUsedCoupon ||
       cState.address !== pState.address
     ) {
       const updateAllTotal = useCart.getState().updateAllTotal;

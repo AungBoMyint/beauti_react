@@ -5,7 +5,7 @@ import { mockItems } from "@/utils/constant";
 
 const StatusLoading = () => {
   return (
-    <Box>
+    <Box spaceY={2}>
       <Skeleton>
         <ViewAllLabel label={status} action="Show More" to={""} />
       </Skeleton>

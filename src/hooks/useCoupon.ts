@@ -13,6 +13,7 @@ import {
 import { db } from "@/firebaseConfig";
 import { useMutation } from "@tanstack/react-query";
 import { toaster } from "@/components/ui/toaster";
+import couponStore from "./couponStore";
 
 const apiClient = new ApiClient<Coupon[]>("/coupons");
 export const useDeleteCoupon = (success: () => void) => {
@@ -72,3 +73,18 @@ export const useCoupons = () =>
       );
     },
   });
+
+export const getCoupons = async () => {
+  var collectionRef = collection(db, "coupons");
+  var q = query(collectionRef, orderBy("dateTime", "desc"));
+  var docSnap = await getDocs(q);
+  const items = docSnap.docs.map(
+    (doc) => ({ id: doc.id, ...doc.data() } as Coupon)
+  );
+  couponStore.getState().setCoupons(items);
+};
+export const filterCoupon = (value: string) => {
+  const response = couponStore.getState().coupons ?? [];
+  const result = response.find((item) => item.code === value);
+  return result;
+};

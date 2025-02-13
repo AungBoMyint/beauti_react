@@ -14,7 +14,9 @@ import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const promotionValue = useCart((state) => state.promotionValue);
+  const { oneTimeUsedCoupon, needToBuyMore, alreadyUsedCoupon } = useCart(
+    (state) => state
+  );
   /* const fullAddress = useCart((state) => state.fullAddress); */
   const cartItems = useCart((state) => state.cartItems);
   const grandTotal = useCart((state) => state.grandTotal);
@@ -112,13 +114,15 @@ const Cart = () => {
               <td className="text-left px-2">ကုန်ပစည်းကျသင့်ငွေ</td>
               <td className="text-right px-2">{subTotal}Ks</td>
             </tr>
-            {promotionValue && (
+            {oneTimeUsedCoupon && !needToBuyMore && !alreadyUsedCoupon ? (
               <tr>
                 <td className="text-left px-2">ပရိုမိုးရှင်း လျော့ငွေ</td>
                 <td className="text-right px-2">
-                  {promotionValue.promotionValue}
+                  {oneTimeUsedCoupon.promotionValue}
                 </td>
               </tr>
+            ) : (
+              <></>
             )}
             <tr>
               <td className="text-left px-2">

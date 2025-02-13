@@ -6,5 +6,6 @@ interface Coupon {
   id: string;
   promotionValue: string;
   restrictValue: number;
+  users: string[] | null | undefined;
 }
 export default Coupon;

@@ -21,7 +21,7 @@ import { useForm } from "react-hook-form";
 import { Field } from "@/components/ui/field";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "@/firebaseConfig";
-import { addPurchase } from "@/hooks/usePurchases";
+import { addCurrentUserToCoupon, addPurchase } from "@/hooks/usePurchases";
 import itemsStore from "@/hooks/itemsStore";
 import { useUpdatePoint } from "@/hooks/useAuth";
 import { produce } from "immer";
@@ -36,7 +36,8 @@ const CheckoutPage = () => {
   const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState<string | undefined>();
   const bankSlip = useCart((state) => state.bankSlip);
-  const { cartItems, address, promotionValue, grandTotal } = useCart.getState();
+  const { cartItems, address, oneTimeUsedCoupon, grandTotal } =
+    useCart.getState();
   const { currentUser } = authStore.getState();
   const mutation = useMutation({
     mutationFn: async (value: Purchase) =>
@@ -52,6 +53,7 @@ const CheckoutPage = () => {
           addPurchase(purchase)
             .then(() => {
               useUpdatePoint(purchase.total);
+              addCurrentUserToCoupon();
               itemsStore.getState().setPurchase([...purchases, purchase]);
               resolve(1);
             })
@@ -76,6 +78,7 @@ const CheckoutPage = () => {
             addPurchase(purchase)
               .then(() => {
                 useUpdatePoint(purchase.total);
+                addCurrentUserToCoupon();
                 itemsStore.getState().setPurchase([...purchases, purchase]);
                 resolve(1);
               })
@@ -145,7 +148,9 @@ const CheckoutPage = () => {
         name: data.name,
         orderStatus: null,
         phone: data.phone,
-        promotionValue: promotionValue ? promotionValue.promotionValue : "0",
+        promotionValue: oneTimeUsedCoupon
+          ? oneTimeUsedCoupon.promotionValue
+          : "0",
         total: grandTotal,
         userId: currentUser!.id,
       });

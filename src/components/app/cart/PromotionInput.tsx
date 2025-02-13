@@ -1,17 +1,17 @@
 import useCart from "@/hooks/useCart";
+import { filterCoupon } from "@/hooks/useCoupon";
 import { filterPromotion } from "@/hooks/usePromotion";
 import { Input, Text } from "@chakra-ui/react";
 import { useEffect } from "react";
 
 export const PromotionInput = () => {
-  const promotionValue = useCart((state) => state.promotionValue);
+  const oneTimeUsedCoupon = useCart((state) => state.oneTimeUsedCoupon);
   useEffect(() => {
     const inputElement = document.getElementById("input");
 
     inputElement?.addEventListener("input", (event) => {
-      const result = filterPromotion((event.target as HTMLInputElement).value);
-
-      useCart.getState().setPromotionValue(result);
+      const result = filterCoupon((event.target as HTMLInputElement).value);
+      useCart.getState().setOneTimeUsedCoupon(result);
     });
   }, []);
   return (
@@ -21,7 +21,7 @@ export const PromotionInput = () => {
         placeholder="Apply a coupon"
         border={"solid"}
         paddingLeft={2}
-        defaultValue={promotionValue?.code}
+        defaultValue={oneTimeUsedCoupon?.code}
       />
       <PromotionError />
     </>
@@ -29,6 +29,10 @@ export const PromotionInput = () => {
 };
 
 export const PromotionError = () => {
-  const needToBuyMore = useCart((state) => state.needToBuyMore);
-  return needToBuyMore ? <Text color={"red"}>Need to buy more.</Text> : null;
+  const { needToBuyMore, alreadyUsedCoupon } = useCart((state) => state);
+  return alreadyUsedCoupon ? (
+    <Text color={"red"}>The used coupon is not valid.</Text>
+  ) : needToBuyMore ? (
+    <Text color={"red"}>Need to buy more.</Text>
+  ) : null;
 };

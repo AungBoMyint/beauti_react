@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import { FaUserCog } from "react-icons/fa";
 import { IoIosNotifications } from "react-icons/io";
 import authStore from "@/hooks/authStore";
+import MyOrderCircle from "./admin/MyOrderCircle";
 
 const AdminPage = () => {
   const navigate = useNavigate();
@@ -105,15 +106,7 @@ const AdminPage = () => {
       </ActionFlex>
       <ActionFlex label="My Orders" onClick={() => navigate("/view-orders")}>
         <Float top={6} right={6}>
-          <Circle
-            fontSize={"sm"}
-            fontWeight={"bold"}
-            size="8"
-            bg="black"
-            color="white"
-          >
-            12
-          </Circle>
+          <MyOrderCircle />
         </Float>
       </ActionFlex>
       <ActionFlex

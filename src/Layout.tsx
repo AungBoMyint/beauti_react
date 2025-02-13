@@ -5,11 +5,13 @@ import TopNavBar from "./components/app/TopNavBar";
 import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import utilMethod from "./utils/util";
+import { getCoupons } from "./hooks/useCoupon";
 
 function App() {
   useEffect(() => {
     //we check login or not
     utilMethod();
+    getCoupons();
   }, []);
   return (
     <>

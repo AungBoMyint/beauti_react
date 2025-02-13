@@ -6,6 +6,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getCountFromServer,
   getDocs,
   orderBy,
   query,
@@ -13,10 +14,23 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { db } from "@/firebaseConfig";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { toaster } from "@/components/ui/toaster";
+import useCart from "./useCart";
+import authStore from "./authStore";
+import { getCoupons } from "./useCoupon";
 
 const apiClient = new ApiClient<Purchase[]>("/purchases");
+export const usePurchaseCount = () => {
+  return useQuery({
+    queryKey: ["purchase-count"],
+    queryFn: async () => {
+      const collectionRef = collection(db, "purchases");
+      const snapshot = await getCountFromServer(collectionRef);
+      return snapshot.data().count;
+    },
+  });
+};
 export const useDeletePurchase = (success: () => void) => {
   return useMutation({
     mutationFn: async (id: string) => {
@@ -79,6 +93,18 @@ const getPurchases = async () => {
 export const addPurchase = async (value: Purchase) => {
   var docRef = doc(db, "purchases", value.id);
   return await setDoc(docRef, value);
+};
+export const addCurrentUserToCoupon = async () => {
+  const oneTimeUsedCoupon = useCart.getState().oneTimeUsedCoupon;
+  const users = oneTimeUsedCoupon?.users ?? [];
+  const currentUser = authStore.getState().currentUser;
+  if (!oneTimeUsedCoupon) return;
+  var docRef = doc(db, "coupons", oneTimeUsedCoupon?.id);
+  await updateDoc(docRef, {
+    users: [...users, currentUser?.id],
+  });
+  const result = await getCoupons();
+  return result;
 };
 const usePurchases = (status: string) =>
   apiClient.get({
