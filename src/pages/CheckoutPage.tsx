@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import Purchase from "@/entity/Purchase";
 import authStore from "@/hooks/authStore";
-import { v4 as uuid, v4 } from "uuid";
+import { v4 } from "uuid";
 import PurchaseItem from "@/entity/PurchaseItem";
 import { isScheduleSale } from "@/utils/fun";
 import { useForm } from "react-hook-form";
