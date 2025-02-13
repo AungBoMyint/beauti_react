@@ -4,7 +4,10 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import "../../index.css";
 import { UseQueryResult } from "@tanstack/react-query";
 import Advertisement from "@/entity/Advertisement";
-import { Skeleton } from "@chakra-ui/react";
+import { Flex, Skeleton } from "@chakra-ui/react";
+import "./SiteCarousel.css";
+import SimpleImageSlider from "react-simple-image-slider";
+
 interface Props {
   query: UseQueryResult<Advertisement[], Error>;
 }
@@ -30,20 +33,42 @@ const SiteCarousel = ({ query }: Props) => {
         />
       </Skeleton>
     );
-  const images = data?.map((item) => ({
+  const images = data?.map(
+    (item) => item.image /* ({
     original: item.image,
     thumbnail: item.image,
-  }));
+  }) */
+  ) as string[];
   return (
-    <ImageGallery
-      showFullscreenButton={false}
-      showThumbnails={false}
-      showNav={false}
-      showPlayButton={false}
-      autoPlay={true}
-      items={images ?? []}
-    />
+    <Flex
+      height={"220px"}
+      width={"100vw"}
+      //p={2}
+      w={"full"}
+      //bg={"red"}
+      alignItems={"center"}
+      justifyContent={"center"}
+    >
+      <SimpleImageSlider
+        width={"92vw"}
+        height={"200px"}
+        images={images}
+        showBullets={false}
+        showNavs={false}
+        autoPlay={true}
+      />
+    </Flex>
   );
 };
 
 export default SiteCarousel;
+{
+  /* <ImageGallery
+      showFullscreenButton={false}
+      showThumbnails={false}
+      showNav={false}
+      showPlayButton={false}
+      autoPlay={false}
+      items={images ?? []}
+    /> */
+}

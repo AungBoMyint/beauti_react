@@ -1,7 +1,6 @@
 import AppUser from "@/entity/AppUser";
 import authStore from "@/hooks/authStore";
 import { useCurrentUser } from "@/hooks/useAuth";
-import { Text } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import AccountLoading from "./AccountLoading";
