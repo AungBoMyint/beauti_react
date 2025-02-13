@@ -4,6 +4,7 @@ import { useCurrentUser } from "@/hooks/useAuth";
 import { Text } from "@chakra-ui/react";
 import { useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
+import AccountLoading from "./AccountLoading";
 
 const ProtectedRoute = () => {
   var localUser: AppUser | undefined = JSON.parse(
@@ -15,9 +16,9 @@ const ProtectedRoute = () => {
     authStore.getState().setUser!(data?.data() as AppUser);
   }, [data?.exists()]);
   if (isLoading) {
-    return <Text>Loading....</Text>;
+    return <AccountLoading />;
   }
-  return data?.exists() ? (
+  return data?.exists() || localUser?.id ? (
     <Outlet />
   ) : (
     <Navigate to={"/login"} state={{ from: location }} />
