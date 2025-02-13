@@ -1,6 +1,5 @@
 import useCart from "@/hooks/useCart";
-import { filterPromotion } from "@/hooks/usePromotion";
-import { Input, Text } from "@chakra-ui/react";
+import { Input } from "@chakra-ui/react";
 import { useEffect } from "react";
 
 export const FullAddressInput = () => {

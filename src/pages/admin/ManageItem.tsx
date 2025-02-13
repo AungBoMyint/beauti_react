@@ -2,9 +2,8 @@ import { useDeleteItem, useItems } from "@/hooks/useItem";
 import { MdDeleteOutline } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 
-import { Card, Text, Image, Flex, Box, Kbd, Input } from "@chakra-ui/react";
+import { Card, Text, Image, Flex, Box, Input } from "@chakra-ui/react";
 import {
-  LeadingActions,
   SwipeableList,
   SwipeableListItem,
   SwipeAction,
@@ -15,7 +14,7 @@ import "react-swipeable-list/dist/styles.css";
 import "./WithTwoAction.css";
 import { InputGroup } from "@/components/ui/input-group";
 import { LuSearch } from "react-icons/lu";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import Item from "@/entity/Item";
 import debounce from "lodash.debounce";
 import { useNavigate } from "react-router-dom";
@@ -23,7 +22,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { toaster } from "@/components/ui/toaster";
 
 const ManageItem = () => {
-  const { isLoading, data, isError } = useItems();
+  const { isLoading, data } = useItems();
   const [items, setItems] = useState<Item[]>([]);
   const [searchItems, setSearchItems] = useState<Item[] | undefined>();
   const navigate = useNavigate();

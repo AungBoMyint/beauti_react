@@ -1,21 +1,12 @@
-import { Button, Flex, Skeleton } from "@chakra-ui/react";
-import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { Button, Skeleton } from "@chakra-ui/react";
 import ScrollX from "../ScrollX";
-import categories from "../../../assets/data/categories.json";
-import Category from "@/entity/Category";
 import useCategories from "@/hooks/useCategories";
 import { Link } from "react-router-dom";
 import { categoryDetailsItemPath } from "@/utils/constant";
 
 const Categories = () => {
-  const divRef = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(0);
   const { data: finalCategories, isLoading, error } = useCategories();
-  useEffect(() => {
-    if (divRef.current)
-      setWidth(divRef.current.scrollWidth - divRef.current.offsetWidth);
-  }, []);
+
   if (isLoading)
     return (
       <ScrollX>

@@ -1,6 +1,6 @@
 import Item from "@/entity/Item";
 import { itemDetailPath } from "@/utils/constant";
-import { Badge, Button, Card, Text, Image, Flex } from "@chakra-ui/react";
+import { Badge, Card, Text, Image, Flex } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 interface Props {
   item: Item;

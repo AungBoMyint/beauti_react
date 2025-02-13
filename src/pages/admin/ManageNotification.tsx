@@ -1,11 +1,6 @@
-import Advertisement from "@/entity/Advertisement";
-import useAdvertisementOne from "@/hooks/useAdvertisementOne";
-import { Box, Card, Flex, Text, Image, IconButton } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { Box, Card, Flex, Text } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { MdDeleteOutline } from "react-icons/md";
-import { RiEditBoxLine } from "react-icons/ri";
-import { useNavigate } from "react-router-dom";
-import { IoMdAdd } from "react-icons/io";
 
 import {
   SwipeableList,
@@ -16,12 +11,10 @@ import {
 } from "react-swipeable-list";
 import useNotifications from "@/hooks/useNotification";
 import NotiModel from "@/entity/Notification";
-import AppDialog from "@/components/app/AppDialog";
 import AddNotification from "./AddNotification";
 
 const ManageNotification = () => {
-  const navigate = useNavigate();
-  const { isLoading, data, isError } = useNotifications();
+  const { isLoading, data } = useNotifications();
   const [items, setItems] = useState<NotiModel[] | undefined>();
   useEffect(() => {
     if (data) {

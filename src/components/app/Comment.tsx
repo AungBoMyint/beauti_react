@@ -1,4 +1,4 @@
-import { Text, Card, HStack, Stack, Strong } from "@chakra-ui/react";
+import { Text, Card, HStack } from "@chakra-ui/react";
 import { Avatar } from "../ui/avatar";
 import Review from "@/entity/Review";
 import { guestUserProfile } from "@/utils/constant";

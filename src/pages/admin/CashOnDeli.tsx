@@ -1,6 +1,6 @@
 import usePurchases from "@/hooks/usePurchases";
 import { orderStatusToColor, orderStatusToString } from "@/utils/fun";
-import { Box, Card, Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { format } from "date-fns";
 import OrderInformationDialog from "./OrderInformationDialog";
 import { FixedSizeList as List } from "react-window";

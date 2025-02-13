@@ -14,7 +14,7 @@ import ItemDetailAvailableOptionsAndAddToCart from "./ItemDetailAvailableOptions
 import ScheduleSaleCountDown from "@/components/app/item/ScheduleSaleCountDown";
 const ItemDetail = () => {
   const { id } = useParams();
-  const { data, isLoading, error } = useFilterIdItem(id ?? "");
+  const { data, isLoading } = useFilterIdItem(id ?? "");
   if (isLoading) return <ItemDetailLoading />;
   if (!data) return <div>404 Not Found</div>;
   const pictures = [data.photo1 ?? "", data.photo2 ?? "", data.photo3 ?? ""];

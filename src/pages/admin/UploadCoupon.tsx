@@ -8,9 +8,7 @@ import {
   SelectTrigger,
   SelectValueText,
 } from "@/components/ui/select";
-import { IoIosArrowDown } from "react-icons/io";
 
-import Brand from "@/entity/Brand";
 import useBrand from "@/hooks/useBrand";
 import useCategories from "@/hooks/useCategories";
 import { CollectionType, createCollection } from "@/utils/fun";
@@ -32,6 +30,7 @@ interface FormValues {
   id: string;
   promotionValue: string;
   restrictValue: number;
+  users: string[] | undefined | null;
 }
 
 const UploadCoupon = () => {
@@ -49,7 +48,6 @@ const UploadCoupon = () => {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    setValue,
   } = useForm<FormValues>({
     defaultValues: coupon ?? {},
   });

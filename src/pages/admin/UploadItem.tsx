@@ -3,23 +3,19 @@ import SizeInput from "@/components/app/SizeInput";
 import { Button } from "@/components/ui/button";
 import { Field } from "@/components/ui/field";
 import Brand from "@/entity/Brand";
-import Category from "@/entity/Category";
 import ScheduleSale from "@/entity/ScheduleSale";
 import Size from "@/entity/Size";
-import Status from "@/entity/Status";
-import Tag from "@/entity/Tag";
 import useBrand from "@/hooks/useBrand";
 import useCategories from "@/hooks/useCategories";
 import useStatus from "@/hooks/useStatus";
 import useTags from "@/hooks/useTags";
 import { Box, Flex, Input, Text, Textarea } from "@chakra-ui/react";
-import React, { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { v4 as uuidv4, v4 } from "uuid";
 import debounce from "lodash.debounce";
-import { string } from "zod";
 import ScheduleSaleInput from "@/components/app/ScheduleSaleInput";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Item from "@/entity/Item";
 import { useCreateItem, useUpdateItem } from "@/hooks/useItem";
 import { useQueryClient } from "@tanstack/react-query";
@@ -144,13 +140,13 @@ const UploadItem = () => {
     });
   };
   const handleSetStatus = (value: string) => {
-    setStatus((pre) => {
+    setStatus((_) => {
       setValue("status", value);
       return value;
     });
   };
   const handleSetBrand = (value: Brand) => {
-    setBrand((pre) => {
+    setBrand((_) => {
       setValue("brandID", value.id);
       setValue("brandName", value.name);
       return value;

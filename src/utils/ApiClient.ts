@@ -1,5 +1,4 @@
-import axios from "axios";
-import { MutationFunction, useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 interface GetProps<T> {
   fn: () => Promise<T>;
@@ -15,9 +14,6 @@ interface PostProps<T> {
     context: unknown
   ) => Promise<unknown> | unknown;
 }
-const axiosInstance = axios.create({
-  baseURL: "https:google.com",
-});
 
 class ApiClient<T> {
   endpoint: string;

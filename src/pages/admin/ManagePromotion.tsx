@@ -1,5 +1,4 @@
-import { Box, Card, Flex, Text, Image, IconButton } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { Box, Card, Flex, Text } from "@chakra-ui/react";
 import { MdDeleteOutline } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
@@ -13,13 +12,12 @@ import {
   Type as ListType,
 } from "react-swipeable-list";
 import { useDeletePromotion, usePromotion } from "@/hooks/usePromotion";
-import Promotion from "@/entity/Promotion";
 import { useQueryClient } from "@tanstack/react-query";
 import { toaster } from "@/components/ui/toaster";
 
 const ManagePromotion = () => {
   const navigate = useNavigate();
-  const { isLoading, data, isError } = usePromotion();
+  const { isLoading, data } = usePromotion();
 
   const queryClient = useQueryClient();
   const onSuccess = () => {

@@ -2,20 +2,15 @@ import AppDialog from "@/components/app/AppDialog";
 import {
   SelectContent,
   SelectItem,
-  SelectLabel,
   SelectRoot,
   SelectTrigger,
   SelectValueText,
 } from "@/components/ui/select";
+import { toaster } from "@/components/ui/toaster";
 import Purchase from "@/entity/Purchase";
-import {
-  Box,
-  createListCollection,
-  Flex,
-  Table,
-  Text,
-  Wrap,
-} from "@chakra-ui/react";
+import { useUpdatePurchaseStatus } from "@/hooks/usePurchases";
+import { Box, createListCollection, Flex, Table, Text } from "@chakra-ui/react";
+import { useQueryClient } from "@tanstack/react-query";
 import { format } from "date-fns";
 import { IoEyeOutline } from "react-icons/io5";
 
@@ -23,8 +18,21 @@ interface Props {
   purchase: Purchase;
 }
 const OrderInformationDialog = ({ purchase }: Props) => {
-  const handleChangeStatus = (status: string[] | null[] | null) => {
-    console.log(`Status: ${status}`);
+  const queryClient = useQueryClient();
+  const onSuccess = () => {
+    //DO Someting
+    toaster.create({
+      title: `Purchase status is updated`,
+      type: "success",
+    });
+    queryClient.invalidateQueries({ queryKey: ["purchases", "Cash"] });
+    queryClient.invalidateQueries({ queryKey: ["purchases", "Pre"] });
+  };
+  const mutation = useUpdatePurchaseStatus(onSuccess);
+  const handleChangeStatus = (statusValue: string[] | null[] | null) => {
+    if (!statusValue) return;
+    const orderStatus = parseInt(statusValue[0] ?? "-1");
+    mutation.mutate({ id: purchase.id, status: orderStatus });
   };
   return (
     <AppDialog title="Order Informations" trigger={<IoEyeOutline size={30} />}>
@@ -93,7 +101,11 @@ const OrderInformationDialog = ({ purchase }: Props) => {
                       >
                         <Text>{item.itemName}</Text>
 
-                        <Flex gap={2} alignItems={"center"}>
+                        <Flex
+                          gap={2}
+                          alignItems={"center"}
+                          fontSize={{ base: 12 }}
+                        >
                           <Box
                             px={2}
                             rounded={"xs"}

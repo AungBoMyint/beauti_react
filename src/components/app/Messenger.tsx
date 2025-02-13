@@ -1,4 +1,3 @@
-import { Icon } from "@chakra-ui/react";
 import { BsMessenger } from "react-icons/bs";
 
 const Messenger = () => {

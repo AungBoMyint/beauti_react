@@ -19,7 +19,6 @@ const UploadTag = () => {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    setValue,
   } = useForm<FormValues>({
     defaultValues: tag ?? {},
   });

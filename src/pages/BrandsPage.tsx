@@ -1,12 +1,10 @@
 import useBrand from "@/hooks/useBrand";
 import { brandDetailsItemPath } from "@/utils/constant";
-import utilMethod from "@/utils/util";
 import { Card, Grid, Text, Image } from "@chakra-ui/react";
-import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 const BrandsPage = () => {
-  const { data, isLoading, error } = useBrand();
+  const { data, isLoading } = useBrand();
   if (isLoading) return <div>loading....</div>;
   return (
     <Grid

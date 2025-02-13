@@ -1,7 +1,6 @@
 import { useItems } from "@/hooks/useItem";
 import { Table } from "@chakra-ui/react/table";
 import { Box, Text } from "@chakra-ui/react";
-import React from "react";
 
 const StockTable = () => {
   const { isLoading, data } = useItems();

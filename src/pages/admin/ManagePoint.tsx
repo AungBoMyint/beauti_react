@@ -3,11 +3,10 @@ import { Field } from "@/components/ui/field";
 import { toaster } from "@/components/ui/toaster";
 import AppUser from "@/entity/AppUser";
 import { managePoint } from "@/hooks/useUsers";
-import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
+import { Button, Flex, Input } from "@chakra-ui/react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ReactNode } from "react";
 import { useForm } from "react-hook-form";
-import { RiEditBoxLine } from "react-icons/ri";
 
 interface Props {
   user: AppUser;

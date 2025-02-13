@@ -11,7 +11,7 @@ const initialValue = {
   coupons: undefined,
 };
 const couponStore = create<Props>()(
-  subscribeWithSelector((set, get) => ({
+  subscribeWithSelector((set) => ({
     ...initialValue,
     setCoupons: (value: Coupon[]) =>
       set((state) =>

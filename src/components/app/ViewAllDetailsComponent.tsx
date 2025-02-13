@@ -1,5 +1,5 @@
 import Item from "@/entity/Item";
-import { Flex, Button, Box, Grid } from "@chakra-ui/react";
+import { Button, Box, Grid } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import ScrollX from "./ScrollX";
 import SortPrice from "./SortPrice";
@@ -35,8 +35,8 @@ const ViewAllDetailsComponent = ({ items }: Props) => {
     setSelectedSort(value);
   };
   const handleClear = () => {
-    setSelectedCategory((pre) => "");
-    setSelectedSort((pre) => "");
+    setSelectedCategory("");
+    setSelectedSort("");
   };
   const handleCategoryChange = (value: string) => {
     setSelectedCategory(value);

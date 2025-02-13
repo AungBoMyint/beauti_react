@@ -1,4 +1,4 @@
-import { Box, Flex, Icon, Input, Text } from "@chakra-ui/react";
+import { Box, Flex, Input, Text } from "@chakra-ui/react";
 import { IoIosAddCircleOutline } from "react-icons/io";
 import { CiCircleRemove } from "react-icons/ci";
 import Size from "@/entity/Size";

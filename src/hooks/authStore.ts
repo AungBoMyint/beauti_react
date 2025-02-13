@@ -1,6 +1,5 @@
 import AppUser from "@/entity/AppUser";
-import { initAuth } from "@/utils/util";
-import { current, produce } from "immer";
+import { produce } from "immer";
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 
@@ -15,7 +14,7 @@ const initialValue: Props = {
   remainPoint: 0,
 };
 const authStore = create<Props>()(
-  subscribeWithSelector((set, get) => ({
+  subscribeWithSelector((set) => ({
     ...initialValue,
     setUser: (user?: AppUser | undefined) =>
       set((state) =>

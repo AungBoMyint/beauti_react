@@ -9,7 +9,7 @@ interface Props {
   query: UseQueryResult<Advertisement[], Error>;
 }
 const SiteCarousel = ({ query }: Props) => {
-  const { data, isLoading, error } = query;
+  const { data, isLoading } = query;
   if (isLoading)
     return (
       <Skeleton mt={2}>

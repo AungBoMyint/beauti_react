@@ -22,7 +22,6 @@ const UploadPromotion = () => {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    setValue,
   } = useForm<FormValues>({
     defaultValues: promotion ?? {},
   });

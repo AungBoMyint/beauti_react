@@ -6,7 +6,6 @@ import Division from "@/entity/Division";
 import { useUpdateDivision } from "@/hooks/useDivision";
 import { Button, Flex, Input } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";
-import React from "react";
 import { useForm } from "react-hook-form";
 interface Props {
   item: Division;

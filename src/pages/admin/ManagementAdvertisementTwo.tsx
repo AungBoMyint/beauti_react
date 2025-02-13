@@ -1,7 +1,4 @@
-import Advertisement from "@/entity/Advertisement";
-import useAdvertisementOne from "@/hooks/useAdvertisementOne";
-import { Box, Card, Flex, Text, Image, IconButton } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { Box, Card, Flex, Text, Image } from "@chakra-ui/react";
 import { MdDeleteOutline } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
@@ -22,13 +19,8 @@ import { toaster } from "@/components/ui/toaster";
 
 const ManageAdvertisementTwo = () => {
   const navigate = useNavigate();
-  const { isLoading, data, isError } = useAdvertisementTwo();
-  const [items, setItems] = useState<Advertisement[]>([]);
-  useEffect(() => {
-    if (data) {
-      setItems(data);
-    }
-  }, [data]);
+  const { isLoading, data } = useAdvertisementTwo();
+
   const queryClient = useQueryClient();
   const onSuccess = () => {
     toaster.create({

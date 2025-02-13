@@ -1,6 +1,5 @@
 import Purchase from "@/entity/Purchase";
 import ApiClient from "@/utils/ApiClient";
-import purchaseCollection from "../assets/data/purchases.json";
 import itemsStore from "./itemsStore";
 import {
   collection,
@@ -65,6 +64,23 @@ export const useCreatePurchase = (success: () => void) => {
     },
   });
 };
+interface UpdatePurchaseStatusProp {
+  id: string;
+  status: number;
+}
+export const useUpdatePurchaseStatus = (success: () => void) => {
+  return useMutation({
+    mutationFn: async (props: UpdatePurchaseStatusProp) => {
+      const docRef = doc(db, "purchases", props.id);
+      return await updateDoc(docRef, {
+        orderStatus: props.status,
+      });
+    },
+    onSuccess: () => {
+      success();
+    },
+  });
+};
 export const useUpdatePurchase = (success: () => void) => {
   return useMutation({
     mutationFn: async (pro: Purchase) => {
@@ -77,10 +93,10 @@ export const useUpdatePurchase = (success: () => void) => {
   });
 };
 const getPurchases = async () => {
-  const purchases = itemsStore.getState().purchases;
+  /* const purchases = itemsStore.getState().purchases;
   if (purchases.length > 0) {
     return purchases;
-  }
+  } */
   var collectionRef = collection(db, "purchases");
   var q = query(collectionRef, orderBy("dateTime", "desc"));
   var docSnap = await getDocs(q);

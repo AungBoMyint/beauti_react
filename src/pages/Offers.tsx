@@ -1,11 +1,10 @@
 import { useFilterCategoryItem } from "@/hooks/useItem";
 import { itemDetailPath, mockItems } from "@/utils/constant";
 import { Card, Grid, Text, Image, Skeleton } from "@chakra-ui/react";
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Offers = () => {
-  const { data, isLoading, error } = useFilterCategoryItem("Hot Sales");
+  const { data, isLoading } = useFilterCategoryItem("Hot Sales");
   if (isLoading)
     return (
       <Grid

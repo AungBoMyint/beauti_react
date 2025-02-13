@@ -3,8 +3,8 @@ import {
   RadioCardLabel,
   RadioCardRoot,
 } from "@/components/ui/radio-card";
-import { Box, Button, Flex, HStack, Input, Text } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { Box, Button, Flex, Input, Text } from "@chakra-ui/react";
+import { useState } from "react";
 import PrepayComponent from "./PrepayComponent";
 import { GrDeliver } from "react-icons/gr";
 import { FaCreditCard } from "react-icons/fa6";
@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import Purchase from "@/entity/Purchase";
 import authStore from "@/hooks/authStore";
-import { v4 as uuid } from "uuid";
+import { v4 as uuid, v4 } from "uuid";
 import PurchaseItem from "@/entity/PurchaseItem";
 import { isScheduleSale } from "@/utils/fun";
 import { useForm } from "react-hook-form";
@@ -24,7 +24,6 @@ import { storage } from "@/firebaseConfig";
 import { addCurrentUserToCoupon, addPurchase } from "@/hooks/usePurchases";
 import itemsStore from "@/hooks/itemsStore";
 import { useUpdatePoint } from "@/hooks/useAuth";
-import { produce } from "immer";
 
 interface FormValues {
   name: string;
@@ -67,7 +66,7 @@ const CheckoutPage = () => {
 
         uploadTask.on(
           "state_changed",
-          (snapshot) => {},
+          (_) => {},
           (error) => {
             console.error("Upload failed:", error);
           },
@@ -91,7 +90,7 @@ const CheckoutPage = () => {
         //else
         //create do
       }),
-    onSuccess: (result) => {
+    onSuccess: (_) => {
       toaster.create({
         title: "Your order is submitted!",
         type: "success",
@@ -124,11 +123,11 @@ const CheckoutPage = () => {
       //Do submitting
       mutation.mutateAsync({
         address: data.fullAddress,
-        bankSlipImage: "",
+        bankSlipImage: null,
         dateTime: new Date().toISOString(),
         deliveryTownshipInfo: [address?.name ?? "", `${address?.fee}`],
         email: currentUser?.emailAddress ?? "",
-        id: uuid(),
+        id: v4().substring(0, 4).toUpperCase(),
         items: cartItems?.map(
           (ci) =>
             ({

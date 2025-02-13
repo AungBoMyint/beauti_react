@@ -1,5 +1,4 @@
-import { Box, Card, Flex, Text, Image, IconButton } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { Box, Card, Flex, Text } from "@chakra-ui/react";
 import { MdDeleteOutline } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
@@ -12,20 +11,14 @@ import {
   TrailingActions,
   Type as ListType,
 } from "react-swipeable-list";
-import Tag from "@/entity/Tag";
 import useTags, { useDeleteTag } from "@/hooks/useTags";
 import { useQueryClient } from "@tanstack/react-query";
 import { toaster } from "@/components/ui/toaster";
 
 const ManageTag = () => {
   const navigate = useNavigate();
-  const { isLoading, data, isError } = useTags();
-  const [items, setItems] = useState<Tag[]>([]);
-  useEffect(() => {
-    if (data) {
-      setItems(data);
-    }
-  }, [data]);
+  const { isLoading, data } = useTags();
+  
   const queryClient = useQueryClient();
   const onSuccess = () => {
     toaster.create({

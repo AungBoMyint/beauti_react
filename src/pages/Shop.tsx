@@ -1,12 +1,11 @@
 import useCategories from "@/hooks/useCategories";
 import { categoryDetailsItemPath, mockItems } from "@/utils/constant";
-import { Box, Card, Grid, Text, Image, Skeleton } from "@chakra-ui/react";
+import { Card, Grid, Text, Image, Skeleton } from "@chakra-ui/react";
 
-import React from "react";
 import { Link } from "react-router-dom";
 
 const Shop = () => {
-  const { data, isLoading, error } = useCategories();
+  const { data, isLoading } = useCategories();
   if (isLoading)
     return (
       <Grid

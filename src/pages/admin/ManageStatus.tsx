@@ -1,7 +1,4 @@
-import Advertisement from "@/entity/Advertisement";
-import useAdvertisementOne from "@/hooks/useAdvertisementOne";
-import { Box, Card, Flex, Text, Image, IconButton } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { Box, Card, Flex, Text } from "@chakra-ui/react";
 import { MdDeleteOutline } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
@@ -14,23 +11,14 @@ import {
   TrailingActions,
   Type as ListType,
 } from "react-swipeable-list";
-import useCategories from "@/hooks/useCategories";
-import Category from "@/entity/Category";
-import useBrand from "@/hooks/useBrand";
 import useStatus, { useDeleteStatus } from "@/hooks/useStatus";
-import Status from "@/entity/Status";
 import { useQueryClient } from "@tanstack/react-query";
 import { toaster } from "@/components/ui/toaster";
 
 const ManageStatus = () => {
   const navigate = useNavigate();
-  const { isLoading, data, isError } = useStatus();
-  const [items, setItems] = useState<Status[]>([]);
-  useEffect(() => {
-    if (data) {
-      setItems(data);
-    }
-  }, [data]);
+  const { isLoading, data } = useStatus();
+  
   const queryClient = useQueryClient();
   const onSuccess = () => {
     toaster.create({

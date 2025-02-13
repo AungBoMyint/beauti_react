@@ -1,18 +1,14 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { IoMdHome } from "react-icons/io";
 import { MdHorizontalSplit } from "react-icons/md";
 import { MdLocalOffer } from "react-icons/md";
 import { FaCartPlus } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
 import { MdAccountCircle } from "react-icons/md";
 
 import BottomNavItem from "./BottomNavItem";
-import useNavStore from "@/store/userNavStore";
 import { useLocation, useNavigate } from "react-router-dom";
 
-type Props = {};
-
-const BottomNavBar = (props?: Props) => {
+const BottomNavBar = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const handleChange = (value: string) => {

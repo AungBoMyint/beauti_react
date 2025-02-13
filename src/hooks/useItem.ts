@@ -4,13 +4,11 @@ import {
   collection,
   deleteDoc,
   doc,
-  getDoc,
   getDocs,
   orderBy,
   query,
   setDoc,
   updateDoc,
-  where,
 } from "firebase/firestore";
 import { db } from "@/firebaseConfig";
 import itemStore from "./itemsStore";
@@ -157,12 +155,14 @@ export const useFilterItem = ({
               finalResult
                 .sort((a, b) => parseInt(`${a.price}`) - parseInt(`${b.price}`))
                 .reverse();
+              break;
             case "htl":
               finalResult.sort(
                 (a, b) =>
                   parseInt(`${a.requirePoint ?? a.price}`) -
                   parseInt(`${b.price}`)
               );
+              break;
 
             default:
               break;

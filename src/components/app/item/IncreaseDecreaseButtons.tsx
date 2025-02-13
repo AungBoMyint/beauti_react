@@ -1,13 +1,13 @@
 import CartItem from "@/entity/Cartitem";
 import Item from "@/entity/Item";
+import Size from "@/entity/Size";
 import useCart from "@/hooks/useCart";
 import { Flex, Text } from "@chakra-ui/react";
-import React from "react";
 import { CiCircleMinus, CiCirclePlus } from "react-icons/ci";
 
 interface Props {
   item: CartItem | Item;
-  size?: string;
+  size?: Size | null;
   onAdd?: () => void;
   onRemove?: () => void;
 }

@@ -1,5 +1,4 @@
 import ApiClient from "@/utils/ApiClient";
-import statusCollection from "../assets/data/statusCollection.json";
 import Status from "@/entity/Status";
 import {
   collection,

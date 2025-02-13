@@ -1,7 +1,4 @@
-import Advertisement from "@/entity/Advertisement";
-import useAdvertisementOne from "@/hooks/useAdvertisementOne";
-import { Box, Card, Flex, Text, Image, IconButton } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import { Box, Card, Flex, Text, Image } from "@chakra-ui/react";
 import { MdDeleteOutline } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
@@ -15,19 +12,13 @@ import {
   Type as ListType,
 } from "react-swipeable-list";
 import useCategories, { useDeleteCategory } from "@/hooks/useCategories";
-import Category from "@/entity/Category";
 import { useQueryClient } from "@tanstack/react-query";
 import { toaster } from "@/components/ui/toaster";
 
 const ManagementCategory = () => {
   const navigate = useNavigate();
-  const { isLoading, data, isError } = useCategories();
-  const [items, setItems] = useState<Category[]>([]);
-  useEffect(() => {
-    if (data) {
-      setItems(data);
-    }
-  }, [data]);
+  const { isLoading, data } = useCategories();
+
   const queryClient = useQueryClient();
   const onSuccess = () => {
     toaster.create({

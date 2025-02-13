@@ -1,6 +1,5 @@
 import Category from "@/entity/Category";
 import ApiClient from "@/utils/ApiClient";
-import categories from "../assets/data/categories.json";
 import {
   collection,
   deleteDoc,

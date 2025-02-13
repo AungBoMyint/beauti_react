@@ -1,5 +1,4 @@
 import ApiClient from "@/utils/ApiClient";
-import advertisementColection2 from "../assets/data/advertisementColection2.json";
 import Advertisement from "@/entity/Advertisement";
 import {
   collection,

@@ -1,4 +1,3 @@
-import ApiClient from "@/utils/ApiClient";
 import AppUser from "@/entity/AppUser";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import authStore from "./authStore";
@@ -9,8 +8,6 @@ import {
 } from "firebase/auth";
 import { auth, db } from "@/firebaseConfig";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
-
-const apiClient = new ApiClient<AppUser>("/user");
 
 export const useCurrentUser = (id: string) => {
   return useQuery({

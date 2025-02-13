@@ -1,8 +1,6 @@
-import { useState } from "react";
 import {
   SelectContent,
   SelectItem,
-  SelectLabel,
   SelectRoot,
   SelectTrigger,
   SelectValueText,
@@ -12,7 +10,6 @@ interface Props {
   onSortChange: (value: string) => void;
 }
 const SortPrice = ({ onSortChange }: Props) => {
-  const [checked, setChecked] = useState(false);
   const items = createListCollection({
     items: [
       { label: "Low To High", value: "lth" },

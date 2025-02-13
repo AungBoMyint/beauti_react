@@ -1,7 +1,6 @@
 import IncreaseDecreaseButtons from "@/components/app/item/IncreaseDecreaseButtons";
 import Item from "@/entity/Item";
 import Size from "@/entity/Size";
-import authStore from "@/hooks/authStore";
 import useCart from "@/hooks/useCart";
 import { Box, Text, Button, Flex } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
@@ -51,7 +50,7 @@ const ItemDetailAvailableOptionsAndAddToCart = ({ item }: Props) => {
       </Box>
       {pointError ? <Text color={"red"}>Your point is not enough</Text> : <></>}
       <Flex width={"full"} paddingTop={4} alignItems={"center"} gap={4}>
-        <IncreaseDecreaseButtons item={item} size={selectedSize?.size} />
+        <IncreaseDecreaseButtons item={item} size={selectedSize} />
         <Button
           variant={"solid"}
           bg={{ base: "black", _dark: "white" }}

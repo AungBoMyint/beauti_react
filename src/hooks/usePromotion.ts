@@ -1,7 +1,5 @@
 import ApiClient from "@/utils/ApiClient";
-import promotionCollections from "../assets/data/promotions.json";
 import Promotion from "@/entity/Promotion";
-import { set } from "react-hook-form";
 import {
   collection,
   deleteDoc,
@@ -84,7 +82,7 @@ export const usePromotion = () =>
     key: ["promotions"],
     fn: async () => getPromotions(),
   });
-export const useSearchPromotion = (value: string) => {
+/* export const useSearchPromotion = (value: string) => {
   const apiClient = new ApiClient<Promotion>("/promotions");
 
   return apiClient.get({
@@ -106,9 +104,9 @@ export const useSearchPromotion = (value: string) => {
       );
     },
   });
-};
-export const filterPromotion = (value: string) => {
+}; */
+/* export const filterPromotion = (value: string) => {
   const response = Object.values(promotionCollections.data) as Promotion[];
   const result = response.find((item) => item.code === value);
   return result;
-};
+}; */

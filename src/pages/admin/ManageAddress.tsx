@@ -1,6 +1,5 @@
 import { Box, Card, Flex, Text, Button, Input } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import {
   useCreateDivision,
   useDeleteDivision,
@@ -12,7 +11,6 @@ import { useForm } from "react-hook-form";
 import { Field } from "@/components/ui/field";
 import AppDialog from "@/components/app/AppDialog";
 import AddTownship from "./AddTownship";
-import { DialogActionTrigger, DialogFooter } from "@/components/ui/dialog";
 import { toaster } from "@/components/ui/toaster";
 import { useQueryClient } from "@tanstack/react-query";
 import { v4 } from "uuid";
@@ -22,8 +20,7 @@ interface FormValues {
 }
 
 const ManageAddress = () => {
-  const navigate = useNavigate();
-  const { isLoading, data, isError } = useDivisions();
+  const { isLoading, data } = useDivisions();
   const [items, setItems] = useState<Division[]>([]);
   const queryClient = useQueryClient();
   const onCreateSuccess = () => {

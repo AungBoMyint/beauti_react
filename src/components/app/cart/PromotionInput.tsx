@@ -1,6 +1,5 @@
 import useCart from "@/hooks/useCart";
 import { filterCoupon } from "@/hooks/useCoupon";
-import { filterPromotion } from "@/hooks/usePromotion";
 import { Input, Text } from "@chakra-ui/react";
 import { useEffect } from "react";
 

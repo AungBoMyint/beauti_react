@@ -1,5 +1,4 @@
-import { Badge, Box, Button, Card, Flex, Float, Image, Text } from "@chakra-ui/react";
-import React from "react";
+import { Box, Button, Card, Image, Text } from "@chakra-ui/react";
 import ViewAllLabel from "../ViewAllLabel";
 import ScrollX from "../ScrollX";
 
@@ -42,7 +41,18 @@ const Rewards = () => {
               </Text>
             </Card.Body>
             <Card.Footer paddingX={2} paddingBottom={2}>
-              <Button size={'sm'} variant="outline" borderColor={'black'} border={'solid'} rounded={'2xl'} paddingX={2} paddingY={0} fontSize={'xs'}>Sign in to access</Button>
+              <Button
+                size={"sm"}
+                variant="outline"
+                borderColor={"black"}
+                border={"solid"}
+                rounded={"2xl"}
+                paddingX={2}
+                paddingY={0}
+                fontSize={"xs"}
+              >
+                Sign in to access
+              </Button>
             </Card.Footer>
           </Card.Root>
         ))}

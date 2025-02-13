@@ -3,7 +3,7 @@ import AppUser from "@/entity/AppUser";
 import useUsers from "@/hooks/useUsers";
 import { Box, Flex, Text, Image, Input } from "@chakra-ui/react";
 import debounce from "lodash.debounce";
-import { CSSProperties, useEffect, useState } from "react";
+import { CSSProperties, useState } from "react";
 import { GiTwoCoins } from "react-icons/gi";
 import { LuSearch } from "react-icons/lu";
 import AutoSizer from "react-virtualized-auto-sizer";

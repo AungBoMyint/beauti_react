@@ -4,7 +4,6 @@ import { toaster } from "@/components/ui/toaster";
 import { useCreateStatus, useUpdateStatus } from "@/hooks/useStatus";
 import { Box, Flex, Input, Text } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";
-import React from "react";
 import { useForm } from "react-hook-form";
 import { useLocation } from "react-router-dom";
 import { v4 } from "uuid";
@@ -21,7 +20,6 @@ const UploadStatus = () => {
     register,
     handleSubmit,
     formState: { errors, isValid },
-    setValue,
   } = useForm<FormValues>({
     defaultValues: status ?? {},
   });

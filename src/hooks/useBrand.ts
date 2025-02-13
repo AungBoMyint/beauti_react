@@ -1,5 +1,4 @@
 import ApiClient from "@/utils/ApiClient";
-import brandCollection from "../assets/data/brandCollection.json";
 import Brand from "@/entity/Brand";
 import {
   collection,

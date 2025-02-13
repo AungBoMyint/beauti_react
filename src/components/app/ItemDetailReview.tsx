@@ -25,7 +25,7 @@ const formSchema = z.object({
 
 const ItemDetailReview = ({ productId }: Props) => {
   const queryClient = useQueryClient();
-  const { data, isLoading } = useReview(productId);
+  const { data } = useReview(productId);
   const {
     mutate: addReview,
     isPending,
@@ -38,7 +38,6 @@ const ItemDetailReview = ({ productId }: Props) => {
   });
   //if (isLoading) return <div>loading.....</div>;
   const {
-    register,
     handleSubmit,
     formState: { errors },
     control,

@@ -1,14 +1,12 @@
-import { Button } from "@/components/ui/button";
 import usePurchases from "@/hooks/usePurchases";
 import { orderStatusToColor, orderStatusToString } from "@/utils/fun";
-import { Box, Card, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { format } from "date-fns";
 import OrderInformationDialog from "./OrderInformationDialog";
 import { useNavigate } from "react-router-dom";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { FixedSizeList as List } from "react-window";
 import { CSSProperties } from "react";
-import { Toaster } from "@/components/ui/toaster";
 
 interface RenderProps {
   index: number;

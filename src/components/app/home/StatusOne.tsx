@@ -10,7 +10,7 @@ interface Props {
   status: string;
 }
 const StatusOne = ({ status }: Props) => {
-  const { data: items, isLoading, error } = useFilterStatusItem(status);
+  const { data: items, isLoading } = useFilterStatusItem(status);
   if (isLoading) return <StatusLoading />;
   return (
     <Box mb={2}>

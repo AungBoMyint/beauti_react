@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { brandDetailsItemPath, mockItems } from "@/utils/constant";
 
 const Brands = () => {
-  const { data, isLoading, error } = useBrand();
+  const { data, isLoading } = useBrand();
 
   return (
     <Flex direction={"column"} mb={4}>

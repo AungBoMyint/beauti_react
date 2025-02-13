@@ -1,9 +1,8 @@
-import React, { ChangeEvent, useState } from "react";
 import kbz from "../assets/bank/kbz.png";
 import aya from "../assets/bank/ayabank.png";
 import cb from "../assets/bank/cbbank.jpg";
 import uab from "../assets/bank/uabbank.jpg";
-import { Box, Button, Flex, Image, Input, Text } from "@chakra-ui/react";
+import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
 import { toaster } from "@/components/ui/toaster";
 import {
   FileUploadList,
@@ -75,7 +74,7 @@ const PrepayComponent = () => {
               Upload a paid screenshot
             </Button>
           </FileUploadTrigger>
-          <FileUploadList/>
+          <FileUploadList />
         </FileUploadRoot>
       </Flex>
     </Box>

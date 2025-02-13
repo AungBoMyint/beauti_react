@@ -2,7 +2,6 @@ import { usePurchaseHistory } from "@/hooks/usePurchases";
 import { orderStatusToColor, orderStatusToString } from "@/utils/fun";
 import { Box, Card, Flex, Text } from "@chakra-ui/react";
 import { format } from "date-fns/format";
-import React from "react";
 import OrderHistoryInformationDialog from "./OrderHistoryInformationDialog";
 import authStore from "@/hooks/authStore";
 

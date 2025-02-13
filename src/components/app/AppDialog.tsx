@@ -1,11 +1,9 @@
 import { DialogRoot } from "@chakra-ui/react/dialog";
-import React, { ReactNode } from "react";
+import { ReactNode } from "react";
 import {
-  DialogActionTrigger,
   DialogBody,
   DialogCloseTrigger,
   DialogContent,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,

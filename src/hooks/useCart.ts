@@ -1,6 +1,5 @@
 import CartItem from "@/entity/Cartitem";
 import Item from "@/entity/Item";
-import Promotion from "@/entity/Promotion";
 import Township from "@/entity/Township";
 import { produce } from "immer";
 import { create } from "zustand";
@@ -13,6 +12,7 @@ interface Props {
   cartItems: CartItem[];
   //promotionValue: Promotion | undefined;
   oneTimeUsedCoupon: Coupon | undefined;
+  fullAddress: string | undefined;
   address: Township;
   subTotal: number;
   grandTotal: number;
@@ -31,6 +31,7 @@ interface Props {
   setBankSlip: (value: File) => void;
   resetState: () => void;
   setOneTimeUsedCoupon: (value: Coupon | undefined) => void;
+  changeFullAddress: (value: string) => void;
 }
 const initialValue = {
   cartItems: [],
@@ -42,10 +43,17 @@ const initialValue = {
   subTotal: 0,
   grandTotal: 0,
   pointError: false,
+  fullAddress: undefined,
 };
 const useCart = create<Props>()(
   subscribeWithSelector((set, get) => ({
     ...initialValue,
+    changeFullAddress: (value: string) =>
+      set((state) =>
+        produce(state, (draf) => {
+          draf.fullAddress = value;
+        })
+      ),
     setOneTimeUsedCoupon: (value: Coupon | undefined) =>
       set((state) =>
         produce(state, (draf) => {

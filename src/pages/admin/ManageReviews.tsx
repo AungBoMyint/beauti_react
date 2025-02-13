@@ -3,14 +3,8 @@ import {
   Card,
   Flex,
   Text,
-  Image,
-  IconButton,
   Button,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { IoMdAdd } from "react-icons/io";
-import Promotion from "@/entity/Promotion";
 import {
   useApproveReview,
   useReviews,

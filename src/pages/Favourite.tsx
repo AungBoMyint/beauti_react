@@ -1,5 +1,4 @@
 import { Grid, Card, Text, Image } from "@chakra-ui/react";
-import React from "react";
 
 const Favourite = () => {
   return true ? (

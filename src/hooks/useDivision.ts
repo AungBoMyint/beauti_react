@@ -1,5 +1,4 @@
 import ApiClient from "@/utils/ApiClient";
-import townshipCollection from "../assets/data/divisions.json";
 import Division from "@/entity/Division";
 import {
   collection,
