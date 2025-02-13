@@ -196,7 +196,7 @@ const UploadItem = () => {
       <Flex
         zIndex={"2000"}
         bg={"white"}
-        width={"full"}
+        width={"100vw"}
         position={"fixed"}
         justifyContent={"space-between"}
         alignItems={"center"}
@@ -208,12 +208,12 @@ const UploadItem = () => {
       >
         <Text>Upload Item</Text>
         <Button
+          bg={{ base: "black", _dark: "black" }}
           type="submit"
           variant={"solid"}
           size={"sm"}
           px={2}
           fontSize={"sm"}
-          bg={{ base: "black", _dark: "black" }}
           color={"white"}
           loading={mutation.isPending}
           disabled={mutation.isPending}
