@@ -8,6 +8,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { ProgressCircleRing, ProgressCircleRoot } from "../ui/progress-circle";
+import authStore from "@/hooks/authStore";
+import { toaster } from "../ui/toaster";
 
 interface Props {
   productId: string;
@@ -45,21 +47,21 @@ const ItemDetailReview = ({ productId }: Props) => {
   });
 
   const onSubmit = handleSubmit((data) => {
+    const currentUser = authStore.getState().currentUser;
+    if (!currentUser || !currentUser?.id) {
+      toaster.create({
+        title: "Please login first!",
+        type: "error",
+      });
+      return;
+    }
     const review = {
       dateTime: new Date().toISOString(),
-      id: `testid:${Math.random()}`,
+      id: currentUser!.id,
       productId: productId,
       rating: data.rating,
       reviewMessage: data.comment,
-      user: {
-        emailAddress: "test@GrMail.com",
-        id: "test ID",
-        image:
-          "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png",
-        points: 0,
-        status: 0,
-        userName: "Test User",
-      },
+      user: currentUser!,
     };
     addReview(review);
   });

@@ -5,5 +5,7 @@ interface AppUser {
   points: number;
   status: number;
   userName: string;
+  expire_date?: string;
+  birth_date?: string;
 }
 export default AppUser;

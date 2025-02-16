@@ -6,6 +6,8 @@ import { produce } from "immer";
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 import authStore from "./authStore";
+import { checkPointExpired } from "@/utils/fun";
+import { toaster } from "@/components/ui/toaster";
 
 interface Props {
   cartItems: CartItem[];
@@ -132,7 +134,16 @@ const useCart = create<Props>()(
         produce(state, (draf) => {
           const index = draf.cartItems.findIndex((i) => i.id === item.id);
           const remainPoint = authStore.getState().remainPoint;
+          const expireDate = authStore.getState().currentUser?.expire_date;
           if (item.requirePoint && item.requirePoint > 0) {
+            if (checkPointExpired(expireDate) && remainPoint > 0) {
+              console.log("Point already expired");
+              toaster.create({
+                title: "Your points already expired!",
+                type: "error",
+              });
+              return;
+            }
             if (remainPoint !== 0 && remainPoint >= item.requirePoint) {
               //we can add,we reduce remain point and set error to undenfied
               authStore.getState().decreasePoint!(item.requirePoint);

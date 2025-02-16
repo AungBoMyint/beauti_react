@@ -1,5 +1,6 @@
 import ScheduleSale from "@/entity/ScheduleSale";
 import { createListCollection } from "@chakra-ui/react/collection";
+import { isSameMonth, isSameYear } from "date-fns";
 
 interface Props<T extends Record<string, any>> {
   items: T[];
@@ -22,6 +23,19 @@ export const createCollection = <T extends Record<string, any>>({
     })),
   });
   return collection;
+};
+
+export const checkBirthDay = (date?: string | null | undefined) => {
+  if (!date) return false;
+  const expireDate = new Date(date);
+  const currentDate = new Date();
+  return isSameMonth(expireDate, currentDate);
+};
+export const checkPointExpired = (date?: string | null | undefined) => {
+  if (!date) return true;
+  const expireDate = new Date(date).getTime();
+  const currentDate = new Date().getTime();
+  return currentDate > expireDate;
 };
 export const orderStatusToString = (status: number | null | undefined) => {
   switch (status) {

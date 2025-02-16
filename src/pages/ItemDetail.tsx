@@ -12,6 +12,7 @@ import ItemDetailLoading from "@/components/app/ItemDetailLoading";
 import ItemDetailPrice from "@/components/app/ItemDetailPrice";
 import ItemDetailAvailableOptionsAndAddToCart from "./ItemDetailAvailableOptionsAndAddToCart";
 import ScheduleSaleCountDown from "@/components/app/item/ScheduleSaleCountDown";
+import { Toaster } from "@/components/ui/toaster";
 const ItemDetail = () => {
   const { id } = useParams();
   const { data, isLoading, error } = useFilterIdItem(id ?? "");
@@ -24,63 +25,66 @@ const ItemDetail = () => {
   }));
 
   return (
-    <Flex
-      gap={4}
-      padding={{ base: 4, md: 6 }}
-      direction={"column"}
-      justifyContent={"center"}
-      alignItems={"center"}
-    >
+    <>
+      <Toaster />
       <Flex
-        direction={{ base: "column", md: "row" }}
+        gap={4}
+        padding={{ base: 4, md: 6 }}
+        direction={"column"}
+        justifyContent={"center"}
         alignItems={"center"}
-        spaceX={4}
-        spaceY={4}
       >
-        <ImageGallery
-          showFullscreenButton={false}
-          showThumbnails={true}
-          showNav={false}
-          showPlayButton={false}
-          autoPlay={false}
-          items={images ?? []}
-        />
-        <Flex width={"full"} direction={"column"} alignItems={"start"}>
-          <Text fontSize={"sm"} fontWeight={"bold"}>
-            {data.brandName}
-          </Text>
-          <Text fontSize={"lg"} fontWeight={"bold"}>
-            {data.name}
-          </Text>
-          <ItemDetailPrice item={data} />
-          <ItemDetailAvailableOptionsAndAddToCart item={data} />
+        <Flex
+          direction={{ base: "column", md: "row" }}
+          alignItems={"center"}
+          spaceX={4}
+          spaceY={4}
+        >
+          <ImageGallery
+            showFullscreenButton={false}
+            showThumbnails={true}
+            showNav={false}
+            showPlayButton={false}
+            autoPlay={false}
+            items={images ?? []}
+          />
+          <Flex width={"full"} direction={"column"} alignItems={"start"}>
+            <Text fontSize={"sm"} fontWeight={"bold"}>
+              {data.brandName}
+            </Text>
+            <Text fontSize={"lg"} fontWeight={"bold"}>
+              {data.name}
+            </Text>
+            <ItemDetailPrice item={data} />
+            <ItemDetailAvailableOptionsAndAddToCart item={data} />
+          </Flex>
         </Flex>
+        {data?.scheduleSale && (
+          <ScheduleSaleCountDown scheduleSale={data.scheduleSale!} />
+        )}
+        <SiteAccordion
+          items={[
+            {
+              value: "a",
+              title: "About Product",
+              text: data.description,
+            },
+            {
+              value: "b",
+              title: "Ingredients",
+              text: data.ingredients ?? "",
+            },
+            {
+              value: "c",
+              title: "How To Use",
+              text: data.howToUse ?? "",
+            },
+          ]}
+        />
+        <ItemDetailRating productId={data.id} />
+        <ItemDetailReview productId={data.id} />
       </Flex>
-      {data?.scheduleSale && (
-        <ScheduleSaleCountDown scheduleSale={data.scheduleSale!} />
-      )}
-      <SiteAccordion
-        items={[
-          {
-            value: "a",
-            title: "About Product",
-            text: data.description,
-          },
-          {
-            value: "b",
-            title: "Ingredients",
-            text: data.ingredients ?? "",
-          },
-          {
-            value: "c",
-            title: "How To Use",
-            text: data.howToUse ?? "",
-          },
-        ]}
-      />
-      <ItemDetailRating productId={data.id} />
-      <ItemDetailReview productId={data.id} />
-    </Flex>
+    </>
   );
 };
 

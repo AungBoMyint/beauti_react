@@ -1,7 +1,9 @@
-import { Text, Card, HStack, Stack, Strong } from "@chakra-ui/react";
+import { Text, Card, HStack } from "@chakra-ui/react";
 import { Avatar } from "../ui/avatar";
 import Review from "@/entity/Review";
 import { guestUserProfile } from "@/utils/constant";
+import { MdVerified } from "react-icons/md";
+import { Tooltip } from "../ui/tooltip";
 
 interface Props {
   review: Review;
@@ -19,6 +21,11 @@ const Comment = ({ review }: Props) => {
             {review.user.userName ||
               `user${review.user.emailAddress?.slice(5, 9)}`}
           </Text>
+          {review?.verifiedPurchase && (
+            <Tooltip showArrow content="Verified Purchase">
+              <MdVerified />
+            </Tooltip>
+          )}
         </HStack>
         <Card.Description paddingLeft={14}>
           {review.reviewMessage}

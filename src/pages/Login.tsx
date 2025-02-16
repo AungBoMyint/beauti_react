@@ -24,9 +24,11 @@ const Login = () => {
       emailAddress: data.email,
       id: "id1",
       image: "",
-      points: 0,
+      points: 22220,
       status: 0,
       userName: "",
+      expire_date: "2024-10-21",
+      birth_date: "2025-2-16",
     });
   });
 
