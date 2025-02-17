@@ -56,6 +56,7 @@ import ManageUser from "./pages/admin/ManageUser";
 import ManageNotification from "./pages/admin/ManageNotification";
 import CheckoutPage from "./pages/CheckoutPage";
 import BirthdayGiftProducts from "./pages/BirthdayGiftProducts";
+import BirthdayProtectedRoute from "./pages/BirthdayProtectedRoute";
 
 const router = createBrowserRouter([
   {
@@ -91,7 +92,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    element: <ProtectedRoute />,
+    element: <BirthdayProtectedRoute />,
     children: [
       {
         path: "/claim-gift",

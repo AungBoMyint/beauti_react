@@ -8,7 +8,13 @@ const UserProtectedRoute = () => {
   return (
     <>
       <Toaster />
-      {user ? <Outlet /> : <Text>You are not allowed!</Text>}
+      {user ? (
+        <Outlet />
+      ) : (
+        <Text bg={"red"} color={"white"} px={4} fontWeight={"bold"}>
+          Login to access!
+        </Text>
+      )}
     </>
   );
 };

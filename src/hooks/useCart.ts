@@ -171,6 +171,7 @@ const useCart = create<Props>()(
               remainQuantity: productItem.remainQuantity,
               requirePoint: productItem.requirePoint ?? 0,
               size: size ?? "",
+              isGift: item.isGift,
             });
           }
         })

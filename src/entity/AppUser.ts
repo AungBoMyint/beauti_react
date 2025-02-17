@@ -7,5 +7,6 @@ interface AppUser {
   userName: string;
   expire_date?: string;
   birth_date?: string;
+  claimed: false;
 }
 export default AppUser;

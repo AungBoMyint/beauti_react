@@ -1,0 +1,57 @@
+{
+    "meta":{
+       "format":"JSON",
+       "version":"1.1.0",
+       "projectId":"beauti-74413",
+       "resourcePath":[
+          "birthdayGifts"
+       ],
+       "recursive":false,
+       "creationTime":1735200525,
+       "app":"firefoo"
+    },
+    "data":{
+       "01618f10-2728-11ee-857d-c1cfd0e9188a":{
+         
+          "dateTime":"2023-07-21T00:35:27.042118",
+          
+          "id":"01613f10-2728-11ee-857d-c1cfd0e9188a",
+         
+          "name":"Luxury Perfume Set",
+          "desc":"Premium fragrance collection",
+          "image":"https://off.com.ph/_next/image?url=https%3A%2F%2Fedge.sitecorecloud.io%2Fscjohnsonana080-dart-production-40df%2Fmedia%2Fproject%2Fdart%2Foff%2Fphilippines%2Fhomepage%2Fcategory-images%2Foff_ph_4x3_720x540_category_card-overtime.png%3Fh%3D540%26iar%3D0%26w%3D720&w=3840&q=75"
+          
+       },
+       "04b0d810-dcf9-11ee-88c0-e151294265d9":{
+        "dateTime":"2023-07-21T00:35:27.042118",
+          
+        "id":"01616f10-2728-11ee-857d-c1cfd0e9188a",
+       
+        "name":"Beauty Gift Box",
+        "desc":"Curated beauty essentials",
+        "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyWjpwCE0g_e2dXStqxGjJBVNauQA_08xdnQ&s"
+       },
+       "060a1f60-566f-11ef-8c7f-db76afb94f20":{
+          "dateTime":"2023-07-21T00:35:27.042118",
+          
+        "id":"01612f10-2728-11ee-857d-c1cfd0e9188a",
+       
+        "name":"Wellness Package",
+        "desc":"Self-care favorites",
+        "image":"https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/90155173_XL1_20221205.jpg?w=1200&q=70"
+       
+       },
+       "0a9f9b10-b3fb-11ef-80fd-e769cae6598f":{
+        "dateTime":"2023-07-21T00:35:27.042118",
+          
+        "id":"01611f10-2728-11ee-857d-c1cfd0e9188a",
+       
+        "name":"Jewelry Set",
+        "desc":"Elegant accessories",
+        "image":"https://media.nedigital.sg/fairprice/fpol/media/images/product/XL/90155173_XL1_20221205.jpg?w=1200&q=70"
+       
+       }
+      
+    }
+      
+ }

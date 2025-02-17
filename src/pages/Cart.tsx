@@ -75,15 +75,23 @@ const Cart = () => {
                   >
                     {item.itemName}
                   </Card.Title>
-                  <Badge variant={"solid"} width={"fit"}>
-                    {item.size}
-                  </Badge>
+                  {
+                    <Badge variant={"solid"} width={"fit"}>
+                      {!item.isGift ? item.size : "Gift"}
+                    </Badge>
+                  }
 
-                  <Box textStyle="sm" fontWeight="medium" letterSpacing="tight">
-                    <ItemDetailPrice item={item} />
-                  </Box>
+                  {!item.isGift && (
+                    <Box
+                      textStyle="sm"
+                      fontWeight="medium"
+                      letterSpacing="tight"
+                    >
+                      <ItemDetailPrice item={item} />
+                    </Box>
+                  )}
                 </Card.Body>
-                <IncreaseDecreaseButtons item={item} />
+                {!item.isGift && <IncreaseDecreaseButtons item={item} />}
               </Flex>
             </Card.Root>
           );

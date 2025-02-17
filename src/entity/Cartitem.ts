@@ -12,5 +12,6 @@ interface CartItem {
   requirePoint: number;
   size: string;
   scheduleSale: ScheduleSale | null | undefined;
+  isGift?: boolean | null | undefined;
 }
 export default CartItem;
