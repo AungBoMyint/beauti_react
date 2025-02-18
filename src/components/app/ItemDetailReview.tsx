@@ -8,8 +8,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useQueryClient } from "@tanstack/react-query";
 import { ProgressCircleRing, ProgressCircleRoot } from "../ui/progress-circle";
-import { v4 } from "uuid";
 import authStore from "@/hooks/authStore";
+import { toaster } from "../ui/toaster";
 
 interface Props {
   productId: string;
@@ -32,6 +32,10 @@ const ItemDetailReview = ({ productId }: Props) => {
     isError,
   } = useAddReview({
     onSuccess: (data) => {
+      toaster.create({
+        title: "Review added. An admin will review it later!",
+        type: "success",
+      });
       queryClient.invalidateQueries({ queryKey: ["reviews", data.productId] });
       queryClient.invalidateQueries({ queryKey: ["ratings", data.productId] });
     },
@@ -47,10 +51,16 @@ const ItemDetailReview = ({ productId }: Props) => {
 
   const onSubmit = handleSubmit((data) => {
     const currentUser = authStore.getState().currentUser;
-    if (!currentUser) return;
+    if (!currentUser || !currentUser?.id) {
+      toaster.create({
+        title: "Please login first!",
+        type: "error",
+      });
+      return;
+    }
     const review = {
       dateTime: new Date().toISOString(),
-      id: `test:${v4()}`,
+      id: currentUser.id,
       productId: productId,
       rating: data.rating,
       reviewMessage: data.comment,

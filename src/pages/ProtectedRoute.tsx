@@ -10,8 +10,15 @@ const ProtectedRoute = () => {
   );
   const { data } = useCurrentUser(localUser?.id ?? "");
   const location = useLocation();
+  const currentUser = authStore.getState().currentUser;
   useEffect(() => {
-    authStore.getState().setUser!(data?.data() as AppUser);
+    const user = data?.data() as AppUser;
+    const userClaimed = user?.claimed ?? [];
+    const currentClaimed = currentUser?.claimed ?? [];
+    authStore.getState().setUser!({
+      ...user,
+      claimed: [...userClaimed, ...currentClaimed],
+    } as AppUser);
   }, [data?.exists()]);
   /*  if (isLoading) {
     return <AccountLoading />;

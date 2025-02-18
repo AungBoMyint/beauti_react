@@ -6,5 +6,9 @@ interface AppUser {
   status: number;
   userName: string;
   password: string;
+  expire_date?: string;
+  birth_date?: string;
+  claimed: string[]; //year string
 }
+
 export default AppUser;

@@ -23,7 +23,7 @@ import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "@/firebaseConfig";
 import { addCurrentUserToCoupon, addPurchase } from "@/hooks/usePurchases";
 import itemsStore from "@/hooks/itemsStore";
-import { useUpdatePoint } from "@/hooks/useAuth";
+import { useUpdateClaimed, useUpdatePoint } from "@/hooks/useAuth";
 
 interface FormValues {
   name: string;
@@ -45,18 +45,24 @@ const CheckoutPage = () => {
         //and getback imagepath
         //then set image's url
         //then create doc
+        const giftItems = value.items?.filter((item) => item.isGift === true);
+        const containGiftItems = giftItems?.length > 0;
         if (!bankSlip) {
           //create doc
           const purchase = value;
           const purchases = itemsStore.getState().purchases;
           addPurchase(purchase)
             .then(() => {
+              if (containGiftItems) {
+                useUpdateClaimed();
+              }
               useUpdatePoint(purchase.total);
               addCurrentUserToCoupon();
               itemsStore.getState().setPurchase([...purchases, purchase]);
               resolve(1);
             })
-            .catch((_) => {
+            .catch((error) => {
+              console.error("Upload failed:", error);
               reject("error");
             });
           return;
@@ -74,14 +80,19 @@ const CheckoutPage = () => {
             const url = await getDownloadURL(uploadTask.snapshot.ref);
             const purchase = { ...value, bankSlipImage: url };
             const purchases = itemsStore.getState().purchases;
+
             addPurchase(purchase)
               .then(() => {
+                if (containGiftItems) {
+                  useUpdateClaimed();
+                }
                 useUpdatePoint(purchase.total);
                 addCurrentUserToCoupon();
                 itemsStore.getState().setPurchase([...purchases, purchase]);
                 resolve(1);
               })
-              .catch((_) => {
+              .catch((error) => {
+                console.error("Upload failed:", error);
                 reject("error");
               });
           }
@@ -142,6 +153,7 @@ const CheckoutPage = () => {
               remainQuantity: ci.remainQuantity,
               requirePoint: ci.requirePoint,
               size: ci.size,
+              isGift: ci.isGift,
             } as PurchaseItem)
         ),
         name: data.name,

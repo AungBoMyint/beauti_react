@@ -6,14 +6,28 @@ import logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useRegister } from "@/hooks/useAuth";
 import { toaster } from "@/components/ui/toaster";
+import { useState } from "react";
+import {
+  PopoverBody,
+  PopoverContent,
+  PopoverRoot,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import Calendar from "react-calendar/dist/esm/Calendar.js";
+import { InputGroup } from "@/components/ui/input-group";
+import { format } from "date-fns";
+import { FaCalendarAlt } from "react-icons/fa";
 
 interface FormValues {
   email: string;
   password: string;
+  birth_day: string;
   confirmPassword: string;
 }
 
 const SignUp = () => {
+  const [open, setOpen] = useState(false);
+  const [date, setDate] = useState(new Date());
   const mutation = useRegister();
   const {
     register,
@@ -37,6 +51,8 @@ const SignUp = () => {
       status: 0,
       userName: "",
       password: data.password,
+      birth_date: date.toISOString(),
+      claimed: [],
     });
   });
 
@@ -63,8 +79,62 @@ const SignUp = () => {
               border: "1px solid",
               borderColor: "red.500",
             }}
-            {...register("email", { required: "Email is required" })}
+            {...register("email", {
+              required: "Email is required",
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/,
+                message: "Invalid email format",
+              },
+            })}
           />
+        </Field>
+        <Field
+          label="Birthday"
+          invalid={!!errors.birth_day}
+          errorText={errors.birth_day?.message}
+        >
+          <InputGroup width={"full"} endElement={<FaCalendarAlt />}>
+            <PopoverRoot
+              open={open}
+              onOpenChange={(v) => setOpen(v.open)}
+              positioning={{ offset: { crossAxis: 0, mainAxis: 0 } }}
+              /* positioning={{ placement: "bottom-end" }} */
+            >
+              <PopoverTrigger asChild>
+                <Input
+                  border={"solid"}
+                  paddingLeft={2}
+                  rounded={"lg"}
+                  value={format(date, "d/MM/y")}
+                  placeholder="Select your birthday"
+                  readOnly
+                  _focus={{
+                    border: "1px solid",
+                    borderColor: "blue.500",
+                  }}
+                  _invalid={{
+                    border: "1px solid",
+                    borderColor: "red.500",
+                  }}
+                  {...register("birth_day", {
+                    required: "Birthday is required",
+                  })}
+                />
+              </PopoverTrigger>
+              <PopoverContent>
+                {/*  <PopoverArrow /> */}
+                <PopoverBody p={4}>
+                  <Calendar
+                    onChange={(value) => {
+                      setDate(new Date(`${value}`));
+                      setOpen(false);
+                    }}
+                    value={date}
+                  />
+                </PopoverBody>
+              </PopoverContent>
+            </PopoverRoot>
+          </InputGroup>
         </Field>
         <Field
           label="Password"

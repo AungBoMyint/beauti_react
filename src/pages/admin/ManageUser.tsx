@@ -42,9 +42,11 @@ const ManageUser = () => {
                 src={user?.image}
                 alt={``}
               />
-              <Flex direction={"column"}>
+              <Flex direction={"column"} overflow={'hidden'}>
                 <Text fontWeight={"bold"}>{user?.userName}</Text>
-                <Text fontWeight={"medium"}>{user?.emailAddress}</Text>
+                <Text fontWeight={"medium"} overflow={"hidden"}>
+                  {user?.emailAddress}
+                </Text>
                 <Flex alignItems={"center"} gap={1}>
                   <Text fontWeight={"bold"} color={"#FF9D23"}>
                     {user?.points}

@@ -10,6 +10,7 @@ import {
   query,
   setDoc,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import { db } from "@/firebaseConfig";
 import { useMutation } from "@tanstack/react-query";
@@ -89,7 +90,12 @@ export const useUpdateReview = (success: () => void) => {
 };
 export const getReviews = async () => {
   var collectionRef = collection(db, "reviewCollection");
-  var q = query(collectionRef, orderBy("dateTime", "desc"));
+  var q = query(
+    collectionRef,
+    where("approved", "==", true),
+    where("verifiedPurchase", "==", true),
+    orderBy("dateTime", "desc")
+  );
   var docSnap = await getDocs(q);
   var items = docSnap.docs.map(
     (doc) => ({ id: doc.id, ...doc.data() } as Review)
@@ -97,7 +103,20 @@ export const getReviews = async () => {
   itemsStore.getState().setReview(items);
   return items;
 };
+export const getAllReviews = async () => {
+  var collectionRef = collection(db, "reviewCollection");
+  var q = query(
+    collectionRef,
 
+    orderBy("dateTime", "desc")
+  );
+  var docSnap = await getDocs(q);
+  var items = docSnap.docs.map(
+    (doc) => ({ id: doc.id, ...doc.data() } as Review)
+  );
+  itemsStore.getState().setReview(items);
+  return items;
+};
 export const useAddReview = ({ onSuccess }: successProps) => {
   const postClient = new ApiClient<Review>("/reviews");
   return postClient.post({
@@ -116,7 +135,7 @@ export const useReviews = () =>
   apiClient.get({
     key: ["reviews"],
     fn: async () => {
-      const responseOne = await getReviews();
+      const responseOne = await getAllReviews();
       /* var response: Review[] = [];
       if (reviewHistories.length < 1) {
         reviewHistories = responseOne;

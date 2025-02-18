@@ -65,7 +65,7 @@ const useBrand = () => {
     key: ["brands"],
     fn: async () => {
       var collectionRef = collection(db, "brandCollection");
-      var q = query(collectionRef, orderBy("dateTime", "desc"));
+      var q = query(collectionRef, orderBy("name", "asc"));
       var docSnap = await getDocs(q);
       return docSnap.docs.map(
         (doc) => ({ id: doc.id, ...doc.data() } as Brand)

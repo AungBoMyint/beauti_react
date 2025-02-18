@@ -44,6 +44,12 @@ const AdminPage = () => {
         <MdEditDocument size={22} />
       </ActionFlex>
       <ActionFlex
+        label="Manage Gift Item"
+        onClick={() => navigate("/manage-gift-item")}
+      >
+        <MdEditDocument size={22} />
+      </ActionFlex>
+      <ActionFlex
         label="Manage Advertisement"
         onClick={() => navigate("/manage-advertisement-one")}
       >

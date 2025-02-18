@@ -23,6 +23,20 @@ export const createCollection = <T extends Record<string, any>>({
   });
   return collection;
 };
+
+export const checkBirthDay = (date?: string | null | undefined) => {
+  if (!date) return false;
+  const expireDate = new Date(date).getMonth();
+  const currentDate = new Date().getMonth();
+  return expireDate === currentDate;
+};
+export const checkPointExpired = (date?: string | null | undefined) => {
+  if (!date) return false;
+  const expireDate = new Date(date).getTime();
+  const currentDate = new Date().getTime();
+  return currentDate > expireDate;
+};
+
 export const orderStatusToString = (status: number | null | undefined) => {
   switch (status) {
     case 0:

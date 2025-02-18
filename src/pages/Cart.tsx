@@ -6,13 +6,25 @@ import {
 import IncreaseDecreaseButtons from "@/components/app/item/IncreaseDecreaseButtons";
 import ItemDetailPrice from "@/components/app/ItemDetailPrice";
 import useCart from "@/hooks/useCart";
-import { Box, Card, Image, Flex, Button, Badge } from "@chakra-ui/react";
+import {
+  Box,
+  Card,
+  Image,
+  Flex,
+  Button,
+  Badge,
+  Center,
+} from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { toaster } from "@/components/ui/toaster";
 import { useNavigate } from "react-router-dom";
+import { CiCircleMinus } from "react-icons/ci";
+import authStore from "@/hooks/authStore";
+import AppUser from "@/entity/AppUser";
 
 const Cart = () => {
   const navigate = useNavigate();
+
   const { oneTimeUsedCoupon, needToBuyMore, alreadyUsedCoupon } = useCart(
     (state) => state
   );
@@ -76,17 +88,53 @@ const Cart = () => {
                   >
                     {item.itemName}
                   </Card.Title>
+                  {item?.isGift && (
+                    <Badge variant={"solid"} width={"fit"}>
+                      Birthday Gift
+                    </Badge>
+                  )}
                   {item?.size && (
                     <Badge variant={"solid"} width={"fit"}>
                       {item.size}
                     </Badge>
                   )}
 
-                  <Box textStyle="sm" fontWeight="medium" letterSpacing="tight">
-                    <ItemDetailPrice item={item} />
-                  </Box>
+                  {!item.isGift && (
+                    <Box
+                      textStyle="sm"
+                      fontWeight="medium"
+                      letterSpacing="tight"
+                    >
+                      <ItemDetailPrice item={item} />
+                    </Box>
+                  )}
                 </Card.Body>
-                <IncreaseDecreaseButtons item={item} />
+                {!item.isGift ? (
+                  <IncreaseDecreaseButtons item={item} />
+                ) : (
+                  <Center>
+                    <CiCircleMinus
+                      onClick={() => {
+                        useCart.getState().removeItem(item);
+                        const currentUser = authStore.getState().currentUser;
+                        const currentClaimed = currentUser?.claimed ?? [];
+                        const curretnyear = new Date().getFullYear().toString();
+                        const finalClaimed = currentClaimed.filter(
+                          (item) => item !== curretnyear
+                        );
+                        const updateUser = {
+                          ...currentUser,
+                          claimed: finalClaimed,
+                        } as AppUser;
+                        console.log(
+                          `Final User: ${JSON.stringify(updateUser)}`
+                        );
+                        authStore.getState().setUser!(updateUser);
+                      }}
+                      size={22}
+                    />
+                  </Center>
+                )}
               </Flex>
             </Card.Root>
           );

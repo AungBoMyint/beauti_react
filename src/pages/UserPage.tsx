@@ -6,11 +6,13 @@ import { SiGnuprivacyguard } from "react-icons/si";
 import { RiErrorWarningFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import authStore from "@/hooks/authStore";
+import BirthdayComponent from "@/components/app/BirthdayComponent";
 
 const UserPage = () => {
   const navigate = useNavigate();
   return (
     <Box spaceY={3}>
+      <BirthdayComponent />
       <ActionFlex
         label="Order History"
         onClick={() => navigate("/order-history")}

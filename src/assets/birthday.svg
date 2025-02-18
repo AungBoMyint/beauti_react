@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="204" height="204" viewBox="0 0 204 204">
+	<defs>
+		<filter id="filter3023335592" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+			<feComponentTransfer in="SourceAlpha" result="componentTransfer2212285495">
+				<feFuncR type="linear" slope="0" intercept="0"/>
+				<feFuncG type="linear" slope="0" intercept="0"/>
+				<feFuncB type="linear" slope="0" intercept="0"/>
+				<feFuncA type="linear" slope="10000" intercept="0"/>
+			</feComponentTransfer>
+			<feComponentTransfer in="componentTransfer2212285495" result="componentTransfer5288785452">
+				<feFuncA type="linear" slope="0.1" intercept="0"/>
+			</feComponentTransfer>
+			<feMorphology operator="erode" radius="4" in="componentTransfer5288785452" result="morphology6107871841"/>
+			<feOffset dx="0" dy="4" in="morphology6107871841" result="offset0857566064"/>
+			<feGaussianBlur stdDeviation="3" in="offset0857566064" result="gaussianBlur8414478106"/>
+			<feComponentTransfer in="SourceAlpha" result="componentTransfer5411717539">
+				<feFuncR type="linear" slope="0" intercept="0"/>
+				<feFuncG type="linear" slope="0" intercept="0"/>
+				<feFuncB type="linear" slope="0" intercept="0"/>
+				<feFuncA type="linear" slope="10000" intercept="0"/>
+			</feComponentTransfer>
+			<feComponentTransfer in="componentTransfer5411717539" result="componentTransfer1783013383">
+				<feFuncA type="linear" slope="0.1" intercept="0"/>
+			</feComponentTransfer>
+			<feMorphology operator="erode" radius="3" in="componentTransfer1783013383" result="morphology0515900420"/>
+			<feOffset dx="0" dy="10" in="morphology0515900420" result="offset8788677443"/>
+			<feGaussianBlur stdDeviation="7.5" in="offset8788677443" result="gaussianBlur0422145912"/>
+			<feMerge>
+				<feMergeNode in="gaussianBlur8414478106"/>
+				<feMergeNode in="gaussianBlur0422145912"/>
+				<feMergeNode in="SourceGraphic"/>
+			</feMerge>
+		</filter>
+	</defs>
+	<g filter="url(#filter3023335592)">
+		<defs>
+			<linearGradient id="linearGradient7542157819" gradientTransform="matrix(127.279 127.279 -127.279 127.279 90 -37.2792)" gradientUnits="userSpaceOnUse" x1="0" y1="0.5" x2="1" y2="0.5">
+				<stop offset="0" stop-color="rgb(255, 105, 180)"/>
+				<stop offset="1" stop-color="rgb(230, 184, 0)"/>
+			</linearGradient>
+		</defs>
+		<path transform="matrix(1 0 0 1 12 2)" d="M16 0C7.16344 0 0 7.16344 0 16L0 164C0 172.837 7.16344 180 16 180L164 180C172.837 180 180 172.837 180 164L180 16C180 7.16344 172.837 0 164 0L16 0Z" fill-rule="nonzero" fill="url(#linearGradient7542157819)"/>
+		<defs>
+			<clipPath id="clipPath0691678763">
+				<path transform="matrix(1 0 0 1 12 2)" d="M16 0C7.16344 0 0 7.16344 0 16L0 164C0 172.837 7.16344 180 16 180L164 180C172.837 180 180 172.837 180 164L180 16C180 7.16344 172.837 0 164 0L16 0Z" fill-rule="nonzero"/>
+			</clipPath>
+		</defs>
+		<g clip-path="url(#clipPath0691678763)">
+			<defs>
+				<clipPath id="clipPath3071513505">
+					<path transform="matrix(1 0 0 1 12 2)" d="M0 0L180 0L180 180L0 180L0 0Z" fill-rule="nonzero"/>
+				</clipPath>
+			</defs>
+			<g clip-path="url(#clipPath3071513505)">
+				<defs>
+					<clipPath id="clipPath7453435192">
+						<path transform="matrix(1 0 0 1 12 2)" d="M0 0L180 0L180 180L0 180L0 0Z" fill-rule="nonzero"/>
+					</clipPath>
+				</defs>
+				<g clip-path="url(#clipPath7453435192)">
+					<path transform="matrix(1 0 0 1 28.875 13.334)" d="M11.25 134.916C11.25 141.129 13.4467 146.433 17.8401 150.826C22.2335 155.219 27.5368 157.416 33.75 157.416L66.0938 157.416C66.4821 157.416 66.8135 157.279 67.0881 157.004C67.3627 156.73 67.5 156.398 67.5 156.01L67.5 91.3223C67.5 90.934 67.3627 90.6025 67.0881 90.3279C66.8135 90.0533 66.4821 89.916 66.0938 89.916L14.0625 89.916C13.2859 89.916 12.6229 90.1906 12.0738 90.7398C11.5246 91.289 11.25 91.9519 11.25 92.7285L11.25 134.916ZM67.5 77.2598L67.5 39.291L78.75 39.291L78.75 77.2598C78.75 77.6481 78.8873 77.9796 79.1619 78.2542C79.4365 78.5287 79.7679 78.666 80.1562 78.666L129.375 78.666C130.333 78.666 131.284 78.5848 132.229 78.4225C133.173 78.2602 134.097 78.0191 135 77.6992C138.368 76.5035 141.084 74.4467 143.147 71.5287C145.211 68.6108 146.245 65.3649 146.25 61.791L146.25 56.166C146.25 51.5061 144.602 47.5287 141.307 44.2336C138.012 40.9386 134.035 39.291 129.375 39.291L115.123 39.291C114.855 39.2868 114.654 39.168 114.522 38.9347C114.39 38.7013 114.391 38.4686 114.525 38.2364C117.901 32.5369 118.887 26.4502 117.484 19.9763C116.082 13.5024 112.664 8.36996 107.232 4.57905C101.8 0.78815 95.8035 -0.648946 89.2431 0.267766C82.6827 1.18448 77.31 4.21021 73.125 9.34495C68.94 4.2102 63.5673 1.18448 57.0069 0.267766C50.4465 -0.648946 44.4502 0.78815 39.018 4.57905C33.5858 8.36996 30.1683 13.5024 28.7655 19.9763C27.3627 26.4502 28.3492 32.5369 31.725 38.2364C31.8591 38.4686 31.8601 38.7013 31.7279 38.9347C31.5957 39.168 31.3955 39.2868 31.1273 39.291L16.875 39.291C12.2151 39.291 8.23762 40.9386 4.94257 44.2336C1.64752 47.5287 0 51.5061 0 56.166L0 61.791C0.00508726 65.3649 1.03939 68.6108 3.1029 71.5287C5.16642 74.4467 7.88211 76.5035 11.25 77.6992C12.1532 78.0191 13.0769 78.2602 14.0213 78.4225C14.9656 78.5848 15.9168 78.666 16.875 78.666L66.0938 78.666C66.4821 78.666 66.8135 78.5287 67.0881 78.2542C67.3627 77.9796 67.5 77.6481 67.5 77.2598ZM78.75 25.2285C78.75 21.3453 80.1229 18.0307 82.8688 15.2849C85.6147 12.539 88.9292 11.166 92.8125 11.166C96.6957 11.166 100.01 12.539 102.756 15.2849C105.502 18.0307 106.875 21.3453 106.875 25.2285C106.875 29.1118 105.502 32.4264 102.756 35.1722C100.01 37.9181 96.6957 39.291 92.8125 39.291L78.75 39.291L78.75 25.2285ZM52.432 11.2012C56.503 10.9094 60.0321 12.154 63.0194 14.935C66.0067 17.7159 67.5002 21.1471 67.5 25.2285L67.5 39.291L53.4375 39.291C49.6591 39.2813 46.4121 37.963 43.6964 35.3361C40.9807 32.7091 39.5552 29.5076 39.4201 25.7317C39.2849 21.9558 40.4778 18.6606 42.9987 15.8461C45.5196 13.0317 48.664 11.4846 52.432 11.2047L52.432 11.2012ZM80.1562 157.416L112.5 157.416C118.713 157.416 124.016 155.219 128.41 150.826C132.803 146.433 135 141.129 135 134.916L135 92.7285C135 91.9519 134.725 91.289 134.176 90.7398C133.627 90.1906 132.964 89.916 132.188 89.916L80.1562 89.916C79.7679 89.916 79.4365 90.0533 79.1619 90.3279C78.8873 90.6025 78.75 90.934 78.75 91.3223L78.75 156.01C78.75 156.398 78.8873 156.73 79.1619 157.004C79.4365 157.279 79.7679 157.416 80.1562 157.416Z" fill-rule="nonzero" fill="rgb(255, 255, 255)"/>
+				</g>
+			</g>
+		</g>
+	</g>
+</svg>

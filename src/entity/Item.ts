@@ -30,5 +30,6 @@ interface Item {
   size: Size[] | null;
   status: string | null;
   tags: string[] | null;
+  isGift?: boolean | null | undefined;
 }
 export default Item;

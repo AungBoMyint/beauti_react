@@ -28,6 +28,7 @@ const Login = () => {
       status: 0,
       userName: "",
       password: data.password,
+      claimed: [],
     });
   });
 

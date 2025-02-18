@@ -1,4 +1,3 @@
-import { useDeleteItem, useItems } from "@/hooks/useItem";
 import { MdDeleteOutline } from "react-icons/md";
 import { RiEditBoxLine } from "react-icons/ri";
 
@@ -15,17 +14,21 @@ import "./WithTwoAction.css";
 import { InputGroup } from "@/components/ui/input-group";
 import { LuSearch } from "react-icons/lu";
 import { useEffect, useState } from "react";
-import Item from "@/entity/Item";
 import debounce from "lodash.debounce";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { toaster } from "@/components/ui/toaster";
+import {
+  useDeleteGiftItem,
+  useGetBirthdayGifts,
+} from "@/hooks/useBirthdayGift";
+import GiftItem from "@/entity/GiftItem";
 import { IoMdAdd } from "react-icons/io";
 
-const ManageItem = () => {
-  const { isLoading, data } = useItems();
-  const [items, setItems] = useState<Item[]>([]);
-  const [searchItems, setSearchItems] = useState<Item[] | undefined>();
+const ManageGiftItems = () => {
+  const { isLoading, data } = useGetBirthdayGifts();
+  const [items, setItems] = useState<GiftItem[]>([]);
+  const [searchItems, setSearchItems] = useState<GiftItem[] | undefined>();
   const navigate = useNavigate();
   useEffect(() => {
     if (data) setItems(data);
@@ -38,7 +41,7 @@ const ManageItem = () => {
     });
     queryClient.invalidateQueries({ queryKey: ["items"] });
   };
-  const handleDelete = useDeleteItem(onSuccess);
+  const handleDelete = useDeleteGiftItem(onSuccess);
   const handleSearch = /* useMemo(
     () =>
        */ debounce((event: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,7 +71,7 @@ const ManageItem = () => {
         fontWeight={"bold"}
         bgColor={{ base: "white", _dark: "gray.800" }}
       >
-        <Text>Manage Items</Text>
+        <Text>Manage Gift Items</Text>
       </Flex>
       <Box
         zIndex={"2000"}
@@ -82,7 +85,7 @@ const ManageItem = () => {
         bgColor={"black"}
         p={2}
         cursor={"pointer"}
-        onClick={() => navigate("/upload-item")}
+        onClick={() => navigate("/upload-gift-item")}
       >
         <IoMdAdd color="white" size={26} />
       </Box>
@@ -126,7 +129,7 @@ const ManageItem = () => {
                       my={2}
                       cursor={"pointer"}
                       onClick={() =>
-                        navigate("/upload-item", { state: { item: item } })
+                        navigate("/upload-gift-item", { state: { item: item } })
                       }
                     >
                       <RiEditBoxLine color="white" size={30} />
@@ -171,30 +174,15 @@ const ManageItem = () => {
                 <Flex>
                   <Image
                     className="pointer-events-none max-h-[100px] max-w-[200px]"
-                    src={item?.photo1 ?? ""}
+                    src={item?.image ?? ""}
                     alt={`${item.name}'s image`}
                   />
                   <Card.Body padding={2}>
-                    <Card.Description color={"black"} fontWeight={"medium"}>
+                    <Flex direction={'column'} color={"black"} fontWeight={"medium"}>
                       <Text lineClamp="2">{item.name}</Text>
-                    </Card.Description>
-                    <Text
-                      fontWeight="medium"
-                      letterSpacing="tight"
-                      mt="2"
-                      maxLines={1}
-                    >
-                      {item.requirePoint && item.requirePoint > 0 ? (
-                        <>{item.requirePoint} Points</>
-                      ) : (
-                        <>
-                          {item.discountPrice && item.discountPrice > 0
-                            ? item.discountPrice
-                            : item.price}{" "}
-                          Kyats
-                        </>
-                      )}
-                    </Text>
+                      <Text lineClamp="2" fontSize={'sm'}>{item.desc}</Text>
+                    </Flex>
+                   
                   </Card.Body>
                 </Flex>
               </Card.Root>
@@ -206,4 +194,4 @@ const ManageItem = () => {
   );
 };
 
-export default ManageItem;
+export default ManageGiftItems;

@@ -37,6 +37,8 @@ const ItemCard = ({ item, width }: Props) => {
           className="pointer-events-none max-h-[180px] "
           src={item?.photo1 ?? ""}
           alt={`${item.name}'s image`}
+          py={2}
+          objectFit={'contain'}
         />
         <Card.Body padding={2}>
           <Card.Title

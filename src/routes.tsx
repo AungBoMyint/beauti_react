@@ -55,6 +55,10 @@ import UserProtectedRoute from "./pages/UserProtectedRoute";
 import ManageUser from "./pages/admin/ManageUser";
 import ManageNotification from "./pages/admin/ManageNotification";
 import CheckoutPage from "./pages/CheckoutPage";
+import BirthdayProtectedRoute from "./pages/BirthdayProtectedRoute";
+import BirthdayGiftProducts from "./pages/BirthdayGiftProducts";
+import ManageGiftItems from "./pages/admin/ManageGiftItems";
+import UploadGiftItem from "./pages/admin/UploadGiftItem";
 
 const router = createBrowserRouter([
   {
@@ -89,6 +93,15 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    element: <BirthdayProtectedRoute />,
+    children: [
+      {
+        path: "/claim-gift",
+        element: <BirthdayGiftProducts />,
+      },
+    ],
+  },
   { path: "/search", element: <Search /> },
   { path: `${itemDetailPath}:id`, element: <ItemDetail /> },
   {
@@ -118,6 +131,14 @@ const router = createBrowserRouter([
       {
         path: "/manage-item",
         element: <ManageItem />,
+      },
+      {
+        path: "/upload-gift-item",
+        element: <UploadGiftItem />,
+      },
+      {
+        path: "/manage-gift-item",
+        element: <ManageGiftItems />,
       },
       {
         path: "/manage-advertisement-one",

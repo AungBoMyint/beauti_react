@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { auth, db } from "@/firebaseConfig";
 import { doc, getDoc, setDoc, updateDoc } from "firebase/firestore";
+import { toaster } from "@/components/ui/toaster";
 
 export const useCurrentUser = (id: string) => {
   return useQuery({
@@ -18,10 +19,24 @@ export const useCurrentUser = (id: string) => {
     },
   });
 };
+export const useUpdateClaimed = async () => {
+  const currentUser = authStore.getState().currentUser;
+  const date = new Date().getFullYear().toString();
+  var docRef = doc(db, "adminUserCollection", currentUser?.id ?? "");
+  await updateDoc(docRef, {
+    claimed: [...(currentUser?.claimed ?? []), date],
+  });
+  var finalUser = {
+    ...currentUser,
+    claimed: [...(currentUser?.claimed ?? []), date],
+  };
+  authStore.getState().setUser!(finalUser as AppUser);
+  localStorage.setItem("user", JSON.stringify(finalUser));
+};
 export const useUpdatePoint = async (grandTotal: number) => {
   const currentUser = authStore.getState().currentUser;
   const remainPoint = authStore.getState().remainPoint;
-  const finalPoint = remainPoint + grandTotal * 0.001;
+  const finalPoint = remainPoint + grandTotal * 0.00001;
   var docRef = doc(db, "adminUserCollection", currentUser?.id ?? "");
   await updateDoc(docRef, {
     points: finalPoint,
@@ -54,6 +69,13 @@ export const useLogin = () => {
       authStore.getState().setUser!(result as AppUser);
       navigate("/account");
     },
+    onError: (res) => {
+      console.log(`${JSON.stringify(res.message)}`);
+      toaster.create({
+        title: `${res}`,
+        type: "error",
+      });
+    },
   });
 };
 export const useRegister = () => {
@@ -84,6 +106,12 @@ export const useRegister = () => {
       localStorage.setItem("user", JSON.stringify(result));
       authStore.getState().setUser!(result as AppUser);
       navigate("/account");
+    },
+    onError: (res) => {
+      toaster.create({
+        title: `${res.message}`,
+        type: "error",
+      });
     },
   });
 };

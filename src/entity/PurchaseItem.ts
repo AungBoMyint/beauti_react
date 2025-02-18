@@ -8,5 +8,6 @@ interface PurchaseItem {
   remainQuantity: number;
   requirePoint: number;
   size: string;
+  isGift: boolean;
 }
 export default PurchaseItem;
