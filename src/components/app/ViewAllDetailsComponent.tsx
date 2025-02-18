@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import ScrollX from "./ScrollX";
 import SortPrice from "./SortPrice";
 import { RiResetRightFill } from "react-icons/ri";
-import ItemCard from "./ItemCard";
 import { useFilterItem } from "@/hooks/useItem";
+import ItemCardViewAll from "./ItemCardViewAll";
 
 interface Props {
   items: Item[];
@@ -88,7 +88,11 @@ const ViewAllDetailsComponent = ({ items }: Props) => {
           gapY={4}
         >
           {(filterItems ?? items).map((item, index) => (
-            <ItemCard key={`${item.id}-${index}`} item={item} width="w-fit" />
+            <ItemCardViewAll
+              key={`${item.id}-${index}`}
+              item={item}
+              width="w-fit"
+            />
           ))}
         </Grid>
       )}
