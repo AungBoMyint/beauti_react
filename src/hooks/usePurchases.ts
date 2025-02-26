@@ -18,7 +18,6 @@ import { toaster } from "@/components/ui/toaster";
 import useCart from "./useCart";
 import authStore from "./authStore";
 import { getCoupons } from "./useCoupon";
-import { json } from "react-router-dom";
 
 const apiClient = new ApiClient<Purchase[]>("/purchases");
 export const usePurchaseCount = () => {
