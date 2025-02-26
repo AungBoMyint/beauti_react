@@ -97,11 +97,19 @@ const UploadItem = () => {
     if (isValid) {
       mutation.mutate(
         product
-          ? data
+          ? {
+              ...data,
+              requirePoint: parseInt(`${data?.requirePoint ?? "0"}`),
+              discountPrice: parseInt(`${data?.discountPrice ?? "0"}`),
+              remainQuantity: parseInt(`${data?.remainQuantity ?? "0"}`),
+            }
           : {
               ...data,
               id: v4(),
+              requirePoint: parseInt(`${data?.requirePoint ?? "0"}`),
+              discountPrice: parseInt(`${data?.discountPrice ?? "0"}`),
               dateTime: new Date().toISOString(),
+              remainQuantity: parseInt(`${data?.remainQuantity ?? "0"}`),
             }
       );
     } else {

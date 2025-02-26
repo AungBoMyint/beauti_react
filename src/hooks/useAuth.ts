@@ -36,7 +36,7 @@ export const useUpdateClaimed = async () => {
 export const useUpdatePoint = async (grandTotal: number) => {
   const currentUser = authStore.getState().currentUser;
   const remainPoint = authStore.getState().remainPoint;
-  const finalPoint = remainPoint + grandTotal * 0.00001;
+  const finalPoint = Math.floor((remainPoint + grandTotal) / 1000);
   var docRef = doc(db, "adminUserCollection", currentUser?.id ?? "");
   await updateDoc(docRef, {
     points: finalPoint,

@@ -18,6 +18,7 @@ import { toaster } from "@/components/ui/toaster";
 import useCart from "./useCart";
 import authStore from "./authStore";
 import { getCoupons } from "./useCoupon";
+import { json } from "react-router-dom";
 
 const apiClient = new ApiClient<Purchase[]>("/purchases");
 export const usePurchaseCount = () => {
@@ -107,6 +108,7 @@ const getPurchases = async () => {
   return items;
 };
 export const addPurchase = async (value: Purchase) => {
+  console.log(`🔥Purcahse: ${JSON.stringify(value)}`);
   var docRef = doc(db, "purchases", value.id);
   return await setDoc(docRef, value);
 };

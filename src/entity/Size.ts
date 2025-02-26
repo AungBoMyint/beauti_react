@@ -1,6 +1,6 @@
 interface Size {
   id: string;
-  price: number | string;
+  price: number;
   size: string;
 }
 

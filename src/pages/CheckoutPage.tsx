@@ -94,6 +94,10 @@ const CheckoutPage = () => {
               .catch((error) => {
                 console.error("Upload failed:", error);
                 reject("error");
+                toaster.create({
+                  title: "Order Failed!",
+                  type: "error",
+                });
               });
           }
         );
