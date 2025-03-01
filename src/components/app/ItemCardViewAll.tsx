@@ -49,8 +49,10 @@ const ItemCardViewAll = ({ item, width }: Props) => {
           >
             {item.brandName}
           </Card.Title>
-          <Card.Description fontWeight={"medium"}>{item.name}</Card.Description>
-          <Flex mt={2} alignItems={"center"} justifyContent={"space-between"}>
+          <Card.Description lineClamp="2" fontWeight={"medium"}>
+            {item.name}
+          </Card.Description>
+          <Flex mt={0} alignItems={"center"} justifyContent={"space-between"}>
             <Text
               textStyle="lg"
               fontWeight="medium"
