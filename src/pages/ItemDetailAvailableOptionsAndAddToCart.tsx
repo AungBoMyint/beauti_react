@@ -58,10 +58,18 @@ const ItemDetailAvailableOptionsAndAddToCart = ({ item }: Props) => {
           paddingX={2}
           paddingY={0}
           size={"sm"}
-          disabled={alreadyAdded}
-          onClick={() => addItem(item, selectedSize)}
+          disabled={alreadyAdded || item.remainQuantity < 1}
+          onClick={
+            item.remainQuantity > 0
+              ? () => addItem(item, selectedSize)
+              : () => {}
+          }
         >
-          {alreadyAdded ? "Added" : "Add To Cart"}
+          {item.remainQuantity < 1
+            ? "Out of stock"
+            : alreadyAdded
+            ? "Added"
+            : "Add To Cart"}
         </Button>
       </Flex>
     </>

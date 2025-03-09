@@ -165,6 +165,9 @@ const useCart = create<Props>()(
           const index = draf.cartItems.findIndex((i) => i.id === item.id);
           const remainPoint = authStore.getState().remainPoint;
           const expireDate = authStore.getState().currentUser?.expire_date;
+          if (item.remainQuantity <= 0) {
+            return;
+          }
           if (item.requirePoint && item.requirePoint > 0) {
             if (checkPointExpired(expireDate) && remainPoint > 0) {
               console.log("Point already expired");
