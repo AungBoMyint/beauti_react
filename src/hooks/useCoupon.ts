@@ -81,7 +81,6 @@ export const getCoupons = async () => {
   const items = docSnap.docs.map(
     (doc) => ({ id: doc.id, ...doc.data() } as Coupon)
   );
-  console.log(`>>>>>>>>>>>COUPONS: ${JSON.stringify(items)}`);
   couponStore.getState().setCoupons(items);
 };
 export const filterCoupon = (value: string) => {

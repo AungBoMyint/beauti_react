@@ -2,11 +2,11 @@ import usePurchases from "@/hooks/usePurchases";
 import { orderStatusToColor, orderStatusToString } from "@/utils/fun";
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { format } from "date-fns";
-import OrderInformationDialog from "./OrderInformationDialog";
 import { useNavigate } from "react-router-dom";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { FixedSizeList as List } from "react-window";
 import { CSSProperties } from "react";
+import { IoEyeOutline } from "react-icons/io5";
 
 interface RenderProps {
   index: number;
@@ -57,7 +57,17 @@ const Prepay = () => {
             >
               {orderStatusToString(purchase?.orderStatus)}
             </Box>
-            <OrderInformationDialog purchase={purchase} />
+            <IoEyeOutline
+              size={30}
+              cursor={"pointer"}
+              onClick={() => {
+                //go to order_detail page
+                navigate("/order_details", {
+                  state: { detail: purchase, isAdmin: true },
+                });
+              }}
+            />
+            {/*  <OrderInformationDialog purchase={purchase} /> */}
             <Image
               onClick={() =>
                 navigate("/image-detail", {

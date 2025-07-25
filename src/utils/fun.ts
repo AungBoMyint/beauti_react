@@ -1,5 +1,62 @@
+import Purchase from "@/entity/Purchase";
 import ScheduleSale from "@/entity/ScheduleSale";
 import { createListCollection } from "@chakra-ui/react/collection";
+
+export const formatPrice2 = (number: number) => {
+  return new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(number);
+};
+export const getPriceSummary = (purchase: Purchase) => {
+  var grandTotal = 0;
+  var discount = 0;
+  var subTotal = purchase.items.reduce((pre, cur) => {
+    return (
+      pre +
+      (cur.requirePoint > 0
+        ? 0
+        : cur.discountPrice > 0
+        ? cur.discountPrice
+        : parseInt(`${cur.price}`)) *
+        cur.count
+    );
+  }, 0);
+  //for promotion values
+  if (purchase.promotionCode) {
+    if (purchase.promotionValue?.includes("%")) {
+      //discount with percentage
+      const promo = purchase.promotionValue.replace("%", "");
+      const value = (parseInt(promo) / 100) * subTotal;
+      grandTotal =
+        subTotal -
+        value +
+        (purchase.deliveryTownshipInfo
+          ? parseInt(purchase.deliveryTownshipInfo[1])
+          : 0);
+      discount = value;
+    } else {
+      //discount with number
+      const promo = purchase.promotionValue?.replace("Ks", "");
+      const value = parseInt(promo ?? "0");
+      grandTotal =
+        subTotal -
+        value +
+        (purchase.deliveryTownshipInfo
+          ? parseInt(purchase.deliveryTownshipInfo[1])
+          : 0);
+      discount = value;
+    }
+  }
+  return {
+    grandTotal,
+    subTotal,
+    discount,
+    deliveryFee: purchase.deliveryTownshipInfo
+      ? purchase.deliveryTownshipInfo[1]
+      : 0,
+  };
+};
 
 interface Props<T extends Record<string, any>> {
   items: T[];

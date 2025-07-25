@@ -20,6 +20,7 @@ interface Props {
 const OrderInformationDialog = ({ purchase }: Props) => {
   const queryClient = useQueryClient();
   const onSuccess = () => {
+    console.log(`>>>>>>>ON SUCCESS`);
     //DO Someting
     toaster.create({
       title: `Purchase status is updated`,
@@ -34,6 +35,9 @@ const OrderInformationDialog = ({ purchase }: Props) => {
     const orderStatus = parseInt(statusValue[0] ?? "-1");
     mutation.mutate({ id: purchase.id, status: orderStatus });
   };
+  /* useEffect(() => {
+    console.log(`>>>>>>>PURCHASE: ${JSON.stringify(purchase)}`);
+  }, []); */
   return (
     <AppDialog title="Order Informations" trigger={<IoEyeOutline size={30} />}>
       <Box>
@@ -114,7 +118,9 @@ const OrderInformationDialog = ({ purchase }: Props) => {
                           >
                             {item.size}
                           </Box>
-                          <Text fontWeight={"bold"}>{item.price} Ks</Text>
+                          <Text fontWeight={"bold"}>
+                            {item.discountPrice ?? item.price} Ks
+                          </Text>
                           <Text fontWeight={"bold"}>✕</Text>
                           <Text fontWeight={"bold"}>{item.count}</Text>
                         </Flex>

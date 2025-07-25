@@ -11,7 +11,8 @@ interface Purchase {
   name: string;
   orderStatus: number | null | undefined;
   phone: string;
-  promotionValue: string;
+  promotionCode?: string | null;
+  promotionValue?: string | null;
   total: number;
   userId: string;
 }

@@ -9,11 +9,13 @@ import Size from "@/entity/Size";
 import Coupon from "@/entity/Coupon";
 import { checkPointExpired } from "@/utils/fun";
 import { toaster } from "@/components/ui/toaster";
+import Promotion from "@/entity/Promotion";
 
 interface Props {
   cartItems: CartItem[];
   //promotionValue: Promotion | undefined;
   oneTimeUsedCoupon: Coupon | undefined;
+  usedPromotion: Promotion | undefined;
   fullAddress: string | undefined;
   address: Township;
   subTotal: number;
@@ -33,12 +35,14 @@ interface Props {
   setBankSlip: (value: File) => void;
   resetState: () => void;
   setOneTimeUsedCoupon: (value: Coupon | undefined) => void;
+  setUsedPromotion: (value: Promotion | undefined) => void;
   changeFullAddress: (value: string) => void;
 }
 const initialValue = {
   cartItems: [],
   //promotionValue: undefined,
   oneTimeUsedCoupon: undefined,
+  usedPromotion: undefined,
   needToBuyMore: false,
   alreadyUsedCoupon: false,
   address: { fee: 0 } as Township,
@@ -50,6 +54,12 @@ const initialValue = {
 const useCart = create<Props>()(
   subscribeWithSelector((set, get) => ({
     ...initialValue,
+    setUsedPromotion: (value) =>
+      set((state) =>
+        produce(state, (draf) => {
+          draf.usedPromotion = value;
+        })
+      ),
     changeFullAddress: (value: string) =>
       set((state) =>
         produce(state, (draf) => {
@@ -127,6 +137,32 @@ const useCart = create<Props>()(
           //we calculate promotion if have
           draf.needToBuyMore = false;
           draf.grandTotal = total + draf.address.fee;
+          //for promotion values
+          if (draf.usedPromotion) {
+            if (total > draf.usedPromotion.restrictValue) {
+              //we can apply discount
+              if (draf.usedPromotion.promotionValue.includes("%")) {
+                //discount with percentage
+                const promo = draf.usedPromotion.promotionValue.replace(
+                  "%",
+                  ""
+                );
+                const value = (parseInt(promo) / 100) * total;
+                draf.grandTotal = total - value + draf.address.fee;
+              } else {
+                //discount with number
+                const promo = draf.usedPromotion.promotionValue.replace(
+                  "Ks",
+                  ""
+                );
+                const value = parseInt(promo);
+                draf.grandTotal = total - value + draf.address.fee;
+              }
+            } else {
+              draf.needToBuyMore = true;
+            }
+          }
+          //for one time used coupon
           if (draf.oneTimeUsedCoupon) {
             if (draf.oneTimeUsedCoupon.users?.includes(currentUserId)) {
               //already used
@@ -242,13 +278,15 @@ useCart.subscribe(
   (state) => ({
     cartItems: state.cartItems,
     oneTimeUsedCoupon: state.oneTimeUsedCoupon,
+    usedPromotion: state.usedPromotion,
     address: state.address,
   }),
   (cState, pState) => {
     if (
       cState.cartItems !== pState.cartItems ||
       cState.oneTimeUsedCoupon !== pState.oneTimeUsedCoupon ||
-      cState.address !== pState.address
+      cState.address !== pState.address ||
+      cState.usedPromotion !== pState.usedPromotion
     ) {
       const updateAllTotal = useCart.getState().updateAllTotal;
       updateAllTotal();

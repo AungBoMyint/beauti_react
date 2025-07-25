@@ -6,12 +6,14 @@ import { useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import utilMethod from "./utils/util";
 import { getCoupons } from "./hooks/useCoupon";
+import { getInitialPromotions } from "./hooks/usePromotion";
 
 function App() {
   useEffect(() => {
     //we check login or not
     utilMethod();
     getCoupons();
+    getInitialPromotions();
   }, []);
   return (
     <>

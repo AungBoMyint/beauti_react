@@ -59,6 +59,7 @@ import BirthdayProtectedRoute from "./pages/BirthdayProtectedRoute";
 import BirthdayGiftProducts from "./pages/BirthdayGiftProducts";
 import ManageGiftItems from "./pages/admin/ManageGiftItems";
 import UploadGiftItem from "./pages/admin/UploadGiftItem";
+import OrderDetails from "./pages/OrderDetails";
 
 const router = createBrowserRouter([
   {
@@ -102,6 +103,7 @@ const router = createBrowserRouter([
       },
     ],
   },
+  { path: "/order_details", element: <OrderDetails /> },
   { path: "/search", element: <Search /> },
   { path: `${itemDetailPath}:id`, element: <ItemDetail /> },
   {

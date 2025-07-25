@@ -35,7 +35,7 @@ const CheckoutPage = () => {
   const navigate = useNavigate();
   const [paymentMethod, setPaymentMethod] = useState<string | undefined>();
   const bankSlip = useCart((state) => state.bankSlip);
-  const { cartItems, address, oneTimeUsedCoupon, grandTotal } =
+  const { cartItems, address, oneTimeUsedCoupon, usedPromotion, grandTotal } =
     useCart.getState();
   const { currentUser } = authStore.getState();
   const mutation = useMutation({
@@ -163,9 +163,16 @@ const CheckoutPage = () => {
         name: data.name,
         orderStatus: null,
         phone: data.phone,
+        promotionCode: oneTimeUsedCoupon
+          ? oneTimeUsedCoupon.code
+          : usedPromotion
+          ? usedPromotion.code
+          : null,
         promotionValue: oneTimeUsedCoupon
           ? oneTimeUsedCoupon.promotionValue
-          : "0",
+          : usedPromotion
+          ? usedPromotion.promotionValue
+          : null,
         total: grandTotal,
         userId: currentUser!.id,
       });

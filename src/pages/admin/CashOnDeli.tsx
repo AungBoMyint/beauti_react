@@ -2,16 +2,18 @@ import usePurchases from "@/hooks/usePurchases";
 import { orderStatusToColor, orderStatusToString } from "@/utils/fun";
 import { Box, Flex, Text } from "@chakra-ui/react";
 import { format } from "date-fns";
-import OrderInformationDialog from "./OrderInformationDialog";
 import { FixedSizeList as List } from "react-window";
 import AutoSizer from "react-virtualized-auto-sizer";
 import { CSSProperties } from "react";
+import { IoEyeOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 interface RenderProps {
   index: number;
   style: CSSProperties;
 }
 const CashOnDeli = () => {
+  const navigate = useNavigate();
   const { isLoading, data } = usePurchases("Cash");
   if (isLoading) {
     return <Text>Loading.....</Text>;
@@ -43,7 +45,17 @@ const CashOnDeli = () => {
               >
                 {orderStatusToString(purchase?.orderStatus)}
               </Box>
-              <OrderInformationDialog purchase={purchase} />
+              <IoEyeOutline
+                size={30}
+                cursor={"pointer"}
+                onClick={() => {
+                  //go to order_detail page
+                  navigate("/order_details", {
+                    state: { detail: purchase, isAdmin: true },
+                  });
+                }}
+              />
+              {/*  <OrderInformationDialog purchase={purchase} /> */}
             </Flex>
           </Flex>
           <Text

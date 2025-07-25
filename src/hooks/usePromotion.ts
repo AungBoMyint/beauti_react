@@ -14,6 +14,7 @@ import { db } from "@/firebaseConfig";
 import itemsStore from "./itemsStore";
 import { useMutation } from "@tanstack/react-query";
 import { toaster } from "@/components/ui/toaster";
+import couponStore from "./couponStore";
 
 const apiClient = new ApiClient<Promotion[]>("/promotions");
 export const useDeletePromotion = (success: () => void) => {
@@ -67,7 +68,20 @@ export const useUpdatePromotion = (success: () => void) => {
     },
   });
 };
-const getPromotions = async () => {
+export const getInitialPromotions = async () => {
+  try {
+    var collectionRef = collection(db, "promotions");
+    var q = query(collectionRef, orderBy("dateTime", "desc"));
+    var docSnap = await getDocs(q);
+    var items = docSnap.docs.map(
+      (doc) => ({ id: doc.id, ...doc.data() } as Promotion)
+    );
+    couponStore.getState().setPromotions(items);
+  } catch (error) {
+    console.log(`>>>>>>>>>>>>>>GETINITIALPROMOtIONS: ${error}`);
+  }
+};
+export const getPromotions = async () => {
   var collectionRef = collection(db, "promotions");
   var q = query(collectionRef, orderBy("dateTime", "desc"));
   var docSnap = await getDocs(q);
@@ -76,6 +90,11 @@ const getPromotions = async () => {
   );
   itemsStore.getState().setPromotion(items);
   return items;
+};
+export const filterPromotion = (value: string) => {
+  const response = couponStore.getState().promotions ?? [];
+  const result = response.find((item) => item.code === value);
+  return result;
 };
 export const usePromotion = () =>
   apiClient.get({

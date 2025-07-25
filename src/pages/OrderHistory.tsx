@@ -2,10 +2,12 @@ import { usePurchaseHistory } from "@/hooks/usePurchases";
 import { orderStatusToColor, orderStatusToString } from "@/utils/fun";
 import { Box, Card, Flex, Text } from "@chakra-ui/react";
 import { format } from "date-fns/format";
-import OrderHistoryInformationDialog from "./OrderHistoryInformationDialog";
 import authStore from "@/hooks/authStore";
+import { IoEyeOutline } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
 
 const OrderHistory = () => {
+  const navigate = useNavigate();
   const currentUser = authStore.getState().currentUser;
   const { isLoading, data } = usePurchaseHistory(currentUser?.id ?? "");
   if (isLoading) {
@@ -63,7 +65,17 @@ const OrderHistory = () => {
                       >
                         {orderStatusToString(purchase?.orderStatus)}
                       </Box>
-                      <OrderHistoryInformationDialog purchase={purchase} />
+                      <IoEyeOutline
+                        size={30}
+                        cursor={"pointer"}
+                        onClick={() => {
+                          //go to order_detail page
+                          navigate("/order_details", {
+                            state: { detail: purchase, isAdmin: false },
+                          });
+                        }}
+                      />
+                      {/*  <OrderHistoryInformationDialog purchase={purchase} /> */}
                     </Flex>
                   </Flex>
                 </Card.Description>

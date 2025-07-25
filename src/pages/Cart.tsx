@@ -25,9 +25,8 @@ import AppUser from "@/entity/AppUser";
 const Cart = () => {
   const navigate = useNavigate();
 
-  const { oneTimeUsedCoupon, needToBuyMore, alreadyUsedCoupon } = useCart(
-    (state) => state
-  );
+  const { oneTimeUsedCoupon, usedPromotion, needToBuyMore, alreadyUsedCoupon } =
+    useCart((state) => state);
   /* const fullAddress = useCart((state) => state.fullAddress); */
   const cartItems = useCart((state) => state.cartItems);
   const grandTotal = useCart((state) => state.grandTotal);
@@ -166,6 +165,13 @@ const Cart = () => {
                 <td className="text-left px-2">ပရိုမိုးရှင်း လျော့ငွေ</td>
                 <td className="text-right px-2">
                   {oneTimeUsedCoupon.promotionValue}
+                </td>
+              </tr>
+            ) : usedPromotion && !needToBuyMore ? (
+              <tr>
+                <td className="text-left px-2">ပရိုမိုးရှင်း လျော့ငွေ</td>
+                <td className="text-right px-2">
+                  {usedPromotion.promotionValue}
                 </td>
               </tr>
             ) : (

@@ -77,6 +77,7 @@ export const useUpdatePurchaseStatus = (success: () => void) => {
       });
     },
     onSuccess: () => {
+      console.log(`>>>>>>>>>>>>>SUCCESS UPDATE STATUS`);
       success();
     },
   });
