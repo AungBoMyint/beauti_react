@@ -10,6 +10,7 @@ export const PromotionInput = () => {
 
     inputElement?.addEventListener("input", (event) => {
       const result = filterCoupon((event.target as HTMLInputElement).value);
+      
       useCart.getState().setOneTimeUsedCoupon(result);
     });
   }, []);
