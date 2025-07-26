@@ -47,6 +47,12 @@ export const getPriceSummary = (purchase: Purchase) => {
           : 0);
       discount = value;
     }
+  } else {
+    grandTotal =
+      subTotal +
+      (purchase.deliveryTownshipInfo
+        ? parseInt(purchase.deliveryTownshipInfo[1])
+        : 0);
   }
   return {
     grandTotal,
