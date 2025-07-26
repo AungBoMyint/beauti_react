@@ -29,6 +29,7 @@ const Cart = () => {
     useCart((state) => state);
   /* const fullAddress = useCart((state) => state.fullAddress); */
   const cartItems = useCart((state) => state.cartItems);
+  const address = useCart((state) => state.address);
   const grandTotal = useCart((state) => state.grandTotal);
   const subTotal = useCart((state) => state.subTotal);
   const bottomActionRef = useRef<HTMLDivElement>();
@@ -44,9 +45,21 @@ const Cart = () => {
       console.log("cart is empty");
       //cart is empty
       toaster.create({
-        title: `Your cart is empty!`,
-        type: "error",
+        title: "Your cart is empty!",
+        description: "Please add at least one item before proceeding.",
+        type: "error", // or status: "error" depending on the library
+        duration: 3000,
       });
+
+      return;
+    }
+    if (address.fee === 0) {
+      toaster.create({
+        title: "Please select a township",
+        description: "You need to choose a township before continuing.",
+        type: "warning",
+      });
+
       return;
     }
     /* if (!fullAddress) {

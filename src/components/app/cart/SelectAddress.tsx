@@ -31,7 +31,7 @@ export const SelectAddress = () => {
     >
       <PopoverTrigger asChild>
         <Flex alignItems={"end"} gap={2}>
-          <Text>{address?.name ? address.name : "မြို့နယ်(optional)"}</Text>
+          <Text>{address?.name ? address.name : "မြို့နယ်"}</Text>
           <IoChevronDown />
         </Flex>
       </PopoverTrigger>
